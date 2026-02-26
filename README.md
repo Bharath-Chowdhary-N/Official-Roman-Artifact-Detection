@@ -1,9 +1,7 @@
-# Euclid NISP 5-Panel Pipeline
+# Euclid Artifact Detection Pipeline
 
 This script processes Euclid NISP SCIFRM FITS files and produces a set of
-diagnostic images and data products for each detector. It is designed to be
-run from the command line with sensible defaults, but every parameter can be
-tuned to suit your data.
+diagnostic images and data products for each detector.
 
 ---
 
