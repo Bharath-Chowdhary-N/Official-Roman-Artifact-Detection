@@ -68,25 +68,25 @@ Python 3.9 or newer is recommended.
 Process all detectors in a file and write output to `output/`:
 
 ```bash
-python full_pipeline_5panel.py my_observation.fits
+python main.py fits_file.fits
 ```
 
 Process only the third detector (zero-based index):
 
 ```bash
-python full_pipeline_5panel.py my_observation.fits --det-index 2
+python main.py fits_file.fits --det-index 2
 ```
 
 Write output to a specific folder:
 
 ```bash
-python full_pipeline_5panel.py my_observation.fits --output-dir /data/results
+python main.py fits_file.fits --output-dir /data/results
 ```
 
 Save as PNG instead of JPEG:
 
 ```bash
-python full_pipeline_5panel.py my_observation.fits --image-format png
+python main.py fits_file.fits --image-format png
 ```
 
 ---
@@ -96,19 +96,19 @@ python full_pipeline_5panel.py my_observation.fits --image-format png
 If you only want the FITS output and do not need the images:
 
 ```bash
-python full_pipeline_5panel.py my_observation.fits --no-5panel --no-panel5-standalone
+python main.py fits_file.fits --no-5panel --no-panel5-standalone
 ```
 
 If you only want the images and not the FITS file:
 
 ```bash
-python full_pipeline_5panel.py my_observation.fits --no-panel5-fits
+python main.py fits_file.fits --no-panel5-fits
 ```
 
 Skip everything except the summary text file (useful for a quick statistics run):
 
 ```bash
-python full_pipeline_5panel.py my_observation.fits --no-5panel --no-panel5-standalone --no-panel5-fits
+python main.py fits_file.fits --no-5panel --no-panel5-standalone --no-panel5-fits
 ```
 
 ---
