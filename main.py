@@ -469,9 +469,8 @@ def save_panel5_fits(
     extension so they can be read back later.
     """
 
-    if not os.path.exists(output_path):
-        fits.HDUList([fits.PrimaryHDU()]).writeto(output_path)
-    hdul_out = fits.open(output_path, mode ="update")
+    fits.HDUList([fits.PrimaryHDU()]).writeto(output_path, overwrite=True)
+    hdul_out = fits.open(output_path, mode="update")
     print(f"  Writing to FITS: {output_path}")
 
     detCode = os.path.splitext(sci_header["EXTNAME"])[0]
@@ -495,7 +494,7 @@ def save_panel5_fits(
     )
     preprocessedIHDU.header['N_HOT']    = (n_hot, 'Number of DQ-flagged hot pixels')
     preprocessedIHDU.header['HISTORY']  = 'Continuum-subtracted inpainted image (panel 5 data)'
-    preprocessedIHDU.header["Preprocessing Algorithm"] = json.dumps({
+    preprocessedIHDU.header['PREP_ALG'] = json.dumps({
         "version": 1.0,
         "date": now,
         "params": preprocessing_params
@@ -532,7 +531,7 @@ def save_panel5_fits(
     table_hdu.header['N_CONF']   = (len(confident_objects),  'Confident detections')
     table_hdu.header['N_SUSP']   = (len(suspicious_objects), 'Suspicious detections')
     table_hdu.header['HISTORY']  = 'Intensity Segmentation'
-    table_hdu.header["Intensity Segmentation Algorithm"] = json.dumps({
+    table_hdu.header['SEG_ALG'] = json.dumps({
         "version": 2.0,
         "date": now,
         "params": {
@@ -541,7 +540,7 @@ def save_panel5_fits(
             "filter_params": filter_params
         }
     })
-    table_hdu.header["ZO Filter Algorithm"] = json.dumps({
+    table_hdu.header['ZOF_ALG'] = json.dumps({
         "version": ZO_ALGORITHM_VERSION,
         "date": now,
         "params": ZO_ALGORITHM_PARAMS
@@ -552,7 +551,7 @@ def save_panel5_fits(
         hdul_out[table_hdu.name] = table_hdu
     else:
         hdul_out.append(table_hdu)
-    hdul_out.close()
+    hdul_out.close(output_verify='silentfix')
 
 
 def process_detector(hdul, det_idx, output_dir, base_name,
