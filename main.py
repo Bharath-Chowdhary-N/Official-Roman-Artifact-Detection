@@ -568,7 +568,7 @@ def process_detector(hdul, det_idx, output_dir, base_name,
     sci_name  = f"{sci_name}.SCI"
 
     print(f"\n{'=' * 60}")
-    print(f"Detector {det_idx.idx + 1}/{len([x for x in hdul if x.name.endswith(".SCI")])}  ->  {sci_name}")
+    print(f"Detector {det_idx.idx + 1}/{len([x for x in hdul if x.name.endswith('.SCI')])}  ->  {sci_name}")
     print(f"{'=' * 60}")
 
     sci_data    = hdul[sci_name].data.astype(np.float64)
