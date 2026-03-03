@@ -1,0 +1,19 @@
+{
+ "workdir": ".",
+ "datadir": ".",
+ "calibdir": "calib",
+ "config_file": null,
+ "abs_file": "EUC_SIR_W-AbsoluteFlux-SCALE_ALL_20250218T221007.269385Z.fits",
+ "opt_file": "SIR_Calib_Opt_EUCLID_2.0.1-CALIBRATION-pcasenov-PLAN-000000-MT0S7VWE-20250123-180643-0-new_opt_cal-0.xml",
+ "ids_file": "SIR_Calib_Ids_EUCLID_2.0.1-CALIBRATION-pcasenov-PLAN-000001-GQLJE83P-20250211-181132-0-new_ids_calib-0.xml",
+ "crv_file": "SIR_Calib_Crv_EUCLID_2.0.1-CALIBRATION-pcasenov-PLAN-000001-6NJP8VE4-20250211-163247-0-new_crv_cal-0.xml",
+ "location_table": null,
+ "detector_slots_path": "EUC_SIR_DETMODEL_REAL_DATA_OP_02.csv",
+ "rel_flux_file": "EUC_SIR_W-RelativeFlux-SCALE_20250213T055119.137223Z_dcm_mod.fits",
+ "psf_file": "psf_wavelength.json",
+ "use_psf": false,
+ "use_chromatic_psf": false,
+ "use_relative_flux_loss": false,
+ "zero_order_catalog": "zero_order_cat.fits",
+ "nir_wcs": "nir_wcs.json"
+}

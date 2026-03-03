@@ -38,46 +38,76 @@ from astropy.io import fits
 from astropy.visualization import ZScaleInterval
 from scipy.ndimage import median_filter, uniform_filter, rotate
 from skimage import morphology, measure
+from datetime import datetime
+import json
+import pandas as pd
+import gelsa
+
+G = gelsa.Gelsa("calib/gelsa_config.json")
+ESC_PATH = "Euclid Extracted Spectra Data"
+
+ZO_MIN_DST_THRESHOLD = 0.75
+ZO_H_SCALE = 5.0
+ZO_W_SCALE = 20.0
+ZO_MIN_BRIGHTNESS_MAG = 19
+ZO_ALGORITHM_VERSION = 2.0
+ZO_ALGORITHM_PARAMS = {
+    "ZO_MIN_DST_THRESHOLD": ZO_MIN_DST_THRESHOLD,
+    "ZO_H_SCALE": ZO_H_SCALE,
+    "ZO_W_SCALE": ZO_W_SCALE,
+    "ZO_MIN_BRIGHTNESS_MAG": ZO_MIN_BRIGHTNESS_MAG
+}
 
 warnings.filterwarnings('ignore')
 zscale = ZScaleInterval()
 
+class DetIndex:
+    def __init__(self, thing):
+        if type(thing) is str:
+            self.code = thing
+            self.idx = (int(self.code[1])-1)*4 + (int(self.code[0])-1)
+        elif type(thing) is int:
+            self.idx = thing
+            self.code = f"{self.idx%4 + 1}{self.idx//4 + 1}"
+        else:
+            raise Exception("What'd you give me?")
+DetIndex.ALL_DETS = [DetIndex(i) for i in range(16)]
 
-def get_grism_angle(primary_header):
-    """
-    Read the grism rotation angle in degrees from the primary FITS header.
-    Several common keyword variants are tried in order. Returns 0.0 if none
-    are found.
-    """
-    candidates = [
-        'GRISM_PA',
-        'HIERARCH GRISM_PA',
-        'HIERARCH ESA NISP GRISM PA',
-        'HIERARCH ESA NISP GRISM ANGLE',
-        'GRS_PA',
-        'GRISMPA',
-        'ROTANGLE',
-    ]
-    for key in candidates:
-        try:
-            val = float(primary_header[key])
-            print(f"  Grism angle: {val:.2f} deg  (keyword '{key}')")
-            return val
-        except (KeyError, TypeError):
-            continue
+# def get_grism_angle(primary_header):
+#     """
+#     Read the grism rotation angle in degrees from the primary FITS header.
+#     Several common keyword variants are tried in order. Returns 0.0 if none
+#     are found.
+#     """
+#     candidates = [
+#         'GRISM_PA',
+#         'HIERARCH GRISM_PA',
+#         'HIERARCH ESA NISP GRISM PA',
+#         'HIERARCH ESA NISP GRISM ANGLE',
+#         'GRS_PA',
+#         'GRISMPA',
+#         'ROTANGLE',
+#     ]
+#     for key in candidates:
+#         try:
+#             val = float(primary_header[key])
+#             print(f"  Grism angle: {val:.2f} deg  (keyword '{key}')")
+#             return val
+#         except (KeyError, TypeError):
+#             continue
 
-    for card in primary_header.cards:
-        kw = str(card.keyword).upper()
-        if 'GRISM' in kw or ('GRS' in kw and ('ANGLE' in kw or 'PA' in kw)):
-            try:
-                val = float(card.value)
-                print(f"  Grism angle: {val:.2f} deg  (keyword '{card.keyword}')")
-                return val
-            except (ValueError, TypeError):
-                continue
+#     for card in primary_header.cards:
+#         kw = str(card.keyword).upper()
+#         if 'GRISM' in kw or ('GRS' in kw and ('ANGLE' in kw or 'PA' in kw)):
+#             try:
+#                 val = float(card.value)
+#                 print(f"  Grism angle: {val:.2f} deg  (keyword '{card.keyword}')")
+#                 return val
+#             except (ValueError, TypeError):
+#                 continue
 
-    print("  WARNING: grism angle not found, assuming 0.0 deg")
-    return 0.0
+#     print("  WARNING: grism angle not found, assuming 0.0 deg")
+#     return 0.0
 
 
 def cont_subtract_single(image, grism_angle, kernel_size=(1, 41)):
@@ -419,87 +449,131 @@ def filter_horizontal_objects(object_list, min_aspect_ratio=3.0, min_width=50,
     return filtered, horizontal
 
 
-def save_panel5_fits(cs_inpainted, confident_objects, suspicious_objects,
-                     sci_header, grism_angle, n_hot, output_path):
+def save_panel5_fits(
+    cs_inpainted,
+    confident_objects,
+    suspicious_objects,
+    paired_objects,
+    sci_header,
+    n_hot,
+    output_path,
+    preprocessing_params,
+    detection_params,
+    merge_params,
+    filter_params,
+    zo_table
+):
     """
     Save the inpainted continuum-subtracted image (the data underlying panel 5)
     to a FITS file. Detection bounding boxes are stored as a binary table
     extension so they can be read back later.
     """
-    primary_hdu = fits.PrimaryHDU(data=cs_inpainted.astype(np.float32))
-    primary_hdu.header['GRISMANG'] = (grism_angle, 'Grism position angle deg')
-    primary_hdu.header['N_HOT']    = (n_hot,        'Number of DQ-flagged hot pixels')
-    primary_hdu.header['N_CONF']   = (len(confident_objects),  'Confident detections')
-    primary_hdu.header['N_SUSP']   = (len(suspicious_objects), 'Suspicious detections')
-    primary_hdu.header['HISTORY']  = 'Continuum-subtracted inpainted image (panel 5 data)'
 
-    # Copy a useful subset of the original science header
-    for key in ('EXPTIME', 'FILTER', 'OBSERVAT', 'TELESCOP', 'INSTRUME',
-                'DATE-OBS', 'RA', 'DEC', 'NAXIS1', 'NAXIS2'):
-        if key in sci_header:
-            primary_hdu.header[key] = sci_header[key]
+    if not os.path.exists(output_path):
+        fits.HDUList([fits.PrimaryHDU()]).writeto(output_path)
+    hdul_out = fits.open(output_path, mode ="update")
+    print(f"  Writing to FITS: {output_path}")
+
+    detCode = os.path.splitext(sci_header["EXTNAME"])[0]
+    now = str(datetime.now())
+
+    # Write the ZO table
+    if "ZOTABLE" in hdul_out:
+        print("Already has ZO table")
+    else:
+        print("Writing ZO table")
+        hdul_out.append(fits.BinTableHDU.from_columns(fits.ColDefs([
+            fits.Column(name='X',        format='D', array = zo_table["ZO x"]  ),
+            fits.Column(name='Y',        format='D', array = zo_table["ZO y"]  ),
+            fits.Column(name='Detector', format='B', array = zo_table["ZO Det"]),
+        ]), name = "ZOTABLE"))
+
+    preprocessedIHDU = fits.ImageHDU(
+        data = cs_inpainted.astype(np.float32),
+        name = f"{detCode}.Preprocessed",
+        header = sci_header
+    )
+    preprocessedIHDU.header['N_HOT']    = (n_hot, 'Number of DQ-flagged hot pixels')
+    preprocessedIHDU.header['HISTORY']  = 'Continuum-subtracted inpainted image (panel 5 data)'
+    preprocessedIHDU.header["Preprocessing Algorithm"] = json.dumps({
+        "version": 1.0,
+        "date": now,
+        "params": preprocessing_params
+    })
+
+    if preprocessedIHDU.name in hdul_out:
+        print(f"Overwriting existing {preprocessedIHDU.name}")
+        hdul_out[preprocessedIHDU.name] = preprocessedIHDU
+    else:
+        hdul_out.append(preprocessedIHDU)
 
     all_objects = (
-        [(o, 'confident')  for o in confident_objects] +
-        [(o, 'suspicious') for o in suspicious_objects]
+        [(o, 'confident')       for o in confident_objects  ] +
+        [(o, 'suspicious')      for o in suspicious_objects ] + 
+        [(o, 'confirmed ZO')    for o in paired_objects     ]
     )
 
-    if all_objects:
-        col_x0   = fits.Column(name='X_MIN',    format='J',
-                               array=np.array([o['bbox'][0] for o, _ in all_objects]))
-        col_y0   = fits.Column(name='Y_MIN',    format='J',
-                               array=np.array([o['bbox'][1] for o, _ in all_objects]))
-        col_x1   = fits.Column(name='X_MAX',    format='J',
-                               array=np.array([o['bbox'][2] for o, _ in all_objects]))
-        col_y1   = fits.Column(name='Y_MAX',    format='J',
-                               array=np.array([o['bbox'][3] for o, _ in all_objects]))
-        col_cx   = fits.Column(name='CENT_X',   format='E',
-                               array=np.array([o['centroid'][0] for o, _ in all_objects]))
-        col_cy   = fits.Column(name='CENT_Y',   format='E',
-                               array=np.array([o['centroid'][1] for o, _ in all_objects]))
-        col_area = fits.Column(name='AREA',     format='J',
-                               array=np.array([o['area'] for o, _ in all_objects]))
-        col_fill = fits.Column(name='FILL',     format='E',
-                               array=np.array([o['fill_ratio'] for o, _ in all_objects]))
-        col_ar   = fits.Column(name='ASPECT',   format='E',
-                               array=np.array([o['aspect_ratio'] for o, _ in all_objects]))
-        col_type = fits.Column(name='TYPE',     format='10A',
-                               array=np.array([t for _, t in all_objects]))
-        table_hdu = fits.BinTableHDU.from_columns(
-            [col_x0, col_y0, col_x1, col_y1, col_cx, col_cy,
-             col_area, col_fill, col_ar, col_type]
-        )
-        table_hdu.name = 'DETECTIONS'
-        hdul_out = fits.HDUList([primary_hdu, table_hdu])
-    else:
-        hdul_out = fits.HDUList([primary_hdu])
+    table_hdu = fits.BinTableHDU.from_columns(
+        fits.ColDefs([
+            fits.Column(name='X_MIN',    format='J',     array=np.array([o['bbox'][0]       for o, _ in all_objects])),
+            fits.Column(name='Y_MIN',    format='J',     array=np.array([o['bbox'][1]       for o, _ in all_objects])),
+            fits.Column(name='X_MAX',    format='J',     array=np.array([o['bbox'][2]       for o, _ in all_objects])),
+            fits.Column(name='Y_MAX',    format='J',     array=np.array([o['bbox'][3]       for o, _ in all_objects])),
+            fits.Column(name='CENT_X',   format='E',     array=np.array([o['centroid'][0]   for o, _ in all_objects])),
+            fits.Column(name='CENT_Y',   format='E',     array=np.array([o['centroid'][1]   for o, _ in all_objects])),
+            fits.Column(name='AREA',     format='J',     array=np.array([o['area']          for o, _ in all_objects])),
+            fits.Column(name='FILL',     format='E',     array=np.array([o['fill_ratio']    for o, _ in all_objects])),
+            fits.Column(name='ASPECT',   format='E',     array=np.array([o['aspect_ratio']  for o, _ in all_objects])),
+            fits.Column(name='TYPE',     format='10A',   array=np.array([t                  for _, t in all_objects]))
+        ]),
+        name = f"{detCode}.Detections",
+        header = sci_header
+    )
+    table_hdu.header['N_CONF']   = (len(confident_objects),  'Confident detections')
+    table_hdu.header['N_SUSP']   = (len(suspicious_objects), 'Suspicious detections')
+    table_hdu.header['HISTORY']  = 'Intensity Segmentation'
+    table_hdu.header["Intensity Segmentation Algorithm"] = json.dumps({
+        "version": 2.0,
+        "date": now,
+        "params": {
+            "detection_params": detection_params,
+            "merge_params": merge_params,
+            "filter_params": filter_params
+        }
+    })
+    table_hdu.header["ZO Filter Algorithm"] = json.dumps({
+        "version": ZO_ALGORITHM_VERSION,
+        "date": now,
+        "params": ZO_ALGORITHM_PARAMS
+    })
 
-    hdul_out.writeto(output_path, overwrite=True)
-    print(f"  Saved FITS: {output_path}")
+    if table_hdu.name in hdul_out:
+        print(f"Overwriting existing {table_hdu.name}")
+        hdul_out[table_hdu.name] = table_hdu
+    else:
+        hdul_out.append(table_hdu)
+    hdul_out.close()
 
 
 def process_detector(hdul, det_idx, output_dir, base_name,
                      kernel_size, inpaint_box, hot_pixel_bits,
                      image_format, jpeg_quality,
                      detection_params, merge_params, filter_params,
+                     zo_table,
                      save_5panel=True, save_panel5_standalone=True,
                      save_panel5_fits_flag=True):
 
-    sci_hdus = [h for h in hdul if h.name.endswith('.SCI')]
-    if det_idx >= len(sci_hdus):
-        print(f"  Skipping det_idx {det_idx}: only {len(sci_hdus)} SCI HDUs found")
-        return None
-
-    sci_name = sci_hdus[det_idx].name
-    dq_name  = sci_name.replace('.SCI', '.DQ')
+    sci_name = f"DET{det_idx.code}"
+    dq_name  = f"{sci_name}.DQ"
+    sci_name  = f"{sci_name}.SCI"
 
     print(f"\n{'=' * 60}")
-    print(f"Detector {det_idx + 1}/{len(sci_hdus)}  ->  {sci_name}")
+    print(f"Detector {det_idx.idx + 1}/{len([x for x in hdul if x.name.endswith(".SCI")])}  ->  {sci_name}")
     print(f"{'=' * 60}")
 
     sci_data    = hdul[sci_name].data.astype(np.float64)
     sci_header  = hdul[sci_name].header
-    grism_angle = get_grism_angle(hdul[0].header)
+    grism_angle = hdul[0].header["GWA_TILT"] # get_grism_angle(hdul[0].header)
 
     print(f"  Continuum subtraction (grism={grism_angle:.1f} deg, kernel={kernel_size})...")
     cs_image = cont_subtract_single(sci_data, grism_angle, kernel_size)
@@ -526,7 +600,7 @@ def process_detector(hdul, det_idx, output_dir, base_name,
         sigma_est = float(np.median(np.abs(finite_px - bg_median))) * 1.4826
 
     sigma_est = max(sigma_est, 1e-9)
-    n_sigma   = detection_params.get('detection_sigma', 3.0)
+    n_sigma   = detection_params.get('detection_sigma', 3.0) ####################################################################################################
     flux_threshold = bg_median + n_sigma * sigma_est
 
     print(f"  Background median : {bg_median:.4g}")
@@ -534,15 +608,14 @@ def process_detector(hdul, det_idx, output_dir, base_name,
     print(f"  Flux threshold    : {flux_threshold:.4g}  ({n_sigma:.1f} sigma above bg)")
 
     thr_norm  = detection_params.get('intensity_threshold', 0.05)
-    scale     = (flux_threshold - bg_median) / thr_norm
+    scale     = (flux_threshold - bg_median) / thr_norm #########################################################################################################
     det_image = np.clip((raw_det - bg_median) / (scale + 1e-30), 0, 1)
 
     _, initial_objects, intensity_mask = detect_all_objects(det_image, **detection_params)
     merged_objects = merge_objects_fast(initial_objects, **merge_params)
 
     fill_threshold  = filter_params['fill_ratio_threshold']
-    suspicious_lbl  = {obj['label'] for obj in merged_objects
-                       if obj['fill_ratio'] < fill_threshold}
+    suspicious_lbl  = {obj['label'] for obj in merged_objects if obj['fill_ratio'] < fill_threshold}
     filtered_objects, horizontal_objects = filter_horizontal_objects(
         merged_objects,
         min_aspect_ratio=filter_params['min_aspect_ratio'],
@@ -552,8 +625,28 @@ def process_detector(hdul, det_idx, output_dir, base_name,
 
     confident_objects  = [o for o in filtered_objects if o['fill_ratio'] >= fill_threshold]
     suspicious_objects = [o for o in filtered_objects if o['fill_ratio'] <  fill_threshold]
-    print(f"  Confident (green)  : {len(confident_objects)}")
-    print(f"  Suspicious (yellow): {len(suspicious_objects)}")
+    print(f"  Confident (green)\t: {len(confident_objects)}")
+    print(f"  Suspicious (yellow)\t: {len(suspicious_objects)}")
+
+    # Segregate possible ZOs out based on distance
+    zx = zo_table[zo_table["ZO Det"] == det_idx.idx]["ZO x"]
+    zy = zo_table[zo_table["ZO Det"] == det_idx.idx]["ZO y"]
+    zpos = np.column_stack((zx, zy))
+    paired_objects = []
+    tilt = np.deg2rad(grism_angle)
+    A_inv = np.linalg.inv(np.array([
+        [ZO_W_SCALE * np.cos(tilt), -ZO_H_SCALE * np.sin(tilt)],
+        [ZO_W_SCALE * np.sin(tilt),  ZO_H_SCALE * np.cos(tilt)]
+    ]))
+    for o in confident_objects:
+        dsts = zpos.copy()
+        region_center = np.array(o['centroid'])
+        dsts -= region_center
+        dsts = np.linalg.norm(np.transpose(np.inner(A_inv, dsts)), axis=1)
+        if np.min(dsts) < ZO_MIN_DST_THRESHOLD:
+            paired_objects.append(o)
+    confident_objects = [o for o in confident_objects if o not in paired_objects]
+    print(f"  Confirmed ZOs (blue)\t: {len(paired_objects)}, this leaves {len(confident_objects)} confident (green) objects remaining")
 
     disp_raw          = zscale_01(sci_data)
     disp_cs           = zscale_01(cs_image)
@@ -568,10 +661,11 @@ def process_detector(hdul, det_idx, output_dir, base_name,
     if save_5panel:
         fig, axes = plt.subplots(1, 5, figsize=(30, 6))
         fig.suptitle(
-            f"{base_name}  |  {sci_name}  |  grism = {grism_angle:.1f} deg\n"
-            f"DQ hot pixels: {n_hot:,}  ({100 * n_hot / hot_mask.size:.3f}%)  "
-            f"|  Detected: {len(confident_objects)} confident  "
-            f"{len(suspicious_objects)} suspicious",
+            f"{base_name}  |  {sci_name}  |  grism = {grism_angle:.1f} deg\n" +
+            f"DQ hot pixels: {n_hot:,}  ({100 * n_hot / hot_mask.size:.3f}%)  " +
+            f"|  Detected: {len(confident_objects)} confident  " +
+            f"{len(suspicious_objects)} suspicious" +
+            f"{len(paired_objects)} confirms ZOs",
             fontsize=10,
         )
 
@@ -590,9 +684,10 @@ def process_detector(hdul, det_idx, output_dir, base_name,
 
         axes[4].imshow(disp_cs_inpainted, origin='lower', cmap=cmap, vmin=0, vmax=1)
         axes[4].set_title(
-            f"5. Object detection\n"
-            f"green={len(confident_objects)} confident  "
-            f"yellow={len(suspicious_objects)} suspicious",
+            f"5. Object detection\n" +
+            f"green={len(confident_objects)} confident  " +
+            f"yellow={len(suspicious_objects)} suspicious" +
+            f"blue={len(paired_objects)} confirmed ZO",
             fontsize=9,
         )
         for obj in confident_objects:
@@ -609,7 +704,14 @@ def process_detector(hdul, det_idx, output_dir, base_name,
                 linewidth=1, edgecolor='yellow', facecolor='none', alpha=0.9,
             )
             axes[4].add_patch(rect)
-
+        for obj in paired_objects:
+            bc = obj['bbox']
+            rect = patches.Rectangle(
+                (bc[0], bc[1]), bc[2] - bc[0], bc[3] - bc[1],
+                linewidth=1, edgecolor='blue', facecolor='none', alpha=0.9,
+            )
+            axes[4].add_patch(rect)
+        # axes[4].scatter(zx, zy, marker="s", facecolors='none', edgecolors='r', linewidths=1)
         for ax in axes:
             ax.set_xlabel("X (px)")
             ax.set_ylabel("Y (px)")
@@ -652,6 +754,14 @@ def process_detector(hdul, det_idx, output_dir, base_name,
                 linewidth=1, edgecolor='yellow', facecolor='none', alpha=0.9,
             )
             ax5.add_patch(rect)
+        for obj in paired_objects:
+            bc = obj['bbox']
+            rect = patches.Rectangle(
+                (bc[0], bc[1]), bc[2] - bc[0], bc[3] - bc[1],
+                linewidth=1, edgecolor='blue', facecolor='none', alpha=0.9,
+            )
+            ax5.add_patch(rect)
+        ax5.scatter(zx, zy, marker="s", facecolors='none', edgecolors='r', linewidths=1)
         plt.tight_layout()
 
         ext = 'jpg' if image_format.lower() in ('jpeg', 'jpg') else 'png'
@@ -668,8 +778,18 @@ def process_detector(hdul, det_idx, output_dir, base_name,
     if save_panel5_fits_flag:
         fits_path_out = os.path.join(output_dir, f"{fname_stem}_panel5.fits")
         save_panel5_fits(
-            cs_inpainted, confident_objects, suspicious_objects,
-            sci_header, grism_angle, n_hot, fits_path_out,
+            cs_inpainted,
+            confident_objects,
+            suspicious_objects,
+            paired_objects,
+            sci_header,
+            n_hot,
+            fits_path_out,
+            { "inpaint_box": inpaint_box, "kernel_size": kernel_size, "hot_pixel_bits": hot_pixel_bits },
+            detection_params,
+            merge_params,
+            filter_params,
+            zo_table
         )
 
     return {
@@ -682,6 +802,7 @@ def process_detector(hdul, det_idx, output_dir, base_name,
         'horiz_removed'  : len(horizontal_objects),
         'confident'      : len(confident_objects),
         'suspicious'     : len(suspicious_objects),
+        'confirmed ZOs'  : len(paired_objects),
     }
 
 
@@ -736,20 +857,31 @@ def process_fits_with_full_pipeline(
             'fill_ratio_threshold': 0.20,
         }
 
+    gelsa_frame = G.load_spec_frame(fits_path)
+
     with fits.open(fits_path, memmap=False) as hdul:
         hdul.info()
-        sci_hdus    = [h for h in hdul if h.name.endswith('.SCI')]
+        sci_hdus    = [DetIndex(h.name[3:-4]) for h in hdul if h.name.endswith('.SCI')]
         n_det       = len(sci_hdus)
-        det_indices = range(n_det) if specific_det_index is None else [specific_det_index]
+        det_indices = [DetIndex(specific_det_index)] if specific_det_index is not None else sci_hdus
         print(f"\nFound {n_det} SCI detectors.")
-
         all_results = []
+        zo_table    = pd.read_csv(os.path.join(ESC_PATH, str(hdul[0].header["OBS_ID"]), "digest.csv"))
+        zo_table    = zo_table[zo_table['Magnitude'] < ZO_MIN_BRIGHTNESS_MAG]
+        zo_table["ZO x"], zo_table["ZO y"], zo_table["ZO Det"] = gelsa_frame.radec_to_pixel(
+            zo_table['RIGHT_ASCENSION'],
+            zo_table['DECLINATION'],
+            15000*np.ones(len(zo_table)),
+            dispersion_order = 0
+        )
+        zo_table = zo_table[zo_table["ZO Det"] >= 0]
         for det_idx in det_indices:
             result = process_detector(
                 hdul, det_idx, output_dir, base_name,
                 kernel_size, inpaint_box, hot_pixel_bits,
                 image_format, jpeg_quality,
                 detection_params, merge_params, filter_params,
+                zo_table,
                 save_5panel=save_5panel,
                 save_panel5_standalone=save_panel5_standalone,
                 save_panel5_fits_flag=save_panel5_fits_flag,
@@ -766,18 +898,16 @@ def process_fits_with_full_pipeline(
         f.write(f"Detection params: {detection_params}\n")
         f.write(f"Merge params    : {merge_params}\n")
         f.write(f"Filter params   : {filter_params}\n")
-        f.write(f"{'_' * 70}\n")
+        f.write(f"ZO Filtering params   : {ZO_ALGORITHM_PARAMS}\n")
+        f.write(f"{'_' * 90}\n")
         hdr = (
-            f"{'Detector':<20} {'Grism':>7}deg  {'Hot px':>10}  {'%':>8}  "
-            f"{'Conf':>6}  {'Susp':>6}\n"
+            f"{'Detector':<20}\t{'Grism':>7}deg\t{'Hot px':>10}\t{'%':>8}\t{'Confident':>6}\t{'Susp':>6}\t{'Confirmed':>6}\n"
         )
         f.write(hdr)
-        f.write(f"{'_' * 70}\n")
+        f.write(f"{'_' * 90}\n")
         for r in all_results:
             f.write(
-                f"{r['sci_name']:<20} {r['grism_angle']:>7.1f}   "
-                f"{r['hot_px']:>10,}  {r['hot_pct']:>8.3f}%  "
-                f"{r['confident']:>6}  {r['suspicious']:>6}\n"
+                f"{r['sci_name']:<20}\t{r['grism_angle']:>7.1f}\t\t{r['hot_px']:>10,}\t{r['hot_pct']:>8.3f}%\t{r['confident']:>6}\t\t{r['suspicious']:>6}\t{r['confirmed ZOs']:>6}\n"
             )
 
     print(f"\n  Summary -> {summary_path}")

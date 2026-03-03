@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dpd-sir-relativeflux:DpdSirRelativeFluxScaling xmlns:dpd-sir-relativeflux="http://ecdm.euclid-ec.org/schema/dpd/sir/relativeflux" xmlns:sys="http://ecdm.euclid-ec.org/schema/sys" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:pro-sir="http://ecdm.euclid-ec.org/schema/pro/sir" xmlns:ins="http://ecdm.euclid-ec.org/schema/ins" xmlns:bas-fit="http://ecdm.euclid-ec.org/schema/bas/fit" xmlns:bas-dtd="http://ecdm.euclid-ec.org/schema/bas/dtd" xmlns:sys-dss="http://ecdm.euclid-ec.org/schema/sys/dss" xmlns:bas-ppr="http://ecdm.euclid-ec.org/schema/bas/ppr" xmlns:bas-dqc="http://ecdm.euclid-ec.org/schema/bas/dqc">
+ <Header>
+  <ProductId>SIR_Calibration_Rel_EUCLID_2.0.1-CALIBRATION-pcasenov-PLAN-000000-MBQV9YN5-20250212-135721-0-new_rel_flux-0-MANUAL_FIX_30132</ProductId>
+  <ProductType>DpdSirRelativeFluxScaling</ProductType>
+  <SoftwareName>SIR_Pipeline</SoftwareName>
+  <SoftwareRelease>0.15</SoftwareRelease>
+  <EuclidPipelineSoftwareRelease>0.0</EuclidPipelineSoftwareRelease>
+  <ProdSDC>SDC-IT</ProdSDC>
+  <DataSetRelease>UNKNOWN</DataSetRelease>
+  <Purpose>UNKNOWN</Purpose>
+  <PlanId>UNKNOWN</PlanId>
+  <PPOId>UNKNOWN</PPOId>
+  <PipelineDefinitionId>UNKNOWN</PipelineDefinitionId>
+  <PpoStatus>NA</PpoStatus>
+  <ManualValidationStatus>VALID</ManualValidationStatus>
+  <ProductNotifiedToBeChecked>UNKNOWN</ProductNotifiedToBeChecked>
+  <AutomatedValidationStatus>UNKNOWN</AutomatedValidationStatus>
+  <ExpirationDate>2024-07-30T17:13:00.755000Z</ExpirationDate>
+  <ToBePublished>0</ToBePublished>
+  <Published>0</Published>
+  <Curator>Marco Fumana</Curator>
+  <CreationDate>2024-07-30T17:13:00.761962Z</CreationDate>
+ </Header>
+ <Data>
+  <ValidityRange>
+   <TimestampStart>2023-07-01T00:00:00.000000Z</TimestampStart>
+   <TimestampEnd>2030-12-31T23:59:59.000000Z</TimestampEnd>
+  </ValidityRange>
+  <CalibrationID>1</CalibrationID>
+  <CalibrationVersion>1</CalibrationVersion>
+  <DataStorage format="sir.relativeFluxScaling" version="0.1">
+   <DataContainer filestatus="PROPOSED">
+    <FileName>EUC_SIR_W-RelativeFlux-SCALE_20250213T055119.137223Z_dcm_mod.fits</FileName>
+   </DataContainer>
+  </DataStorage>
+  <QualityParameters>
+   <Parameter>
+    <Key>Wavelengths</Key>
+    <Description>Wavelength (micron)</Description>
+    <StringValue>[1.25 1.32 1.38 1.45 1.51 1.58 1.64 1.71 1.77 1.84]</StringValue>
+   </Parameter>
+   <Parameter>
+    <Key>RGS000_avg</Key>
+    <Description>RGS000 mean correction (dmag)</Description>
+    <StringValue>[0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]</StringValue>
+   </Parameter>
+   <Parameter>
+    <Key>RGS000_std</Key>
+    <Description>RGS000 stdDev (dmag)</Description>
+    <StringValue>[0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]</StringValue>
+   </Parameter>
+   <Parameter>
+    <Key>Wavelengths</Key>
+    <Description>Wavelength (micron)</Description>
+    <StringValue>[1.25 1.32 1.38 1.45 1.51 1.58 1.64 1.71 1.77 1.84]</StringValue>
+   </Parameter>
+   <Parameter>
+    <Key>RGS180+4_avg</Key>
+    <Description>RGS180+4 mean correction (dmag)</Description>
+    <StringValue>[0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]</StringValue>
+   </Parameter>
+   <Parameter>
+    <Key>RGS180+4_std</Key>
+    <Description>RGS180+4 stdDev (dmag)</Description>
+    <StringValue>[0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]</StringValue>
+   </Parameter>
+   <Parameter>
+    <Key>Wavelengths</Key>
+    <Description>Wavelength (micron)</Description>
+    <StringValue>[1.25 1.32 1.38 1.45 1.51 1.58 1.64 1.71 1.77 1.84]</StringValue>
+   </Parameter>
+   <Parameter>
+    <Key>RGS000-4_avg</Key>
+    <Description>RGS000-4 mean correction (dmag)</Description>
+    <StringValue>[0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]</StringValue>
+   </Parameter>
+   <Parameter>
+    <Key>RGS000-4_std</Key>
+    <Description>RGS000-4 stdDev (dmag)</Description>
+    <StringValue>[0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]</StringValue>
+   </Parameter>
+   <Parameter>
+    <Key>Wavelengths</Key>
+    <Description>Wavelength (micron)</Description>
+    <StringValue>[1.25 1.32 1.38 1.45 1.51 1.58 1.64 1.71 1.77 1.84]</StringValue>
+   </Parameter>
+   <Parameter>
+    <Key>RGS180_avg</Key>
+    <Description>RGS180 mean correction (dmag)</Description>
+    <StringValue>[0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]</StringValue>
+   </Parameter>
+   <Parameter>
+    <Key>RGS180_std</Key>
+    <Description>RGS180 stdDev (dmag)</Description>
+    <StringValue>[0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]</StringValue>
+   </Parameter>
+   <Parameter>
+    <Key>Wavelengths</Key>
+    <Description>Wavelength (micron)</Description>
+    <StringValue>[1.25 1.32 1.38 1.45 1.51 1.58 1.64 1.71 1.77 1.84]</StringValue>
+   </Parameter>
+   <Parameter>
+    <Key>RGS270_avg</Key>
+    <Description>RGS270 mean correction (dmag)</Description>
+    <StringValue>[0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]</StringValue>
+   </Parameter>
+   <Parameter>
+    <Key>RGS270_std</Key>
+    <Description>RGS270 stdDev (dmag)</Description>
+    <StringValue>[0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]</StringValue>
+   </Parameter>
+   <Parameter>
+    <Key>Wavelengths</Key>
+    <Description>Wavelength (micron)</Description>
+    <StringValue>[0.9 0.95 1. 1.05 1.1 1.14 1.19 1.24 1.29 1.34]</StringValue>
+   </Parameter>
+   <Parameter>
+    <Key>BGS000_avg</Key>
+    <Description>BGS000 mean correction (dmag)</Description>
+    <StringValue>[-0.01205965 -0.00035116 -0.00041681 -0.00158458 -0.00157167 -0.01225713 -0.02706248 -0.00191053 -0.00078005 -0.00067631]</StringValue>
+   </Parameter>
+   <Parameter>
+    <Key>BGS000_std</Key>
+    <Description>BGS000 stdDev (dmag)</Description>
+    <StringValue>[0.27795076 0.05630659 0.05164222 0.04993052 0.04924181 0.05190078 0.05378234 0.05119019 0.05317515 0.0498737 ]</StringValue>
+   </Parameter>
+  </QualityParameters>
+ </Data>
+</dpd-sir-relativeflux:DpdSirRelativeFluxScaling>

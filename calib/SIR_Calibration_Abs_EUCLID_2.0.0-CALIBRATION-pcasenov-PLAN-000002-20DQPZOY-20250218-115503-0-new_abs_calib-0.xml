@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dpd-sir-absoluteflux:DpdSirAbsoluteFluxScaling xmlns:dpd-sir-absoluteflux="http://ecdm.euclid-ec.org/schema/dpd/sir/absoluteflux" xmlns:sys="http://ecdm.euclid-ec.org/schema/sys" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:pro-sir="http://ecdm.euclid-ec.org/schema/pro/sir" xmlns:ins="http://ecdm.euclid-ec.org/schema/ins" xmlns:bas-fit="http://ecdm.euclid-ec.org/schema/bas/fit" xmlns:bas-dtd="http://ecdm.euclid-ec.org/schema/bas/dtd" xmlns:sys-dss="http://ecdm.euclid-ec.org/schema/sys/dss" xmlns:bas-ppr="http://ecdm.euclid-ec.org/schema/bas/ppr" xmlns:bas-dqc="http://ecdm.euclid-ec.org/schema/bas/dqc">
+ <Header>
+  <ProductId>SIR_Calibration_Abs_EUCLID_2.0.0-CALIBRATION-pcasenov-PLAN-000002-20DQPZOY-20250218-115503-0-new_abs_calib-0</ProductId>
+  <ProductType>DpdSirAbsoluteFluxScaling</ProductType>
+  <SoftwareName>SIR_Calibration_Abs</SoftwareName>
+  <SoftwareRelease>5.3.4</SoftwareRelease>
+  <EuclidPipelineSoftwareRelease>UNKNOWN</EuclidPipelineSoftwareRelease>
+  <ProdSDC>SDC-IT-OPS</ProdSDC>
+  <DataSetRelease>CALBLOCK_PV-003_R5</DataSetRelease>
+  <Purpose>CALIBRATION</Purpose>
+  <PlanId>SIR_Calibration_Abs_EUCLID_2.0.0-CALIBRATION-pcasenov-PLAN-000002</PlanId>
+  <PPOId>SIR_Calibration_Abs_EUCLID_2.0.0-CALIBRATION-pcasenov-PLAN-000002-20DQPZOY-20250218-115503-0</PPOId>
+  <PipelineDefinitionId>SIR_Calibration_Abs_EUCLID_2.0.0</PipelineDefinitionId>
+  <PpoStatus>COMPLETED</PpoStatus>
+  <ManualValidationStatus>VALID</ManualValidationStatus>
+  <ProductNotifiedToBeChecked>UNKNOWN</ProductNotifiedToBeChecked>
+  <AutomatedValidationStatus>UNKNOWN</AutomatedValidationStatus>
+  <ExpirationDate>1970-01-01T00:00:00.000000Z</ExpirationDate>
+  <ToBePublished>0</ToBePublished>
+  <Published>0</Published>
+  <Curator>SIR PF</Curator>
+  <CreationDate>2025-02-18T22:10:07.337000Z</CreationDate>
+ </Header>
+ <Data>
+  <ValidityRange>
+   <TimestampStart>2023-07-01T00:00:00.000000Z</TimestampStart>
+   <TimestampEnd>2030-12-31T23:59:59.000000Z</TimestampEnd>
+  </ValidityRange>
+  <CalibrationID>Operations</CalibrationID>
+  <CalibrationVersion>1</CalibrationVersion>
+  <DataStorage format="sir.absoluteFluxScaling" version="0.1">
+   <DataContainer filestatus="PROPOSED" checksumMethod="MD5" checksumValue="b7a17b425254a3052e6fde2f5ef91cf3">
+    <FileName>EUC_SIR_W-AbsoluteFlux-SCALE_ALL_20250218T221007.269385Z.fits</FileName>
+   </DataContainer>
+  </DataStorage>
+ </Data>
+ <Parameters>
+  <Parameter>
+   <Key>RGS000_ratio_median</Key>
+   <Description>Median ratio (computed sensitivity divided by forward-modeled sensitivity)</Description>
+   <DoubleValue>1.0336649817177193</DoubleValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_ratio_stdev</Key>
+   <Description>Standard deviation of the ratio (computed sensitivity divided by forward-modeled sensitivity)</Description>
+   <DoubleValue>0.009105714650075565</DoubleValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000m4_ratio_median</Key>
+   <Description>Median ratio (computed sensitivity divided by forward-modeled sensitivity)</Description>
+   <DoubleValue>1.0225461396349391</DoubleValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000m4_ratio_stdev</Key>
+   <Description>Standard deviation of the ratio (computed sensitivity divided by forward-modeled sensitivity)</Description>
+   <DoubleValue>0.012140714269765844</DoubleValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_ratio_median</Key>
+   <Description>Median ratio (computed sensitivity divided by forward-modeled sensitivity)</Description>
+   <DoubleValue>1.0432754870358258</DoubleValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_ratio_stdev</Key>
+   <Description>Standard deviation of the ratio (computed sensitivity divided by forward-modeled sensitivity)</Description>
+   <DoubleValue>0.011986436679052291</DoubleValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180p4_ratio_median</Key>
+   <Description>Median ratio (computed sensitivity divided by forward-modeled sensitivity)</Description>
+   <DoubleValue>1.0265359085954995</DoubleValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180p4_ratio_stdev</Key>
+   <Description>Standard deviation of the ratio (computed sensitivity divided by forward-modeled sensitivity)</Description>
+   <DoubleValue>0.012884202413776817</DoubleValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_ratio_median</Key>
+   <Description>Median ratio (computed sensitivity divided by forward-modeled sensitivity)</Description>
+   <DoubleValue>1.0867498739763568</DoubleValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_ratio_stdev</Key>
+   <Description>Standard deviation of the ratio (computed sensitivity divided by forward-modeled sensitivity)</Description>
+   <DoubleValue>0.15451823761162686</DoubleValue>
+   <Unit>None</Unit>
+  </Parameter>
+ </Parameters>
+</dpd-sir-absoluteflux:DpdSirAbsoluteFluxScaling>

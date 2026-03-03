@@ -1,0 +1,2869 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dpd-sir-idsmodel:DpdSirIdsModel xmlns:dpd-sir-idsmodel="http://ecdm.euclid-ec.org/schema/dpd/sir/idsmodel" xmlns:sys="http://ecdm.euclid-ec.org/schema/sys" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:pro-sir="http://ecdm.euclid-ec.org/schema/pro/sir" xmlns:ins="http://ecdm.euclid-ec.org/schema/ins" xmlns:bas-dtd="http://ecdm.euclid-ec.org/schema/bas/dtd" xmlns:bas-ppr="http://ecdm.euclid-ec.org/schema/bas/ppr" xmlns:sys-dss="http://ecdm.euclid-ec.org/schema/sys/dss" xmlns:bas-dqc="http://ecdm.euclid-ec.org/schema/bas/dqc">
+ <Header>
+  <ProductId>SIR_Calib_Ids_EUCLID_2.0.1-CALIBRATION-pcasenov-PLAN-000001-GQLJE83P-20250211-181132-0-new_ids_calib-0</ProductId>
+  <ProductType>DpdSirIdsModel</ProductType>
+  <SoftwareName>SIR_Calibration_Ids</SoftwareName>
+  <SoftwareRelease>5.3.4</SoftwareRelease>
+  <EuclidPipelineSoftwareRelease>UNKNOWN</EuclidPipelineSoftwareRelease>
+  <ProdSDC>SDC-IT-OPS</ProdSDC>
+  <DataSetRelease>CALBLOCK_PV-009_R5</DataSetRelease>
+  <Purpose>CALIBRATION</Purpose>
+  <PlanId>SIR_Calib_Ids_EUCLID_2.0.1-CALIBRATION-pcasenov-PLAN-000001</PlanId>
+  <PPOId>SIR_Calib_Ids_EUCLID_2.0.1-CALIBRATION-pcasenov-PLAN-000001-GQLJE83P-20250211-181132-0</PPOId>
+  <PipelineDefinitionId>SIR_Calib_Ids_EUCLID_2.0.1</PipelineDefinitionId>
+  <PpoStatus>COMPLETED</PpoStatus>
+  <ManualValidationStatus>VALID</ManualValidationStatus>
+  <ProductNotifiedToBeChecked>UNKNOWN</ProductNotifiedToBeChecked>
+  <AutomatedValidationStatus>UNKNOWN</AutomatedValidationStatus>
+  <ExpirationDate>1970-01-01T00:00:00.000000Z</ExpirationDate>
+  <ToBePublished>0</ToBePublished>
+  <Published>0</Published>
+  <Curator>SIR PF</Curator>
+  <CreationDate>2025-02-11T19:21:14.267000Z</CreationDate>
+ </Header>
+ <Data>
+  <ValidityRange>
+   <TimestampStart>2023-07-01T00:00:00.000000Z</TimestampStart>
+   <TimestampEnd>2030-12-31T23:59:59.000000Z</TimestampEnd>
+  </ValidityRange>
+  <CalibrationID>2025-02-11T19:21:14.262771Z</CalibrationID>
+  <RGS000>
+   <Date>2025-02-11T19:21:14.262779Z</Date>
+   <GWATilt>-4</GWATilt>
+   <ExtraTilt>0.0</ExtraTilt>
+   <SpectralOrder>
+    <Order>0</Order>
+    <LocalModelDeg>1</LocalModelDeg>
+    <LocalRanges>11000.0 19000.0</LocalRanges>
+    <GlobalRanges>
+     <DoubleRow1>-82.2485485 82.2741895</DoubleRow1>
+     <DoubleRow2>-77.9166405 77.929518</DoubleRow2>
+    </GlobalRanges>
+    <Model>
+     <Degree>0</Degree>
+     <Matrix>
+      <Shape>2 2</Shape>
+      <Data>0.08253765 0.0 0.0 0.0</Data>
+     </Matrix>
+    </Model>
+    <Model>
+     <Degree>1</Degree>
+     <Matrix>
+      <Shape>2 2</Shape>
+      <Data>0.22211966 0.0 0.0 0.0</Data>
+     </Matrix>
+    </Model>
+   </SpectralOrder>
+   <SpectralOrder>
+    <Order>2</Order>
+    <LocalModelDeg>1</LocalModelDeg>
+    <LocalRanges>11000.0 19000.0</LocalRanges>
+    <GlobalRanges>
+     <DoubleRow1>-82.3455 82.3455</DoubleRow1>
+     <DoubleRow2>-77.89275 77.89275</DoubleRow2>
+    </GlobalRanges>
+    <Model>
+     <Degree>0</Degree>
+     <Matrix>
+      <Shape>2 2</Shape>
+      <Data>0.6716418 0.0 0.0 0.0</Data>
+     </Matrix>
+    </Model>
+    <Model>
+     <Degree>1</Degree>
+     <Matrix>
+      <Shape>2 2</Shape>
+      <Data>8.19403 0.0 0.0 0.0</Data>
+     </Matrix>
+    </Model>
+   </SpectralOrder>
+   <SpectralOrder>
+    <Order>1</Order>
+    <LocalModelDeg>3</LocalModelDeg>
+    <LocalRanges>11900.0 19300.0</LocalRanges>
+    <GlobalRanges>
+     <DoubleRow1>-81.87113765107495 82.11890573358569</DoubleRow1>
+     <DoubleRow2>-77.83618257378257 77.5978112141988</DoubleRow2>
+    </GlobalRanges>
+    <Model>
+     <Degree>0</Degree>
+     <Matrix>
+      <Shape>5 5</Shape>
+      <Data>0.7400292313326028 -0.008498413740739952 0.00381537132220372 -0.0005144223557307093 0.0037704530187029905 0.0049635074611040775 0.0013859928933132037 -0.0005156858313941637 0.00480173684744753 -6.882377522610117e-05 0.003696889845079876 -0.001971316386894628 0.004410931261495499 0.0006363080568284607 0.00675719710329703 0.0016319057895550493 0.0013507907500752703 0.0011153013872815531 0.0022685784785320753 0.0003580275595403415 -0.0021818405918236916 -0.001950094488213261 0.002427669689612444 -8.814625223629857e-05 0.0037178422958850654</Data>
+     </Matrix>
+    </Model>
+    <Model>
+     <Degree>1</Degree>
+     <Matrix>
+      <Shape>5 5</Shape>
+      <Data>4.844604726451144 -0.04011915422251766 0.016087073214175795 0.0029560657017373426 0.007409780315895231 -0.00800595633370449 -0.0061507010511063775 -0.0031063676182387923 0.004102904940223362 -0.0008296844681270343 0.03101027715034599 0.0015935311202666114 0.008085932290313735 0.004961397617533891 0.013435075835977806 0.001685238752066498 -0.0017592055635788917 -0.0020509694715729054 0.0020017456698313008 0.0005430424400976186 -0.0021052679982966893 0.000811370485183982 0.004048189208487152 0.0018929651082921772 0.0066010604076458534</Data>
+     </Matrix>
+    </Model>
+    <Model>
+     <Degree>2</Degree>
+     <Matrix>
+      <Shape>5 5</Shape>
+      <Data>0.005672355954306301 -0.0009249451154442322 0.0030712600354332277 0.0005259717951418113 0.0033131890696313573 0.0012307267021261967 0.00047168816313040377 -0.002303156534334115 0.0019581160623056357 -8.402962538145171e-05 -0.0013474638235039145 -0.00032194627308669045 0.005649414766962325 0.0015553878963460994 0.00475696210074761 0.001634338399233713 0.000651669730778355 -0.0007150237512746852 0.0008123911682138644 -0.0002477583260100942 -0.0014449465909111125 -0.0005024446441919813 0.002782725406199678 0.0006405665973800884 0.0024636799651866666</Data>
+     </Matrix>
+    </Model>
+    <Model>
+     <Degree>3</Degree>
+     <Matrix>
+      <Shape>5 5</Shape>
+      <Data>-0.0014236655560750523 -0.003020577310283889 0.004293881563253276 0.002215546790028432 0.006331006066928355 0.003819868622983031 0.005634474887272069 -0.0008983715324271569 0.003998188047957155 -0.0007406413975894655 -0.005625433818188884 -0.007045656749651436 0.007071653459158339 0.0030867469398921385 0.011947530672588996 0.00338520128056901 0.0020402932251741284 -0.0005492421240733416 0.0011922352813242142 0.0006490221533767147 -0.0023124007394394364 -0.0024035734637060466 0.0047948902021405 0.0016859252159478154 0.0065006259962413614</Data>
+     </Matrix>
+    </Model>
+   </SpectralOrder>
+  </RGS000>
+  <RGS000>
+   <Date>2025-02-11T19:21:14.263039Z</Date>
+   <GWATilt>0</GWATilt>
+   <ExtraTilt>0.0</ExtraTilt>
+   <SpectralOrder>
+    <Order>0</Order>
+    <LocalModelDeg>1</LocalModelDeg>
+    <LocalRanges>11000.0 19000.0</LocalRanges>
+    <GlobalRanges>
+     <DoubleRow1>-82.3455 82.3455</DoubleRow1>
+     <DoubleRow2>-77.89275 77.89275</DoubleRow2>
+    </GlobalRanges>
+    <Model>
+     <Degree>0</Degree>
+     <Matrix>
+      <Shape>2 2</Shape>
+      <Data>0.08253765 0.0 0.0 0.0</Data>
+     </Matrix>
+    </Model>
+    <Model>
+     <Degree>1</Degree>
+     <Matrix>
+      <Shape>2 2</Shape>
+      <Data>0.22211966 0.0 0.0 0.0</Data>
+     </Matrix>
+    </Model>
+   </SpectralOrder>
+   <SpectralOrder>
+    <Order>2</Order>
+    <LocalModelDeg>1</LocalModelDeg>
+    <LocalRanges>11500.0 19500.0</LocalRanges>
+    <GlobalRanges>
+     <DoubleRow1>-82.3455 82.3455</DoubleRow1>
+     <DoubleRow2>-77.89275 77.89275</DoubleRow2>
+    </GlobalRanges>
+    <Model>
+     <Degree>0</Degree>
+     <Matrix>
+      <Shape>2 2</Shape>
+      <Data>0.6716418 0.0 0.0 0.0</Data>
+     </Matrix>
+    </Model>
+    <Model>
+     <Degree>1</Degree>
+     <Matrix>
+      <Shape>2 2</Shape>
+      <Data>8.19403 0.0 0.0 0.0</Data>
+     </Matrix>
+    </Model>
+   </SpectralOrder>
+   <SpectralOrder>
+    <Order>1</Order>
+    <LocalModelDeg>3</LocalModelDeg>
+    <LocalRanges>11900.0 19300.0</LocalRanges>
+    <GlobalRanges>
+     <DoubleRow1>-81.87113765107495 82.11890573358569</DoubleRow1>
+     <DoubleRow2>-77.83618257378257 77.5978112141988</DoubleRow2>
+    </GlobalRanges>
+    <Model>
+     <Degree>0</Degree>
+     <Matrix>
+      <Shape>5 5</Shape>
+      <Data>0.7455530226258855 -0.0044033250598281 -0.0009779044789924862 0.0021073803179907924 -0.0013149665479606568 0.0021270348765207794 -0.003834503856085164 7.688388482707254e-05 -0.0008995143143259998 -0.00019667709849591208 0.005542794785451222 0.003822777249466669 -0.005418859895162553 0.003018524345965057 -0.0012958732690973584 0.0005971180067830817 -0.0016229679675653225 0.0003128832050836583 -0.0005270812211901066 0.0004133486155363589 -0.0006722701892992733 0.0014632083037064217 -0.0030958040424842737 0.0016868643632695357 -0.0008051368399404901</Data>
+     </Matrix>
+    </Model>
+    <Model>
+     <Degree>1</Degree>
+     <Matrix>
+      <Shape>5 5</Shape>
+      <Data>4.865894038232331 -0.03826837920710546 0.009513263314820719 -0.00020569236231438026 -0.003544254056578655 -0.01273424344057341 -0.00731926441101538 0.00011417335533447925 -0.003889237807287005 0.0021622395289306873 0.03140421557343709 0.007618462050201225 -0.0026601670927961507 0.0002046867488032511 -0.007389520694328411 0.00010692963224667729 -0.004003355157694954 -0.0009721127440109889 -0.003531163393657666 0.00031464780902340506 -0.0023570051951266047 0.004321863977269372 -0.0009535736723949029 -0.0010778605934893548 -0.00418279284416001</Data>
+     </Matrix>
+    </Model>
+    <Model>
+     <Degree>2</Degree>
+     <Matrix>
+      <Shape>5 5</Shape>
+      <Data>0.0070283764313337745 0.0024107497724077413 -0.0026718365155822825 0.003074740129082473 -0.0009643160180234048 0.001523725091732562 -0.0031492963975814203 0.00210074482015742 -0.0015165081834151832 6.103349363186959e-05 -0.0011044640694389198 0.004029275815997976 -0.005038593257762136 0.004261324647282248 -0.000754428583090432 0.0015109096635878587 -0.001548455017686255 0.0007193045052434647 -0.001106712780246522 3.940634181029358e-05 -0.0006831097774225546 0.002139332626312931 -0.0028111315517179284 0.002081289984079461 -0.0004992385715862399</Data>
+     </Matrix>
+    </Model>
+    <Model>
+     <Degree>3</Degree>
+     <Matrix>
+      <Shape>5 5</Shape>
+      <Data>0.0027742836470189556 0.0025322008540340523 -0.0023305236692446702 0.00015190501443358673 -0.003148576214219715 -0.0021830628174532825 -0.003952017313003168 -0.0005206328084992884 -0.0002638071483134115 0.0018708480714937172 -0.0027436243664133286 0.003383698188417216 -0.003809387089612832 -0.00010734009266840467 -0.005519464213742276 -0.00013742679938066687 -0.0020994560625860713 -0.0005208412939361651 -0.0007146891220080767 0.0009755675518713044 -0.0015280811423518301 0.0017473344366321013 -0.0018725481589492725 -0.0004368430701690015 -0.003354306303760485</Data>
+     </Matrix>
+    </Model>
+   </SpectralOrder>
+  </RGS000>
+  <RGS180>
+   <Date>2025-02-11T19:21:14.263268Z</Date>
+   <GWATilt>0</GWATilt>
+   <ExtraTilt>0.0</ExtraTilt>
+   <SpectralOrder>
+    <Order>0</Order>
+    <LocalModelDeg>1</LocalModelDeg>
+    <LocalRanges>11000.0 19000.0</LocalRanges>
+    <GlobalRanges>
+     <DoubleRow1>-82.2485485 82.2741895</DoubleRow1>
+     <DoubleRow2>-77.9166405 77.929518</DoubleRow2>
+    </GlobalRanges>
+    <Model>
+     <Degree>0</Degree>
+     <Matrix>
+      <Shape>2 2</Shape>
+      <Data>0.08253765 0.0 0.0 0.0</Data>
+     </Matrix>
+    </Model>
+    <Model>
+     <Degree>1</Degree>
+     <Matrix>
+      <Shape>2 2</Shape>
+      <Data>0.22211966 0.0 0.0 0.0</Data>
+     </Matrix>
+    </Model>
+   </SpectralOrder>
+   <SpectralOrder>
+    <Order>2</Order>
+    <LocalModelDeg>1</LocalModelDeg>
+    <LocalRanges>11000.0 19000.0</LocalRanges>
+    <GlobalRanges>
+     <DoubleRow1>-82.3455 82.3455</DoubleRow1>
+     <DoubleRow2>-77.89275 77.89275</DoubleRow2>
+    </GlobalRanges>
+    <Model>
+     <Degree>0</Degree>
+     <Matrix>
+      <Shape>2 2</Shape>
+      <Data>0.6716418 0.0 0.0 0.0</Data>
+     </Matrix>
+    </Model>
+    <Model>
+     <Degree>1</Degree>
+     <Matrix>
+      <Shape>2 2</Shape>
+      <Data>8.19403 0.0 0.0 0.0</Data>
+     </Matrix>
+    </Model>
+   </SpectralOrder>
+   <SpectralOrder>
+    <Order>1</Order>
+    <LocalModelDeg>3</LocalModelDeg>
+    <LocalRanges>11900.0 19300.0</LocalRanges>
+    <GlobalRanges>
+     <DoubleRow1>-81.87113765107495 82.11890573358569</DoubleRow1>
+     <DoubleRow2>-77.83618257378257 77.5978112141988</DoubleRow2>
+    </GlobalRanges>
+    <Model>
+     <Degree>0</Degree>
+     <Matrix>
+      <Shape>5 5</Shape>
+      <Data>0.7451348069945956 -0.004622082568475405 0.0011202760860762329 0.0018629316541949326 -0.0007086559601158227 -0.0017717724781680655 0.000249350181434127 -0.0008592187132093754 0.00015356268504695958 -0.001198206526832113 0.00592139895010374 0.0021680590500008368 -0.001078790385796058 0.002280302086476116 -0.0015401513773470876 -2.5398057711525923e-05 1.8994910881975358e-05 -0.001516898427001312 -0.00019865518026129791 -0.0019727578151827463 0.0006668013071193801 0.0025798399405730366 -0.00025927595732466724 0.0016450518973603057 -0.0005841580433421645</Data>
+     </Matrix>
+    </Model>
+    <Model>
+     <Degree>1</Degree>
+     <Matrix>
+      <Shape>5 5</Shape>
+      <Data>4.869511047493502 -0.040882751109196924 0.013909401389890608 0.003952268877197351 0.003919110750649768 0.015125320834322498 0.0016412234874065845 0.003952886048358861 0.004853491742902616 0.003568616341490749 0.03943691025491347 0.0031667891467588305 0.006400652821554775 0.006304982557867156 0.0074515001434081185 0.002211612470806812 -0.0007924078097540921 0.002440256230104465 0.0019935154971522095 0.002262896463848474 0.001687016960054244 0.001884302038682506 0.0031768690826385892 0.00320934518475946 0.00535610700997502</Data>
+     </Matrix>
+    </Model>
+    <Model>
+     <Degree>2</Degree>
+     <Matrix>
+      <Shape>5 5</Shape>
+      <Data>0.007093927630663851 0.0014792906030683538 9.779817343499777e-05 0.0024932033690293403 -0.0007229130723538559 0.0010605286371488311 0.0013647795758265436 0.0006998042482684579 0.002207051646116005 0.0007205558265960628 -0.0006307083196739347 0.002366635238112664 -0.0005953356412848861 0.0034387185746655637 -0.0014163927533548948 -0.0001670770019945049 0.00023794966614905204 -0.0005811042854298137 0.0011264239810045446 -0.0013214890562329349 -7.728187479493723e-05 0.0021947661497236873 0.00017141614185187592 0.001914151563082461 -0.00047558434900263173</Data>
+     </Matrix>
+    </Model>
+    <Model>
+     <Degree>3</Degree>
+     <Matrix>
+      <Shape>5 5</Shape>
+      <Data>0.005742774236191867 0.0003337764637114564 0.0016020751569700473 0.001563525587366129 0.0017987700126911384 0.002559449378091062 0.0001235081616579826 0.00021114586615579795 0.0018019604488245088 -0.0001191591680355401 0.002751736462485689 -7.91934749635511e-05 0.002979197923638532 0.002337003427950862 0.003475078033146417 0.0010442285285629143 -0.0015348305990444638 0.0005542730762991357 0.00047229818436989816 4.172894205956251e-05 0.0012237389455137149 -0.00031238976882094283 0.0005807476171950684 0.000708544132398068 0.0017152600184653201</Data>
+     </Matrix>
+    </Model>
+   </SpectralOrder>
+  </RGS180>
+  <RGS180>
+   <Date>2025-02-11T19:21:14.263496Z</Date>
+   <GWATilt>4</GWATilt>
+   <ExtraTilt>0.0</ExtraTilt>
+   <SpectralOrder>
+    <Order>0</Order>
+    <LocalModelDeg>1</LocalModelDeg>
+    <LocalRanges>11000.0 19000.0</LocalRanges>
+    <GlobalRanges>
+     <DoubleRow1>-82.2485485 82.2741895</DoubleRow1>
+     <DoubleRow2>-77.9166405 77.929518</DoubleRow2>
+    </GlobalRanges>
+    <Model>
+     <Degree>0</Degree>
+     <Matrix>
+      <Shape>2 2</Shape>
+      <Data>0.08253765 0.0 0.0 0.0</Data>
+     </Matrix>
+    </Model>
+    <Model>
+     <Degree>1</Degree>
+     <Matrix>
+      <Shape>2 2</Shape>
+      <Data>0.22211966 0.0 0.0 0.0</Data>
+     </Matrix>
+    </Model>
+   </SpectralOrder>
+   <SpectralOrder>
+    <Order>2</Order>
+    <LocalModelDeg>1</LocalModelDeg>
+    <LocalRanges>11000.0 19000.0</LocalRanges>
+    <GlobalRanges>
+     <DoubleRow1>-82.3455 82.3455</DoubleRow1>
+     <DoubleRow2>-77.89275 77.89275</DoubleRow2>
+    </GlobalRanges>
+    <Model>
+     <Degree>0</Degree>
+     <Matrix>
+      <Shape>2 2</Shape>
+      <Data>0.6716418 0.0 0.0 0.0</Data>
+     </Matrix>
+    </Model>
+    <Model>
+     <Degree>1</Degree>
+     <Matrix>
+      <Shape>2 2</Shape>
+      <Data>8.19403 0.0 0.0 0.0</Data>
+     </Matrix>
+    </Model>
+   </SpectralOrder>
+   <SpectralOrder>
+    <Order>1</Order>
+    <LocalModelDeg>3</LocalModelDeg>
+    <LocalRanges>11900.0 19300.0</LocalRanges>
+    <GlobalRanges>
+     <DoubleRow1>-81.87113765107495 82.11890573358569</DoubleRow1>
+     <DoubleRow2>-77.83618257378257 77.5978112141988</DoubleRow2>
+    </GlobalRanges>
+    <Model>
+     <Degree>0</Degree>
+     <Matrix>
+      <Shape>5 5</Shape>
+      <Data>0.7406077323802411 -0.006212452023421175 0.001788410447519706 -0.00046753371966193336 -0.0014011404057860943 -0.0026796380715196078 0.001177968486016756 0.0004854788745084493 0.0008939735058962096 -0.0031707370967118675 0.005651142745051241 0.00032298284791043574 1.3614737635281315e-05 0.0007217289683805195 -0.0033634665912359862 -0.0001842010796163085 0.0007140405668506211 0.0008151427661281518 0.001114290990856165 -0.0013780400704207219 -1.9006968583486217e-05 0.0013834428765605866 0.00039418981694808175 0.00039615633902530256 -0.001865733216618648</Data>
+     </Matrix>
+    </Model>
+    <Model>
+     <Degree>1</Degree>
+     <Matrix>
+      <Shape>5 5</Shape>
+      <Data>4.850578889091435 -0.041157862991777844 0.012094693271180068 -0.0004980857038756614 -0.0013402019116064423 0.013215576068535295 0.003919107337794436 0.0005671418839514608 0.0018056294828662778 -0.0032410017722774853 0.03954438425019069 0.0025021565081331243 4.958906505336813e-05 -8.945272045712827e-05 -0.004117953119837425 0.0012500690094343625 -0.00033233867927862093 0.0006749629227020826 0.0016620795428489155 -0.0013911966409971832 0.0018464354474728717 0.000574729042989941 -0.0003481021309940102 -0.0016983646236002903 -0.0017485148629613478</Data>
+     </Matrix>
+    </Model>
+    <Model>
+     <Degree>2</Degree>
+     <Matrix>
+      <Shape>5 5</Shape>
+      <Data>0.005796069673244728 -0.0014432560365017942 0.00045635473984741203 -0.0006861251802497219 -0.0003002167882340794 8.89914272669554e-05 0.0011801893971693542 0.0013933017389545022 0.003820631494366825 -0.002018604076404129 -0.00027128368679825974 -0.002170962420996447 0.000712916413928507 -0.0002934539801797919 -0.00044846498547760076 -0.0006784198422082276 -0.0007176109884658496 0.0007212175305537634 0.0025983078786087554 -0.0011422255040807005 -0.0004318914763169001 -0.00021899520262131614 -0.00016570582603482294 -0.000504988906842326 -1.1676256800332912e-05</Data>
+     </Matrix>
+    </Model>
+    <Model>
+     <Degree>3</Degree>
+     <Matrix>
+      <Shape>5 5</Shape>
+      <Data>0.0024396288364981894 0.001523076629359191 0.000309430314447966 0.0017472267600504132 -0.0017586351506979 0.0031825303549197466 -0.0004162382529382502 0.00020249996070998647 0.0010076166298570038 -0.003147761678891633 0.0012601512245318202 0.0030885884932868547 -0.0008902627837638149 0.004388655528446732 -0.0053359625838756836 0.00016762051298568447 -0.0002700888113693163 0.0012048993564508143 0.0017314114627004907 -0.0007013270929431257 0.0005985629921035596 0.0014654856485965227 -0.0002501202960221963 0.001779123249314404 -0.0030551087457785907</Data>
+     </Matrix>
+    </Model>
+   </SpectralOrder>
+  </RGS180>
+  <BGS000>
+   <Date>2025-02-11T19:21:14.263741Z</Date>
+   <GWATilt>0</GWATilt>
+   <ExtraTilt>0.0</ExtraTilt>
+   <SpectralOrder>
+    <Order>0</Order>
+    <LocalModelDeg>1</LocalModelDeg>
+    <LocalRanges>8500.0 14000.0</LocalRanges>
+    <GlobalRanges>
+     <DoubleRow1>-82.2485485 82.2741895</DoubleRow1>
+     <DoubleRow2>-77.9166405 77.929518</DoubleRow2>
+    </GlobalRanges>
+    <Model>
+     <Degree>0</Degree>
+     <Matrix>
+      <Shape>2 2</Shape>
+      <Data>-0.05504 0.0 0.0 0.0</Data>
+     </Matrix>
+    </Model>
+    <Model>
+     <Degree>1</Degree>
+     <Matrix>
+      <Shape>2 2</Shape>
+      <Data>0.0704 0.0 0.0 0.0</Data>
+     </Matrix>
+    </Model>
+   </SpectralOrder>
+   <SpectralOrder>
+    <Order>2</Order>
+    <LocalModelDeg>1</LocalModelDeg>
+    <LocalRanges>8500.0 14000.0</LocalRanges>
+    <GlobalRanges>
+     <DoubleRow1>-82.3455 82.3455</DoubleRow1>
+     <DoubleRow2>-77.89275 77.89275</DoubleRow2>
+    </GlobalRanges>
+    <Model>
+     <Degree>0</Degree>
+     <Matrix>
+      <Shape>2 2</Shape>
+      <Data>0.6716418 0.0 0.0 0.0</Data>
+     </Matrix>
+    </Model>
+    <Model>
+     <Degree>1</Degree>
+     <Matrix>
+      <Shape>2 2</Shape>
+      <Data>8.19403 0.0 0.0 0.0</Data>
+     </Matrix>
+    </Model>
+   </SpectralOrder>
+   <SpectralOrder>
+    <Order>1</Order>
+    <LocalModelDeg>2</LocalModelDeg>
+    <LocalRanges>9100.0 13650.0</LocalRanges>
+    <GlobalRanges>
+     <DoubleRow1>-81.87113765107495 82.11890573358569</DoubleRow1>
+     <DoubleRow2>-77.83618257378257 77.5978112141988</DoubleRow2>
+    </GlobalRanges>
+    <Model>
+     <Degree>0</Degree>
+     <Matrix>
+      <Shape>5 5</Shape>
+      <Data>-2.061678846553914 0.019444888171903523 -0.00485370120746021 9.713423889980675e-05 -0.000583731566099877 0.009650654284425903 -0.001955417226575954 -0.0010638644874215166 -0.0003200362088594363 -0.00023262433995034786 -0.01479390372939459 0.0006143811965538373 -0.001707158383752204 7.041847221471276e-05 -1.838953404214063e-05 -0.00039244002556077954 0.0015042442947799538 0.001109877120325965 0.0017574294787762999 -4.3547526442496375e-05 -2.5197856935013e-05 0.00021666600160775632 0.0007822333344919032 0.001077142499544465 0.0011078451790762693</Data>
+     </Matrix>
+    </Model>
+    <Model>
+     <Degree>1</Degree>
+     <Matrix>
+      <Shape>5 5</Shape>
+      <Data>3.2451247816399786 -0.026493292067888863 0.009696278753126458 0.0002587450020985768 0.0004955280319525488 -0.012621014220101867 -0.002392124721829055 -0.0029736075074314377 0.0008497271111203823 1.595769806143198e-05 0.025896416706286746 0.0016165648069501187 0.0032446010089906335 0.0001094601735512487 0.00010983495107053326 -0.0015533242612297971 -0.002433221050752075 -0.002972700173047207 -0.0006231462184105299 -0.0019476396478955243 0.0018849680026069287 0.0022279813175876315 0.0022606165151112427 0.00011440423063179458 -3.96624039618774e-05</Data>
+     </Matrix>
+    </Model>
+    <Model>
+     <Degree>2</Degree>
+     <Matrix>
+      <Shape>5 5</Shape>
+      <Data>0.0019591361009425566 0.004794014286610006 0.0010500125862454792 0.0008351050413107006 -0.0005312044124917455 -0.0001843288699590519 -0.004713741675816113 -0.0008572269232034644 -0.0012022359887226613 0.0011020488215786645 -0.0008530093854401757 0.002367469171258861 -0.0025391699109626026 0.0015833649717014425 -0.0021743099041849367 -0.000468797559286918 -0.00021321336742301 1.7886689223605716e-05 0.0017881787823298178 -0.0006581245675180502 0.0020247579209726105 0.003235852275709889 0.0026095442064448136 0.002972137669952804 0.0011279005622453011</Data>
+     </Matrix>
+    </Model>
+   </SpectralOrder>
+  </BGS000>
+ </Data>
+ <Parameters>
+  <Parameter>
+   <Key>RGS000_-4_Number_measured_lines</Key>
+   <Description>RGS000_-4: Number of lines used for the calibration</Description>
+   <IntValue>11</IntValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_Number_of_measures_12535.21_00</Key>
+   <Description>RGS000_-4: Number of measured position for line 12535.21</Description>
+   <IntValue>80</IntValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_Number_of_measures_12825.96_01</Key>
+   <Description>RGS000_-4: Number of measured position for line 12825.96</Description>
+   <IntValue>78</IntValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_Number_of_measures_15565.97_02</Key>
+   <Description>RGS000_-4: Number of measured position for line 15565.97</Description>
+   <IntValue>79</IntValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_Number_of_measures_15710.33_03</Key>
+   <Description>RGS000_-4: Number of measured position for line 15710.33</Description>
+   <IntValue>79</IntValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_Number_of_measures_15890.17_04</Key>
+   <Description>RGS000_-4: Number of measured position for line 15890.17</Description>
+   <IntValue>80</IntValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_Number_of_measures_16119.16_05</Key>
+   <Description>RGS000_-4: Number of measured position for line 16119.16</Description>
+   <IntValue>80</IntValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_Number_of_measures_16417.24_06</Key>
+   <Description>RGS000_-4: Number of measured position for line 16417.24</Description>
+   <IntValue>77</IntValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_Number_of_measures_16816.95_07</Key>
+   <Description>RGS000_-4: Number of measured position for line 16816.95</Description>
+   <IntValue>80</IntValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_Number_of_measures_17012.81_08</Key>
+   <Description>RGS000_-4: Number of measured position for line 17012.81</Description>
+   <IntValue>77</IntValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_Number_of_measures_17372.67_09</Key>
+   <Description>RGS000_-4: Number of measured position for line 17372.67</Description>
+   <IntValue>80</IntValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_Number_of_measures_18762.44_10</Key>
+   <Description>RGS000_-4: Number of measured position for line 18762.44</Description>
+   <IntValue>78</IntValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_binedges_12535.21_00</Key>
+   <Description>RGS000_-4: histogram bin edges of differences between expected and measured line position for line 12535.21</Description>
+   <StringValue>[-1.1 -1. -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0. 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. 1.1]</StringValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_binedges_12825.96_01</Key>
+   <Description>RGS000_-4: histogram bin edges of differences between expected and measured line position for line 12825.96</Description>
+   <StringValue>[-1.1 -1. -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0. 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. 1.1]</StringValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_binedges_15565.97_02</Key>
+   <Description>RGS000_-4: histogram bin edges of differences between expected and measured line position for line 15565.97</Description>
+   <StringValue>[-1.1 -1. -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0. 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. 1.1]</StringValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_binedges_15710.33_03</Key>
+   <Description>RGS000_-4: histogram bin edges of differences between expected and measured line position for line 15710.33</Description>
+   <StringValue>[-1.1 -1. -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0. 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. 1.1]</StringValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_binedges_15890.17_04</Key>
+   <Description>RGS000_-4: histogram bin edges of differences between expected and measured line position for line 15890.17</Description>
+   <StringValue>[-1.1 -1. -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0. 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. 1.1]</StringValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_binedges_16119.16_05</Key>
+   <Description>RGS000_-4: histogram bin edges of differences between expected and measured line position for line 16119.16</Description>
+   <StringValue>[-1.1 -1. -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0. 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. 1.1]</StringValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_binedges_16417.24_06</Key>
+   <Description>RGS000_-4: histogram bin edges of differences between expected and measured line position for line 16417.24</Description>
+   <StringValue>[-1.1 -1. -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0. 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. 1.1]</StringValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_binedges_16816.95_07</Key>
+   <Description>RGS000_-4: histogram bin edges of differences between expected and measured line position for line 16816.95</Description>
+   <StringValue>[-1.1 -1. -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0. 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. 1.1]</StringValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_binedges_17012.81_08</Key>
+   <Description>RGS000_-4: histogram bin edges of differences between expected and measured line position for line 17012.81</Description>
+   <StringValue>[-1.1 -1. -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0. 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. 1.1]</StringValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_binedges_17372.67_09</Key>
+   <Description>RGS000_-4: histogram bin edges of differences between expected and measured line position for line 17372.67</Description>
+   <StringValue>[-1.1 -1. -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0. 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. 1.1]</StringValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_binedges_18762.44_10</Key>
+   <Description>RGS000_-4: histogram bin edges of differences between expected and measured line position for line 18762.44</Description>
+   <StringValue>[-1.1 -1. -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0. 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. 1.1]</StringValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_global_DeltaMeas</Key>
+   <Description>RGS000_-4: Differences between expected and measured positions</Description>
+   <Files filestatus="PROPOSED" checksumMethod="MD5" checksumValue="f624f80ec43e46fc525aaa73f2e6a08c">
+    <FileName>EUC_SIR_IDS_GLOBAL_RGS000_-4_20250211T181952.759398Z.fits</FileName>
+   </Files>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_hist_12535.21_00</Key>
+   <Description>RGS000_-4: histogram of the differences between expected and measured line position for line 12535.21</Description>
+   <StringValue>[ 0 0 0 0 0 0 1 5 6 19 20 15 8 3 2 0 0 0 0 0 0 1]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_hist_12825.96_01</Key>
+   <Description>RGS000_-4: histogram of the differences between expected and measured line position for line 12825.96</Description>
+   <StringValue>[ 0 0 0 0 0 0 1 4 4 14 12 11 13 8 3 4 1 1 2 0 0 0]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_hist_15565.97_02</Key>
+   <Description>RGS000_-4: histogram of the differences between expected and measured line position for line 15565.97</Description>
+   <StringValue>[ 0 0 0 0 0 0 0 1 4 14 20 22 9 7 0 1 1 0 0 0 0 0]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_hist_15710.33_03</Key>
+   <Description>RGS000_-4: histogram of the differences between expected and measured line position for line 15710.33</Description>
+   <StringValue>[ 0 0 0 0 1 1 0 0 4 19 17 22 8 5 1 0 1 0 0 0 0 0]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_hist_15890.17_04</Key>
+   <Description>RGS000_-4: histogram of the differences between expected and measured line position for line 15890.17</Description>
+   <StringValue>[ 0 0 0 0 0 0 0 1 3 14 22 26 12 2 0 0 0 0 0 0 0 0]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_hist_16119.16_05</Key>
+   <Description>RGS000_-4: histogram of the differences between expected and measured line position for line 16119.16</Description>
+   <StringValue>[ 0 0 0 0 0 0 1 1 4 13 21 24 10 3 0 0 0 0 1 0 0 2]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_hist_16417.24_06</Key>
+   <Description>RGS000_-4: histogram of the differences between expected and measured line position for line 16417.24</Description>
+   <StringValue>[ 1 0 0 0 0 1 1 1 3 13 22 22 9 2 0 1 0 0 0 0 0 1]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_hist_16816.95_07</Key>
+   <Description>RGS000_-4: histogram of the differences between expected and measured line position for line 16816.95</Description>
+   <StringValue>[ 0 0 0 0 0 0 0 0 2 7 24 24 16 5 0 2 0 0 0 0 0 0]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_hist_17012.81_08</Key>
+   <Description>RGS000_-4: histogram of the differences between expected and measured line position for line 17012.81</Description>
+   <StringValue>[ 0 0 0 1 1 0 0 2 2 12 24 20 5 5 0 2 1 0 0 0 0 2]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_hist_17372.67_09</Key>
+   <Description>RGS000_-4: histogram of the differences between expected and measured line position for line 17372.67</Description>
+   <StringValue>[ 0 0 0 0 1 1 1 0 2 5 19 24 17 8 1 0 1 0 0 0 0 0]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_hist_18762.44_10</Key>
+   <Description>RGS000_-4: histogram of the differences between expected and measured line position for line 18762.44</Description>
+   <StringValue>[ 3 0 0 1 0 0 2 5 9 10 8 16 11 8 2 2 0 1 0 0 0 0]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_local_DeltaMeas</Key>
+   <Description>RGS000_-4: Differences between expected and measured positions</Description>
+   <Files filestatus="PROPOSED" checksumMethod="MD5" checksumValue="046d6f0065f79405cd5a3a101fd12b52">
+    <FileName>EUC_SIR_IDS_LOCAL_RGS000_-4_20250211T181539.061790Z.fits</FileName>
+   </Files>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_mean_12535.21_00</Key>
+   <Description>RGS000_-4: mean of differences between expected and measured line position for line 12535.21</Description>
+   <DoubleValue>-0.022166329734843244</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_mean_12825.96_01</Key>
+   <Description>RGS000_-4: mean of differences between expected and measured line position for line 12825.96</Description>
+   <DoubleValue>0.047668725196871604</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_mean_15565.97_02</Key>
+   <Description>RGS000_-4: mean of differences between expected and measured line position for line 15565.97</Description>
+   <DoubleValue>-0.008372490728914243</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_mean_15710.33_03</Key>
+   <Description>RGS000_-4: mean of differences between expected and measured line position for line 15710.33</Description>
+   <DoubleValue>0.08300521441178411</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_mean_15890.17_04</Key>
+   <Description>RGS000_-4: mean of differences between expected and measured line position for line 15890.17</Description>
+   <DoubleValue>-0.012103690780481943</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_mean_16119.16_05</Key>
+   <Description>RGS000_-4: mean of differences between expected and measured line position for line 16119.16</Description>
+   <DoubleValue>0.08366890059360133</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_mean_16417.24_06</Key>
+   <Description>RGS000_-4: mean of differences between expected and measured line position for line 16417.24</Description>
+   <DoubleValue>-0.5458717523702115</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_mean_16816.95_07</Key>
+   <Description>RGS000_-4: mean of differences between expected and measured line position for line 16816.95</Description>
+   <DoubleValue>0.06935401950059608</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_mean_17012.81_08</Key>
+   <Description>RGS000_-4: mean of differences between expected and measured line position for line 17012.81</Description>
+   <DoubleValue>0.06950332364067982</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_mean_17372.67_09</Key>
+   <Description>RGS000_-4: mean of differences between expected and measured line position for line 17372.67</Description>
+   <DoubleValue>0.144906877873719</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_mean_18762.44_10</Key>
+   <Description>RGS000_-4: mean of differences between expected and measured line position for line 18762.44</Description>
+   <DoubleValue>-0.03376488795305399</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_measured_lines</Key>
+   <Description>RGS000_-4: list of used lines for the calibration</Description>
+   <StringValue>[12535.21 12825.96 15565.97 15710.33 15890.17 16119.16 16417.24 16816.95 17012.81 17372.67 18762.44]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_std_12535.21_00</Key>
+   <Description>RGS000_-4: std of differences between expected and measured line position for line 12535.21</Description>
+   <DoubleValue>0.4735666451160264</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_std_12825.96_01</Key>
+   <Description>RGS000_-4: std of differences between expected and measured line position for line 12825.96</Description>
+   <DoubleValue>0.34605555822457607</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_std_15565.97_02</Key>
+   <Description>RGS000_-4: std of differences between expected and measured line position for line 15565.97</Description>
+   <DoubleValue>0.682651202137063</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_std_15710.33_03</Key>
+   <Description>RGS000_-4: std of differences between expected and measured line position for line 15710.33</Description>
+   <DoubleValue>0.4855191693949433</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_std_15890.17_04</Key>
+   <Description>RGS000_-4: std of differences between expected and measured line position for line 15890.17</Description>
+   <DoubleValue>0.6429576115013277</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_std_16119.16_05</Key>
+   <Description>RGS000_-4: std of differences between expected and measured line position for line 16119.16</Description>
+   <DoubleValue>0.37901953092024887</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_std_16417.24_06</Key>
+   <Description>RGS000_-4: std of differences between expected and measured line position for line 16417.24</Description>
+   <DoubleValue>1.309884223052742</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_std_16816.95_07</Key>
+   <Description>RGS000_-4: std of differences between expected and measured line position for line 16816.95</Description>
+   <DoubleValue>0.5426559563146408</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_std_17012.81_08</Key>
+   <Description>RGS000_-4: std of differences between expected and measured line position for line 17012.81</Description>
+   <DoubleValue>0.7301692926331128</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_std_17372.67_09</Key>
+   <Description>RGS000_-4: std of differences between expected and measured line position for line 17372.67</Description>
+   <DoubleValue>0.6040901227670965</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_std_18762.44_10</Key>
+   <Description>RGS000_-4: std of differences between expected and measured line position for line 18762.44</Description>
+   <DoubleValue>0.2911045405700735</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_Number_measured_lines</Key>
+   <Description>RGS000_0: Number of lines used for the calibration</Description>
+   <IntValue>11</IntValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_Number_of_measures_12535.21_00</Key>
+   <Description>RGS000_0: Number of measured position for line 12535.21</Description>
+   <IntValue>78</IntValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_Number_of_measures_12825.96_01</Key>
+   <Description>RGS000_0: Number of measured position for line 12825.96</Description>
+   <IntValue>78</IntValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_Number_of_measures_15565.97_02</Key>
+   <Description>RGS000_0: Number of measured position for line 15565.97</Description>
+   <IntValue>78</IntValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_Number_of_measures_15710.33_03</Key>
+   <Description>RGS000_0: Number of measured position for line 15710.33</Description>
+   <IntValue>80</IntValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_Number_of_measures_15890.17_04</Key>
+   <Description>RGS000_0: Number of measured position for line 15890.17</Description>
+   <IntValue>80</IntValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_Number_of_measures_16119.16_05</Key>
+   <Description>RGS000_0: Number of measured position for line 16119.16</Description>
+   <IntValue>79</IntValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_Number_of_measures_16417.24_06</Key>
+   <Description>RGS000_0: Number of measured position for line 16417.24</Description>
+   <IntValue>79</IntValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_Number_of_measures_16816.95_07</Key>
+   <Description>RGS000_0: Number of measured position for line 16816.95</Description>
+   <IntValue>80</IntValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_Number_of_measures_17012.81_08</Key>
+   <Description>RGS000_0: Number of measured position for line 17012.81</Description>
+   <IntValue>79</IntValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_Number_of_measures_17372.67_09</Key>
+   <Description>RGS000_0: Number of measured position for line 17372.67</Description>
+   <IntValue>80</IntValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_Number_of_measures_18762.44_10</Key>
+   <Description>RGS000_0: Number of measured position for line 18762.44</Description>
+   <IntValue>80</IntValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_binedges_12535.21_00</Key>
+   <Description>RGS000_0: histogram bin edges of differences between expected and measured line position for line 12535.21</Description>
+   <StringValue>[-1.1 -1. -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0. 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. 1.1]</StringValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_binedges_12825.96_01</Key>
+   <Description>RGS000_0: histogram bin edges of differences between expected and measured line position for line 12825.96</Description>
+   <StringValue>[-1.1 -1. -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0. 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. 1.1]</StringValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_binedges_15565.97_02</Key>
+   <Description>RGS000_0: histogram bin edges of differences between expected and measured line position for line 15565.97</Description>
+   <StringValue>[-1.1 -1. -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0. 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. 1.1]</StringValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_binedges_15710.33_03</Key>
+   <Description>RGS000_0: histogram bin edges of differences between expected and measured line position for line 15710.33</Description>
+   <StringValue>[-1.1 -1. -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0. 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. 1.1]</StringValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_binedges_15890.17_04</Key>
+   <Description>RGS000_0: histogram bin edges of differences between expected and measured line position for line 15890.17</Description>
+   <StringValue>[-1.1 -1. -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0. 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. 1.1]</StringValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_binedges_16119.16_05</Key>
+   <Description>RGS000_0: histogram bin edges of differences between expected and measured line position for line 16119.16</Description>
+   <StringValue>[-1.1 -1. -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0. 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. 1.1]</StringValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_binedges_16417.24_06</Key>
+   <Description>RGS000_0: histogram bin edges of differences between expected and measured line position for line 16417.24</Description>
+   <StringValue>[-1.1 -1. -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0. 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. 1.1]</StringValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_binedges_16816.95_07</Key>
+   <Description>RGS000_0: histogram bin edges of differences between expected and measured line position for line 16816.95</Description>
+   <StringValue>[-1.1 -1. -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0. 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. 1.1]</StringValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_binedges_17012.81_08</Key>
+   <Description>RGS000_0: histogram bin edges of differences between expected and measured line position for line 17012.81</Description>
+   <StringValue>[-1.1 -1. -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0. 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. 1.1]</StringValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_binedges_17372.67_09</Key>
+   <Description>RGS000_0: histogram bin edges of differences between expected and measured line position for line 17372.67</Description>
+   <StringValue>[-1.1 -1. -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0. 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. 1.1]</StringValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_binedges_18762.44_10</Key>
+   <Description>RGS000_0: histogram bin edges of differences between expected and measured line position for line 18762.44</Description>
+   <StringValue>[-1.1 -1. -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0. 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. 1.1]</StringValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_global_DeltaMeas</Key>
+   <Description>RGS000_0: Differences between expected and measured positions</Description>
+   <Files filestatus="PROPOSED" checksumMethod="MD5" checksumValue="6b9c8e5d8a5650866e19944ab22d2e3b">
+    <FileName>EUC_SIR_IDS_GLOBAL_RGS000_0_20250211T182043.712115Z.fits</FileName>
+   </Files>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_hist_12535.21_00</Key>
+   <Description>RGS000_0: histogram of the differences between expected and measured line position for line 12535.21</Description>
+   <StringValue>[ 2 0 1 0 0 0 3 5 5 14 20 16 8 3 0 0 1 0 0 0 0 0]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_hist_12825.96_01</Key>
+   <Description>RGS000_0: histogram of the differences between expected and measured line position for line 12825.96</Description>
+   <StringValue>[ 0 0 0 0 0 0 0 1 5 5 9 21 17 8 5 4 2 1 0 0 0 0]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_hist_15565.97_02</Key>
+   <Description>RGS000_0: histogram of the differences between expected and measured line position for line 15565.97</Description>
+   <StringValue>[ 0 0 0 0 0 0 0 2 3 7 30 20 11 3 1 0 0 1 0 0 0 0]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_hist_15710.33_03</Key>
+   <Description>RGS000_0: histogram of the differences between expected and measured line position for line 15710.33</Description>
+   <StringValue>[ 0 0 0 0 0 0 0 2 1 5 26 24 16 4 2 0 0 0 0 0 0 0]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_hist_15890.17_04</Key>
+   <Description>RGS000_0: histogram of the differences between expected and measured line position for line 15890.17</Description>
+   <StringValue>[ 0 0 0 0 0 0 0 2 6 12 27 16 11 6 0 0 0 0 0 0 0 0]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_hist_16119.16_05</Key>
+   <Description>RGS000_0: histogram of the differences between expected and measured line position for line 16119.16</Description>
+   <StringValue>[ 0 0 0 0 0 0 0 0 3 12 27 27 7 2 1 0 0 0 0 0 0 0]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_hist_16417.24_06</Key>
+   <Description>RGS000_0: histogram of the differences between expected and measured line position for line 16417.24</Description>
+   <StringValue>[ 1 0 0 0 0 0 0 1 4 14 22 28 7 1 0 1 0 0 0 0 0 0]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_hist_16816.95_07</Key>
+   <Description>RGS000_0: histogram of the differences between expected and measured line position for line 16816.95</Description>
+   <StringValue>[ 0 0 0 0 0 0 0 0 2 10 29 27 8 4 0 0 0 0 0 0 0 0]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_hist_17012.81_08</Key>
+   <Description>RGS000_0: histogram of the differences between expected and measured line position for line 17012.81</Description>
+   <StringValue>[ 0 0 0 0 1 0 0 2 1 14 31 21 6 3 0 0 0 0 0 0 0 0]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_hist_17372.67_09</Key>
+   <Description>RGS000_0: histogram of the differences between expected and measured line position for line 17372.67</Description>
+   <StringValue>[ 0 0 0 0 0 0 0 1 0 3 19 27 20 7 1 1 1 0 0 0 0 0]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_hist_18762.44_10</Key>
+   <Description>RGS000_0: histogram of the differences between expected and measured line position for line 18762.44</Description>
+   <StringValue>[ 0 0 0 0 0 0 1 3 8 15 16 15 10 7 1 1 0 0 1 1 1 0]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_local_DeltaMeas</Key>
+   <Description>RGS000_0: Differences between expected and measured positions</Description>
+   <Files filestatus="PROPOSED" checksumMethod="MD5" checksumValue="7fa5c36ea2beef1f986abae293167e70">
+    <FileName>EUC_SIR_IDS_LOCAL_RGS000_0_20250211T181627.397833Z.fits</FileName>
+   </Files>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_mean_12535.21_00</Key>
+   <Description>RGS000_0: mean of differences between expected and measured line position for line 12535.21</Description>
+   <DoubleValue>-0.1434034323648828</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_mean_12825.96_01</Key>
+   <Description>RGS000_0: mean of differences between expected and measured line position for line 12825.96</Description>
+   <DoubleValue>0.1263587578538109</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_mean_15565.97_02</Key>
+   <Description>RGS000_0: mean of differences between expected and measured line position for line 15565.97</Description>
+   <DoubleValue>0.020969836374978783</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_mean_15710.33_03</Key>
+   <Description>RGS000_0: mean of differences between expected and measured line position for line 15710.33</Description>
+   <DoubleValue>0.044331105757478645</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_mean_15890.17_04</Key>
+   <Description>RGS000_0: mean of differences between expected and measured line position for line 15890.17</Description>
+   <DoubleValue>-0.013234939571864631</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_mean_16119.16_05</Key>
+   <Description>RGS000_0: mean of differences between expected and measured line position for line 16119.16</Description>
+   <DoubleValue>-0.06845417159408612</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_mean_16417.24_06</Key>
+   <Description>RGS000_0: mean of differences between expected and measured line position for line 16417.24</Description>
+   <DoubleValue>-0.018356934251347896</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_mean_16816.95_07</Key>
+   <Description>RGS000_0: mean of differences between expected and measured line position for line 16816.95</Description>
+   <DoubleValue>0.04018291829558222</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_mean_17012.81_08</Key>
+   <Description>RGS000_0: mean of differences between expected and measured line position for line 17012.81</Description>
+   <DoubleValue>0.01545820518375554</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_mean_17372.67_09</Key>
+   <Description>RGS000_0: mean of differences between expected and measured line position for line 17372.67</Description>
+   <DoubleValue>0.05254989417941959</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_mean_18762.44_10</Key>
+   <Description>RGS000_0: mean of differences between expected and measured line position for line 18762.44</Description>
+   <DoubleValue>-0.002749509758829291</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_measured_lines</Key>
+   <Description>RGS000_0: list of used lines for the calibration</Description>
+   <StringValue>[12535.21 12825.96 15565.97 15710.33 15890.17 16119.16 16417.24 16816.95 17012.81 17372.67 18762.44]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_std_12535.21_00</Key>
+   <Description>RGS000_0: std of differences between expected and measured line position for line 12535.21</Description>
+   <DoubleValue>0.6881836756657025</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_std_12825.96_01</Key>
+   <Description>RGS000_0: std of differences between expected and measured line position for line 12825.96</Description>
+   <DoubleValue>0.31280881148262163</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_std_15565.97_02</Key>
+   <Description>RGS000_0: std of differences between expected and measured line position for line 15565.97</Description>
+   <DoubleValue>0.6233375455897965</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_std_15710.33_03</Key>
+   <Description>RGS000_0: std of differences between expected and measured line position for line 15710.33</Description>
+   <DoubleValue>0.3192664342390035</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_std_15890.17_04</Key>
+   <Description>RGS000_0: std of differences between expected and measured line position for line 15890.17</Description>
+   <DoubleValue>0.29414449136733123</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_std_16119.16_05</Key>
+   <Description>RGS000_0: std of differences between expected and measured line position for line 16119.16</Description>
+   <DoubleValue>0.26165230624911706</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_std_16417.24_06</Key>
+   <Description>RGS000_0: std of differences between expected and measured line position for line 16417.24</Description>
+   <DoubleValue>0.1691870058766304</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_std_16816.95_07</Key>
+   <Description>RGS000_0: std of differences between expected and measured line position for line 16816.95</Description>
+   <DoubleValue>0.3563347025854379</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_std_17012.81_08</Key>
+   <Description>RGS000_0: std of differences between expected and measured line position for line 17012.81</Description>
+   <DoubleValue>0.3370351903047675</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_std_17372.67_09</Key>
+   <Description>RGS000_0: std of differences between expected and measured line position for line 17372.67</Description>
+   <DoubleValue>0.23596863277953128</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_std_18762.44_10</Key>
+   <Description>RGS000_0: std of differences between expected and measured line position for line 18762.44</Description>
+   <DoubleValue>0.23566846305217</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_Number_measured_lines</Key>
+   <Description>RGS180_0: Number of lines used for the calibration</Description>
+   <IntValue>11</IntValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_Number_of_measures_12535.21_00</Key>
+   <Description>RGS180_0: Number of measured position for line 12535.21</Description>
+   <IntValue>80</IntValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_Number_of_measures_12825.96_01</Key>
+   <Description>RGS180_0: Number of measured position for line 12825.96</Description>
+   <IntValue>79</IntValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_Number_of_measures_15565.97_02</Key>
+   <Description>RGS180_0: Number of measured position for line 15565.97</Description>
+   <IntValue>80</IntValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_Number_of_measures_15710.33_03</Key>
+   <Description>RGS180_0: Number of measured position for line 15710.33</Description>
+   <IntValue>80</IntValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_Number_of_measures_15890.17_04</Key>
+   <Description>RGS180_0: Number of measured position for line 15890.17</Description>
+   <IntValue>79</IntValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_Number_of_measures_16119.16_05</Key>
+   <Description>RGS180_0: Number of measured position for line 16119.16</Description>
+   <IntValue>78</IntValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_Number_of_measures_16417.24_06</Key>
+   <Description>RGS180_0: Number of measured position for line 16417.24</Description>
+   <IntValue>79</IntValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_Number_of_measures_16816.95_07</Key>
+   <Description>RGS180_0: Number of measured position for line 16816.95</Description>
+   <IntValue>80</IntValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_Number_of_measures_17012.81_08</Key>
+   <Description>RGS180_0: Number of measured position for line 17012.81</Description>
+   <IntValue>80</IntValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_Number_of_measures_17372.67_09</Key>
+   <Description>RGS180_0: Number of measured position for line 17372.67</Description>
+   <IntValue>80</IntValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_Number_of_measures_18762.44_10</Key>
+   <Description>RGS180_0: Number of measured position for line 18762.44</Description>
+   <IntValue>78</IntValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_binedges_12535.21_00</Key>
+   <Description>RGS180_0: histogram bin edges of differences between expected and measured line position for line 12535.21</Description>
+   <StringValue>[-1.1 -1. -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0. 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. 1.1]</StringValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_binedges_12825.96_01</Key>
+   <Description>RGS180_0: histogram bin edges of differences between expected and measured line position for line 12825.96</Description>
+   <StringValue>[-1.1 -1. -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0. 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. 1.1]</StringValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_binedges_15565.97_02</Key>
+   <Description>RGS180_0: histogram bin edges of differences between expected and measured line position for line 15565.97</Description>
+   <StringValue>[-1.1 -1. -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0. 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. 1.1]</StringValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_binedges_15710.33_03</Key>
+   <Description>RGS180_0: histogram bin edges of differences between expected and measured line position for line 15710.33</Description>
+   <StringValue>[-1.1 -1. -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0. 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. 1.1]</StringValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_binedges_15890.17_04</Key>
+   <Description>RGS180_0: histogram bin edges of differences between expected and measured line position for line 15890.17</Description>
+   <StringValue>[-1.1 -1. -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0. 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. 1.1]</StringValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_binedges_16119.16_05</Key>
+   <Description>RGS180_0: histogram bin edges of differences between expected and measured line position for line 16119.16</Description>
+   <StringValue>[-1.1 -1. -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0. 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. 1.1]</StringValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_binedges_16417.24_06</Key>
+   <Description>RGS180_0: histogram bin edges of differences between expected and measured line position for line 16417.24</Description>
+   <StringValue>[-1.1 -1. -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0. 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. 1.1]</StringValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_binedges_16816.95_07</Key>
+   <Description>RGS180_0: histogram bin edges of differences between expected and measured line position for line 16816.95</Description>
+   <StringValue>[-1.1 -1. -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0. 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. 1.1]</StringValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_binedges_17012.81_08</Key>
+   <Description>RGS180_0: histogram bin edges of differences between expected and measured line position for line 17012.81</Description>
+   <StringValue>[-1.1 -1. -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0. 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. 1.1]</StringValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_binedges_17372.67_09</Key>
+   <Description>RGS180_0: histogram bin edges of differences between expected and measured line position for line 17372.67</Description>
+   <StringValue>[-1.1 -1. -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0. 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. 1.1]</StringValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_binedges_18762.44_10</Key>
+   <Description>RGS180_0: histogram bin edges of differences between expected and measured line position for line 18762.44</Description>
+   <StringValue>[-1.1 -1. -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0. 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. 1.1]</StringValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_global_DeltaMeas</Key>
+   <Description>RGS180_0: Differences between expected and measured positions</Description>
+   <Files filestatus="PROPOSED" checksumMethod="MD5" checksumValue="600bdab6a2a832d51672aa7ff600da2f">
+    <FileName>EUC_SIR_IDS_GLOBAL_RGS180_0_20250211T181915.412713Z.fits</FileName>
+   </Files>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_hist_12535.21_00</Key>
+   <Description>RGS180_0: histogram of the differences between expected and measured line position for line 12535.21</Description>
+   <StringValue>[ 0 0 0 0 0 0 2 3 11 13 26 14 4 2 2 2 0 0 1 0 0 0]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_hist_12825.96_01</Key>
+   <Description>RGS180_0: histogram of the differences between expected and measured line position for line 12825.96</Description>
+   <StringValue>[ 0 0 0 0 0 0 2 3 6 7 6 13 19 7 7 4 2 3 0 0 0 0]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_hist_15565.97_02</Key>
+   <Description>RGS180_0: histogram of the differences between expected and measured line position for line 15565.97</Description>
+   <StringValue>[ 0 0 1 0 0 0 0 3 2 10 21 16 19 6 1 1 0 0 0 0 0 0]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_hist_15710.33_03</Key>
+   <Description>RGS180_0: histogram of the differences between expected and measured line position for line 15710.33</Description>
+   <StringValue>[ 1 0 0 0 0 1 1 0 4 4 34 21 11 1 2 0 0 0 0 0 0 0]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_hist_15890.17_04</Key>
+   <Description>RGS180_0: histogram of the differences between expected and measured line position for line 15890.17</Description>
+   <StringValue>[ 1 0 0 1 0 0 0 2 3 6 30 27 5 2 2 0 0 0 0 0 0 0]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_hist_16119.16_05</Key>
+   <Description>RGS180_0: histogram of the differences between expected and measured line position for line 16119.16</Description>
+   <StringValue>[ 0 0 0 0 0 0 0 0 3 10 33 24 5 3 0 0 0 0 0 0 0 0]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_hist_16417.24_06</Key>
+   <Description>RGS180_0: histogram of the differences between expected and measured line position for line 16417.24</Description>
+   <StringValue>[ 0 0 0 0 0 0 0 2 1 12 28 28 8 0 0 0 0 0 0 0 0 0]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_hist_16816.95_07</Key>
+   <Description>RGS180_0: histogram of the differences between expected and measured line position for line 16816.95</Description>
+   <StringValue>[ 1 1 0 0 0 0 0 0 1 5 27 28 15 2 0 0 0 0 0 0 0 0]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_hist_17012.81_08</Key>
+   <Description>RGS180_0: histogram of the differences between expected and measured line position for line 17012.81</Description>
+   <StringValue>[ 0 0 0 0 0 0 1 0 2 16 31 15 12 0 2 1 0 0 0 0 0 0]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_hist_17372.67_09</Key>
+   <Description>RGS180_0: histogram of the differences between expected and measured line position for line 17372.67</Description>
+   <StringValue>[ 0 0 0 0 0 0 0 0 4 5 10 37 18 5 1 0 0 0 0 0 0 0]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_hist_18762.44_10</Key>
+   <Description>RGS180_0: histogram of the differences between expected and measured line position for line 18762.44</Description>
+   <StringValue>[ 0 0 0 0 0 0 1 3 7 14 13 14 15 5 3 2 0 0 0 0 0 1]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_local_DeltaMeas</Key>
+   <Description>RGS180_0: Differences between expected and measured positions</Description>
+   <Files filestatus="PROPOSED" checksumMethod="MD5" checksumValue="171c0453fd1ba91350b5aa8e06512780">
+    <FileName>EUC_SIR_IDS_LOCAL_RGS180_0_20250211T181512.165257Z.fits</FileName>
+   </Files>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_mean_12535.21_00</Key>
+   <Description>RGS180_0: mean of differences between expected and measured line position for line 12535.21</Description>
+   <DoubleValue>-0.03950644783142212</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_mean_12825.96_01</Key>
+   <Description>RGS180_0: mean of differences between expected and measured line position for line 12825.96</Description>
+   <DoubleValue>0.08620007025691377</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_mean_15565.97_02</Key>
+   <Description>RGS180_0: mean of differences between expected and measured line position for line 15565.97</Description>
+   <DoubleValue>-0.1801196970989051</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_mean_15710.33_03</Key>
+   <Description>RGS180_0: mean of differences between expected and measured line position for line 15710.33</Description>
+   <DoubleValue>0.1370057710199265</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_mean_15890.17_04</Key>
+   <Description>RGS180_0: mean of differences between expected and measured line position for line 15890.17</Description>
+   <DoubleValue>0.03677465999102331</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_mean_16119.16_05</Key>
+   <Description>RGS180_0: mean of differences between expected and measured line position for line 16119.16</Description>
+   <DoubleValue>-0.026706028603534805</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_mean_16417.24_06</Key>
+   <Description>RGS180_0: mean of differences between expected and measured line position for line 16417.24</Description>
+   <DoubleValue>0.06550804805623191</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_mean_16816.95_07</Key>
+   <Description>RGS180_0: mean of differences between expected and measured line position for line 16816.95</Description>
+   <DoubleValue>-0.019104286785614766</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_mean_17012.81_08</Key>
+   <Description>RGS180_0: mean of differences between expected and measured line position for line 17012.81</Description>
+   <DoubleValue>-0.06841123083936161</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_mean_17372.67_09</Key>
+   <Description>RGS180_0: mean of differences between expected and measured line position for line 17372.67</Description>
+   <DoubleValue>0.0522486340673628</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_mean_18762.44_10</Key>
+   <Description>RGS180_0: mean of differences between expected and measured line position for line 18762.44</Description>
+   <DoubleValue>0.010907928107296978</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_measured_lines</Key>
+   <Description>RGS180_0: list of used lines for the calibration</Description>
+   <StringValue>[12535.21 12825.96 15565.97 15710.33 15890.17 16119.16 16417.24 16816.95 17012.81 17372.67 18762.44]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_std_12535.21_00</Key>
+   <Description>RGS180_0: std of differences between expected and measured line position for line 12535.21</Description>
+   <DoubleValue>0.39108893302376624</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_std_12825.96_01</Key>
+   <Description>RGS180_0: std of differences between expected and measured line position for line 12825.96</Description>
+   <DoubleValue>0.3193227641066454</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_std_15565.97_02</Key>
+   <Description>RGS180_0: std of differences between expected and measured line position for line 15565.97</Description>
+   <DoubleValue>0.934557204771565</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_std_15710.33_03</Key>
+   <Description>RGS180_0: std of differences between expected and measured line position for line 15710.33</Description>
+   <DoubleValue>0.6218805672248782</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_std_15890.17_04</Key>
+   <Description>RGS180_0: std of differences between expected and measured line position for line 15890.17</Description>
+   <DoubleValue>0.5734072572255456</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_std_16119.16_05</Key>
+   <Description>RGS180_0: std of differences between expected and measured line position for line 16119.16</Description>
+   <DoubleValue>0.3333390706468442</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_std_16417.24_06</Key>
+   <Description>RGS180_0: std of differences between expected and measured line position for line 16417.24</Description>
+   <DoubleValue>0.5899698334195003</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_std_16816.95_07</Key>
+   <Description>RGS180_0: std of differences between expected and measured line position for line 16816.95</Description>
+   <DoubleValue>0.3475054972783228</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_std_17012.81_08</Key>
+   <Description>RGS180_0: std of differences between expected and measured line position for line 17012.81</Description>
+   <DoubleValue>0.7722243410144366</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_std_17372.67_09</Key>
+   <Description>RGS180_0: std of differences between expected and measured line position for line 17372.67</Description>
+   <DoubleValue>0.15289888570532853</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_std_18762.44_10</Key>
+   <Description>RGS180_0: std of differences between expected and measured line position for line 18762.44</Description>
+   <DoubleValue>0.3504152696966444</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_Number_measured_lines</Key>
+   <Description>RGS180_4: Number of lines used for the calibration</Description>
+   <IntValue>11</IntValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_Number_of_measures_12535.21_00</Key>
+   <Description>RGS180_4: Number of measured position for line 12535.21</Description>
+   <IntValue>80</IntValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_Number_of_measures_12825.96_01</Key>
+   <Description>RGS180_4: Number of measured position for line 12825.96</Description>
+   <IntValue>77</IntValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_Number_of_measures_15565.97_02</Key>
+   <Description>RGS180_4: Number of measured position for line 15565.97</Description>
+   <IntValue>80</IntValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_Number_of_measures_15710.33_03</Key>
+   <Description>RGS180_4: Number of measured position for line 15710.33</Description>
+   <IntValue>79</IntValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_Number_of_measures_15890.17_04</Key>
+   <Description>RGS180_4: Number of measured position for line 15890.17</Description>
+   <IntValue>80</IntValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_Number_of_measures_16119.16_05</Key>
+   <Description>RGS180_4: Number of measured position for line 16119.16</Description>
+   <IntValue>80</IntValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_Number_of_measures_16417.24_06</Key>
+   <Description>RGS180_4: Number of measured position for line 16417.24</Description>
+   <IntValue>80</IntValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_Number_of_measures_16816.95_07</Key>
+   <Description>RGS180_4: Number of measured position for line 16816.95</Description>
+   <IntValue>80</IntValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_Number_of_measures_17012.81_08</Key>
+   <Description>RGS180_4: Number of measured position for line 17012.81</Description>
+   <IntValue>78</IntValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_Number_of_measures_17372.67_09</Key>
+   <Description>RGS180_4: Number of measured position for line 17372.67</Description>
+   <IntValue>80</IntValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_Number_of_measures_18762.44_10</Key>
+   <Description>RGS180_4: Number of measured position for line 18762.44</Description>
+   <IntValue>78</IntValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_binedges_12535.21_00</Key>
+   <Description>RGS180_4: histogram bin edges of differences between expected and measured line position for line 12535.21</Description>
+   <StringValue>[-1.1 -1. -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0. 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. 1.1]</StringValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_binedges_12825.96_01</Key>
+   <Description>RGS180_4: histogram bin edges of differences between expected and measured line position for line 12825.96</Description>
+   <StringValue>[-1.1 -1. -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0. 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. 1.1]</StringValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_binedges_15565.97_02</Key>
+   <Description>RGS180_4: histogram bin edges of differences between expected and measured line position for line 15565.97</Description>
+   <StringValue>[-1.1 -1. -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0. 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. 1.1]</StringValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_binedges_15710.33_03</Key>
+   <Description>RGS180_4: histogram bin edges of differences between expected and measured line position for line 15710.33</Description>
+   <StringValue>[-1.1 -1. -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0. 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. 1.1]</StringValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_binedges_15890.17_04</Key>
+   <Description>RGS180_4: histogram bin edges of differences between expected and measured line position for line 15890.17</Description>
+   <StringValue>[-1.1 -1. -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0. 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. 1.1]</StringValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_binedges_16119.16_05</Key>
+   <Description>RGS180_4: histogram bin edges of differences between expected and measured line position for line 16119.16</Description>
+   <StringValue>[-1.1 -1. -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0. 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. 1.1]</StringValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_binedges_16417.24_06</Key>
+   <Description>RGS180_4: histogram bin edges of differences between expected and measured line position for line 16417.24</Description>
+   <StringValue>[-1.1 -1. -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0. 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. 1.1]</StringValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_binedges_16816.95_07</Key>
+   <Description>RGS180_4: histogram bin edges of differences between expected and measured line position for line 16816.95</Description>
+   <StringValue>[-1.1 -1. -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0. 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. 1.1]</StringValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_binedges_17012.81_08</Key>
+   <Description>RGS180_4: histogram bin edges of differences between expected and measured line position for line 17012.81</Description>
+   <StringValue>[-1.1 -1. -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0. 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. 1.1]</StringValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_binedges_17372.67_09</Key>
+   <Description>RGS180_4: histogram bin edges of differences between expected and measured line position for line 17372.67</Description>
+   <StringValue>[-1.1 -1. -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0. 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. 1.1]</StringValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_binedges_18762.44_10</Key>
+   <Description>RGS180_4: histogram bin edges of differences between expected and measured line position for line 18762.44</Description>
+   <StringValue>[-1.1 -1. -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0. 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. 1.1]</StringValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_global_DeltaMeas</Key>
+   <Description>RGS180_4: Differences between expected and measured positions</Description>
+   <Files filestatus="PROPOSED" checksumMethod="MD5" checksumValue="63cef1de00c6813f6fbdafc43a753907">
+    <FileName>EUC_SIR_IDS_GLOBAL_RGS180_4_20250211T181832.452502Z.fits</FileName>
+   </Files>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_hist_12535.21_00</Key>
+   <Description>RGS180_4: histogram of the differences between expected and measured line position for line 12535.21</Description>
+   <StringValue>[ 0 0 1 1 0 0 1 3 12 17 25 15 3 2 0 0 0 0 0 0 0 0]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_hist_12825.96_01</Key>
+   <Description>RGS180_4: histogram of the differences between expected and measured line position for line 12825.96</Description>
+   <StringValue>[ 0 0 0 0 0 0 0 5 6 12 5 7 10 8 7 4 5 6 1 1 0 0]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_hist_15565.97_02</Key>
+   <Description>RGS180_4: histogram of the differences between expected and measured line position for line 15565.97</Description>
+   <StringValue>[ 1 0 0 0 0 0 0 2 5 9 22 24 11 3 2 0 1 0 0 0 0 0]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_hist_15710.33_03</Key>
+   <Description>RGS180_4: histogram of the differences between expected and measured line position for line 15710.33</Description>
+   <StringValue>[ 1 0 0 0 0 0 0 0 3 20 21 23 8 1 1 0 0 0 0 0 0 1]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_hist_15890.17_04</Key>
+   <Description>RGS180_4: histogram of the differences between expected and measured line position for line 15890.17</Description>
+   <StringValue>[ 0 0 0 1 0 0 0 1 7 11 25 23 7 2 1 0 0 0 1 0 0 1]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_hist_16119.16_05</Key>
+   <Description>RGS180_4: histogram of the differences between expected and measured line position for line 16119.16</Description>
+   <StringValue>[ 1 0 0 0 0 1 0 0 3 8 29 26 10 0 1 0 0 0 0 0 0 1]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_hist_16417.24_06</Key>
+   <Description>RGS180_4: histogram of the differences between expected and measured line position for line 16417.24</Description>
+   <StringValue>[ 0 0 0 0 0 0 1 0 5 7 23 36 4 2 1 0 1 0 0 0 0 0]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_hist_16816.95_07</Key>
+   <Description>RGS180_4: histogram of the differences between expected and measured line position for line 16816.95</Description>
+   <StringValue>[ 0 0 0 0 0 0 0 0 1 6 24 32 16 0 0 0 0 0 0 0 0 1]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_hist_17012.81_08</Key>
+   <Description>RGS180_4: histogram of the differences between expected and measured line position for line 17012.81</Description>
+   <StringValue>[ 0 0 0 0 0 0 0 0 2 9 25 29 7 4 0 2 0 0 0 0 0 0]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_hist_17372.67_09</Key>
+   <Description>RGS180_4: histogram of the differences between expected and measured line position for line 17372.67</Description>
+   <StringValue>[ 0 0 0 0 0 0 0 0 3 4 23 32 13 4 1 0 0 0 0 0 0 0]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_hist_18762.44_10</Key>
+   <Description>RGS180_4: histogram of the differences between expected and measured line position for line 18762.44</Description>
+   <StringValue>[ 0 0 0 0 2 3 6 8 14 9 12 10 9 3 0 1 0 1 0 0 0 0]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_local_DeltaMeas</Key>
+   <Description>RGS180_4: Differences between expected and measured positions</Description>
+   <Files filestatus="PROPOSED" checksumMethod="MD5" checksumValue="54edd6c0b6d413183fcad37fab4c1aac">
+    <FileName>EUC_SIR_IDS_LOCAL_RGS180_4_20250211T181434.787967Z.fits</FileName>
+   </Files>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_mean_12535.21_00</Key>
+   <Description>RGS180_4: mean of differences between expected and measured line position for line 12535.21</Description>
+   <DoubleValue>-0.08549431986627416</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_mean_12825.96_01</Key>
+   <Description>RGS180_4: mean of differences between expected and measured line position for line 12825.96</Description>
+   <DoubleValue>0.1518800747559835</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_mean_15565.97_02</Key>
+   <Description>RGS180_4: mean of differences between expected and measured line position for line 15565.97</Description>
+   <DoubleValue>-0.15184272911200186</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_mean_15710.33_03</Key>
+   <Description>RGS180_4: mean of differences between expected and measured line position for line 15710.33</Description>
+   <DoubleValue>0.13140899755948424</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_mean_15890.17_04</Key>
+   <Description>RGS180_4: mean of differences between expected and measured line position for line 15890.17</Description>
+   <DoubleValue>-0.004773848718838458</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_mean_16119.16_05</Key>
+   <Description>RGS180_4: mean of differences between expected and measured line position for line 16119.16</Description>
+   <DoubleValue>-0.059478352891105944</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_mean_16417.24_06</Key>
+   <Description>RGS180_4: mean of differences between expected and measured line position for line 16417.24</Description>
+   <DoubleValue>0.01178030105962573</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_mean_16816.95_07</Key>
+   <Description>RGS180_4: mean of differences between expected and measured line position for line 16816.95</Description>
+   <DoubleValue>0.043016688378507015</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_mean_17012.81_08</Key>
+   <Description>RGS180_4: mean of differences between expected and measured line position for line 17012.81</Description>
+   <DoubleValue>0.028052682254762297</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_mean_17372.67_09</Key>
+   <Description>RGS180_4: mean of differences between expected and measured line position for line 17372.67</Description>
+   <DoubleValue>0.06345057951904513</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_mean_18762.44_10</Key>
+   <Description>RGS180_4: mean of differences between expected and measured line position for line 18762.44</Description>
+   <DoubleValue>-0.02369192302465125</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_measured_lines</Key>
+   <Description>RGS180_4: list of used lines for the calibration</Description>
+   <StringValue>[12535.21 12825.96 15565.97 15710.33 15890.17 16119.16 16417.24 16816.95 17012.81 17372.67 18762.44]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_std_12535.21_00</Key>
+   <Description>RGS180_4: std of differences between expected and measured line position for line 12535.21</Description>
+   <DoubleValue>0.5470295214028629</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_std_12825.96_01</Key>
+   <Description>RGS180_4: std of differences between expected and measured line position for line 12825.96</Description>
+   <DoubleValue>0.39391148151305155</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_std_15565.97_02</Key>
+   <Description>RGS180_4: std of differences between expected and measured line position for line 15565.97</Description>
+   <DoubleValue>0.9387856273198988</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_std_15710.33_03</Key>
+   <Description>RGS180_4: std of differences between expected and measured line position for line 15710.33</Description>
+   <DoubleValue>0.786868835881531</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_std_15890.17_04</Key>
+   <Description>RGS180_4: std of differences between expected and measured line position for line 15890.17</Description>
+   <DoubleValue>0.8198653762841165</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_std_16119.16_05</Key>
+   <Description>RGS180_4: std of differences between expected and measured line position for line 16119.16</Description>
+   <DoubleValue>0.29967583282533033</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_std_16417.24_06</Key>
+   <Description>RGS180_4: std of differences between expected and measured line position for line 16417.24</Description>
+   <DoubleValue>0.1985282800407766</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_std_16816.95_07</Key>
+   <Description>RGS180_4: std of differences between expected and measured line position for line 16816.95</Description>
+   <DoubleValue>0.3807857952039853</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_std_17012.81_08</Key>
+   <Description>RGS180_4: std of differences between expected and measured line position for line 17012.81</Description>
+   <DoubleValue>0.6002793826097194</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_std_17372.67_09</Key>
+   <Description>RGS180_4: std of differences between expected and measured line position for line 17372.67</Description>
+   <DoubleValue>0.2904176592169028</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_std_18762.44_10</Key>
+   <Description>RGS180_4: std of differences between expected and measured line position for line 18762.44</Description>
+   <DoubleValue>0.3403350613997427</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_Number_measured_lines</Key>
+   <Description>BGS000_0: Number of lines used for the calibration</Description>
+   <IntValue>7</IntValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_Number_of_measures_10055.51_01</Key>
+   <Description>BGS000_0: Number of measured position for line 10055.51</Description>
+   <IntValue>79</IntValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_Number_of_measures_10837.48_02</Key>
+   <Description>BGS000_0: Number of measured position for line 10837.48</Description>
+   <IntValue>80</IntValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_Number_of_measures_10944.92_03</Key>
+   <Description>BGS000_0: Number of measured position for line 10944.92</Description>
+   <IntValue>68</IntValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_Number_of_measures_11976.37_04</Key>
+   <Description>BGS000_0: Number of measured position for line 11976.37</Description>
+   <IntValue>69</IntValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_Number_of_measures_12535.21_05</Key>
+   <Description>BGS000_0: Number of measured position for line 12535.21</Description>
+   <IntValue>80</IntValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_Number_of_measures_12825.96_06</Key>
+   <Description>BGS000_0: Number of measured position for line 12825.96</Description>
+   <IntValue>80</IntValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_Number_of_measures_13172.71_07</Key>
+   <Description>BGS000_0: Number of measured position for line 13172.71</Description>
+   <IntValue>78</IntValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_Number_of_measures_9536.79_00</Key>
+   <Description>BGS000_0: Number of measured position for line 9536.79</Description>
+   <IntValue>78</IntValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_binedges_10055.51_01</Key>
+   <Description>BGS000_0: histogram bin edges of differences between expected and measured line position for line 10055.51</Description>
+   <StringValue>[-1.1 -1. -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0. 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. 1.1]</StringValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_binedges_10837.48_02</Key>
+   <Description>BGS000_0: histogram bin edges of differences between expected and measured line position for line 10837.48</Description>
+   <StringValue>[-1.1 -1. -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0. 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. 1.1]</StringValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_binedges_10944.92_03</Key>
+   <Description>BGS000_0: histogram bin edges of differences between expected and measured line position for line 10944.92</Description>
+   <StringValue>[-1.1 -1. -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0. 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. 1.1]</StringValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_binedges_11976.37_04</Key>
+   <Description>BGS000_0: histogram bin edges of differences between expected and measured line position for line 11976.37</Description>
+   <StringValue>[-1.1 -1. -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0. 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. 1.1]</StringValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_binedges_12535.21_05</Key>
+   <Description>BGS000_0: histogram bin edges of differences between expected and measured line position for line 12535.21</Description>
+   <StringValue>[-1.1 -1. -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0. 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. 1.1]</StringValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_binedges_12825.96_06</Key>
+   <Description>BGS000_0: histogram bin edges of differences between expected and measured line position for line 12825.96</Description>
+   <StringValue>[-1.1 -1. -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0. 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. 1.1]</StringValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_binedges_13172.71_07</Key>
+   <Description>BGS000_0: histogram bin edges of differences between expected and measured line position for line 13172.71</Description>
+   <StringValue>[-1.1 -1. -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0. 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. 1.1]</StringValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_binedges_9536.79_00</Key>
+   <Description>BGS000_0: histogram bin edges of differences between expected and measured line position for line 9536.79</Description>
+   <StringValue>[-1.1 -1. -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0. 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. 1.1]</StringValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_global_DeltaMeas</Key>
+   <Description>BGS000_0: Differences between expected and measured positions</Description>
+   <Files filestatus="PROPOSED" checksumMethod="MD5" checksumValue="cad04bcb57baed1a307bf020706faacd">
+    <FileName>EUC_SIR_IDS_GLOBAL_BGS000_0_20250211T181829.357718Z.fits</FileName>
+   </Files>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_hist_10055.51_01</Key>
+   <Description>BGS000_0: histogram of the differences between expected and measured line position for line 10055.51</Description>
+   <StringValue>[ 0 0 0 0 0 0 0 2 2 3 8 25 20 11 6 1 0 0 0 0 0 1]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_hist_10837.48_02</Key>
+   <Description>BGS000_0: histogram of the differences between expected and measured line position for line 10837.48</Description>
+   <StringValue>[9 6 4 5 3 8 7 8 4 7 6 4 4 3 1 0 0 1 0 0 0 0]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_hist_10944.92_03</Key>
+   <Description>BGS000_0: histogram of the differences between expected and measured line position for line 10944.92</Description>
+   <StringValue>[ 2 1 0 2 0 0 0 9 0 0 0 2 1 1 1 1 0 2 1 2 2 41]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_hist_11976.37_04</Key>
+   <Description>BGS000_0: histogram of the differences between expected and measured line position for line 11976.37</Description>
+   <StringValue>[12 1 1 5 6 3 1 6 1 4 1 2 3 3 2 0 1 1 0 3 3 10]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_hist_12535.21_05</Key>
+   <Description>BGS000_0: histogram of the differences between expected and measured line position for line 12535.21</Description>
+   <StringValue>[ 5 1 0 1 5 2 9 9 12 10 10 7 2 1 1 0 0 1 0 0 0 4]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_hist_12825.96_06</Key>
+   <Description>BGS000_0: histogram of the differences between expected and measured line position for line 12825.96</Description>
+   <StringValue>[ 1 0 0 0 3 3 6 6 8 13 9 16 5 3 3 1 1 2 0 0 0 0]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_hist_13172.71_07</Key>
+   <Description>BGS000_0: histogram of the differences between expected and measured line position for line 13172.71</Description>
+   <StringValue>[ 3 1 1 1 0 0 0 5 2 4 3 2 15 11 8 8 1 2 1 1 0 9]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_hist_9536.79_00</Key>
+   <Description>BGS000_0: histogram of the differences between expected and measured line position for line 9536.79</Description>
+   <StringValue>[ 0 0 0 1 2 2 1 3 8 14 22 12 6 5 0 0 2 0 0 0 0 0]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_local_DeltaMeas</Key>
+   <Description>BGS000_0: Differences between expected and measured positions</Description>
+   <Files filestatus="PROPOSED" checksumMethod="MD5" checksumValue="42d18cc613b249971e12a15609980724">
+    <FileName>EUC_SIR_IDS_LOCAL_BGS000_0_20250211T181426.547203Z.fits</FileName>
+   </Files>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_mean_10055.51_01</Key>
+   <Description>BGS000_0: mean of differences between expected and measured line position for line 10055.51</Description>
+   <DoubleValue>-0.08865217241949844</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_mean_10837.48_02</Key>
+   <Description>BGS000_0: mean of differences between expected and measured line position for line 10837.48</Description>
+   <DoubleValue>-0.4824390587523089</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_mean_10944.92_03</Key>
+   <Description>BGS000_0: mean of differences between expected and measured line position for line 10944.92</Description>
+   <DoubleValue>1.3794541658548944</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_mean_11976.37_04</Key>
+   <Description>BGS000_0: mean of differences between expected and measured line position for line 11976.37</Description>
+   <DoubleValue>-0.1609882640367228</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_mean_12535.21_05</Key>
+   <Description>BGS000_0: mean of differences between expected and measured line position for line 12535.21</Description>
+   <DoubleValue>-0.19776685108527456</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_mean_12825.96_06</Key>
+   <Description>BGS000_0: mean of differences between expected and measured line position for line 12825.96</Description>
+   <DoubleValue>-0.10403749891201175</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_mean_13172.71_07</Key>
+   <Description>BGS000_0: mean of differences between expected and measured line position for line 13172.71</Description>
+   <DoubleValue>0.29990179967661396</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_mean_9536.79_00</Key>
+   <Description>BGS000_0: mean of differences between expected and measured line position for line 9536.79</Description>
+   <DoubleValue>-0.04809819847490178</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_measured_lines</Key>
+   <Description>BGS000_0: list of used lines for the calibration</Description>
+   <StringValue>[ 9536.79 10055.51 10944.92 11976.37 12535.21 12825.96 13172.71]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_std_10055.51_01</Key>
+   <Description>BGS000_0: std of differences between expected and measured line position for line 10055.51</Description>
+   <DoubleValue>0.3097992829447114</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_std_10837.48_02</Key>
+   <Description>BGS000_0: std of differences between expected and measured line position for line 10837.48</Description>
+   <DoubleValue>0.521333670813054</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_std_10944.92_03</Key>
+   <Description>BGS000_0: std of differences between expected and measured line position for line 10944.92</Description>
+   <DoubleValue>1.5195873912771496</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_std_11976.37_04</Key>
+   <Description>BGS000_0: std of differences between expected and measured line position for line 11976.37</Description>
+   <DoubleValue>1.6401866018630649</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_std_12535.21_05</Key>
+   <Description>BGS000_0: std of differences between expected and measured line position for line 12535.21</Description>
+   <DoubleValue>0.7752172390297782</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_std_12825.96_06</Key>
+   <Description>BGS000_0: std of differences between expected and measured line position for line 12825.96</Description>
+   <DoubleValue>0.29761305604343696</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_std_13172.71_07</Key>
+   <Description>BGS000_0: std of differences between expected and measured line position for line 13172.71</Description>
+   <DoubleValue>0.8119274210208096</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_std_9536.79_00</Key>
+   <Description>BGS000_0: std of differences between expected and measured line position for line 9536.79</Description>
+   <DoubleValue>0.2637680894972354</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_Median_12535.21_00</Key>
+   <Description>RGS180_0: median of differences between expected and measured line position for line 12535.21</Description>
+   <DoubleValue>-0.04499657151973979</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_Smad_12535.21_00</Key>
+   <Description>RGS180_0: SMAD of differences between expected and measured line position for line 12535.21</Description>
+   <DoubleValue>0.17087092102662102</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_Median_12825.96_01</Key>
+   <Description>RGS180_0: median of differences between expected and measured line position for line 12825.96</Description>
+   <DoubleValue>0.10614590271630651</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_Smad_12825.96_01</Key>
+   <Description>RGS180_0: SMAD of differences between expected and measured line position for line 12825.96</Description>
+   <DoubleValue>0.25990281204346954</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_Median_15565.97_02</Key>
+   <Description>RGS180_0: median of differences between expected and measured line position for line 15565.97</Description>
+   <DoubleValue>0.01035493009585233</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_Smad_15565.97_02</Key>
+   <Description>RGS180_0: SMAD of differences between expected and measured line position for line 15565.97</Description>
+   <DoubleValue>0.1476537366938433</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_Median_15710.33_03</Key>
+   <Description>RGS180_0: median of differences between expected and measured line position for line 15710.33</Description>
+   <DoubleValue>-0.009444574897142483</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_Smad_15710.33_03</Key>
+   <Description>RGS180_0: SMAD of differences between expected and measured line position for line 15710.33</Description>
+   <DoubleValue>0.11318806323136892</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_Median_15890.17_04</Key>
+   <Description>RGS180_0: median of differences between expected and measured line position for line 15890.17</Description>
+   <DoubleValue>-0.01598941715347147</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_Smad_15890.17_04</Key>
+   <Description>RGS180_0: SMAD of differences between expected and measured line position for line 15890.17</Description>
+   <DoubleValue>0.09995363619344537</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_Median_16119.16_05</Key>
+   <Description>RGS180_0: median of differences between expected and measured line position for line 16119.16</Description>
+   <DoubleValue>-0.02012324106145497</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_Smad_16119.16_05</Key>
+   <Description>RGS180_0: SMAD of differences between expected and measured line position for line 16119.16</Description>
+   <DoubleValue>0.08198420285150002</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_Median_16417.24_06</Key>
+   <Description>RGS180_0: median of differences between expected and measured line position for line 16417.24</Description>
+   <DoubleValue>-0.012136716389414241</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_Smad_16417.24_06</Key>
+   <Description>RGS180_0: SMAD of differences between expected and measured line position for line 16417.24</Description>
+   <DoubleValue>0.09640595403958688</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_Median_16816.95_07</Key>
+   <Description>RGS180_0: median of differences between expected and measured line position for line 16816.95</Description>
+   <DoubleValue>0.017009996833926393</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_Smad_16816.95_07</Key>
+   <Description>RGS180_0: SMAD of differences between expected and measured line position for line 16816.95</Description>
+   <DoubleValue>0.10781728701038672</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_Median_17012.81_08</Key>
+   <Description>RGS180_0: median of differences between expected and measured line position for line 17012.81</Description>
+   <DoubleValue>-0.042271325922659114</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_Smad_17012.81_08</Key>
+   <Description>RGS180_0: SMAD of differences between expected and measured line position for line 17012.81</Description>
+   <DoubleValue>0.09877217336971733</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_Median_17372.67_09</Key>
+   <Description>RGS180_0: median of differences between expected and measured line position for line 17372.67</Description>
+   <DoubleValue>0.05754909832443389</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_Smad_17372.67_09</Key>
+   <Description>RGS180_0: SMAD of differences between expected and measured line position for line 17372.67</Description>
+   <DoubleValue>0.08110950084859474</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_Median_18762.44_10</Key>
+   <Description>RGS180_0: median of differences between expected and measured line position for line 18762.44</Description>
+   <DoubleValue>0.0033755436384244513</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_0_Smad_18762.44_10</Key>
+   <Description>RGS180_0: SMAD of differences between expected and measured line position for line 18762.44</Description>
+   <DoubleValue>0.19777892691833132</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_Median_12535.21_00</Key>
+   <Description>RGS180_4: median of differences between expected and measured line position for line 12535.21</Description>
+   <DoubleValue>-0.08674705146934139</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_Smad_12535.21_00</Key>
+   <Description>RGS180_4: SMAD of differences between expected and measured line position for line 12535.21</Description>
+   <DoubleValue>0.13109587635427578</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_Median_12825.96_01</Key>
+   <Description>RGS180_4: median of differences between expected and measured line position for line 12825.96</Description>
+   <DoubleValue>0.13997653795263898</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_Smad_12825.96_01</Key>
+   <Description>RGS180_4: SMAD of differences between expected and measured line position for line 12825.96</Description>
+   <DoubleValue>0.35969704226639376</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_Median_15565.97_02</Key>
+   <Description>RGS180_4: median of differences between expected and measured line position for line 15565.97</Description>
+   <DoubleValue>0.0009363190021143207</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_Smad_15565.97_02</Key>
+   <Description>RGS180_4: SMAD of differences between expected and measured line position for line 15565.97</Description>
+   <DoubleValue>0.12562899134769742</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_Median_15710.33_03</Key>
+   <Description>RGS180_4: median of differences between expected and measured line position for line 15710.33</Description>
+   <DoubleValue>-0.023028487661449153</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_Smad_15710.33_03</Key>
+   <Description>RGS180_4: SMAD of differences between expected and measured line position for line 15710.33</Description>
+   <DoubleValue>0.12290678959809444</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_Median_15890.17_04</Key>
+   <Description>RGS180_4: median of differences between expected and measured line position for line 15890.17</Description>
+   <DoubleValue>-0.016738241398025384</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_Smad_15890.17_04</Key>
+   <Description>RGS180_4: SMAD of differences between expected and measured line position for line 15890.17</Description>
+   <DoubleValue>0.09442725032186897</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_Median_16119.16_05</Key>
+   <Description>RGS180_4: median of differences between expected and measured line position for line 16119.16</Description>
+   <DoubleValue>-0.012159575045171324</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_Smad_16119.16_05</Key>
+   <Description>RGS180_4: SMAD of differences between expected and measured line position for line 16119.16</Description>
+   <DoubleValue>0.09812558077348851</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_Median_16417.24_06</Key>
+   <Description>RGS180_4: median of differences between expected and measured line position for line 16417.24</Description>
+   <DoubleValue>0.010686241582295818</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_Smad_16417.24_06</Key>
+   <Description>RGS180_4: SMAD of differences between expected and measured line position for line 16417.24</Description>
+   <DoubleValue>0.0842667134130258</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_Median_16816.95_07</Key>
+   <Description>RGS180_4: median of differences between expected and measured line position for line 16816.95</Description>
+   <DoubleValue>0.031538833036978305</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_Smad_16816.95_07</Key>
+   <Description>RGS180_4: SMAD of differences between expected and measured line position for line 16816.95</Description>
+   <DoubleValue>0.08457125331479341</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_Median_17012.81_08</Key>
+   <Description>RGS180_4: median of differences between expected and measured line position for line 17012.81</Description>
+   <DoubleValue>0.013177213992661167</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_Smad_17012.81_08</Key>
+   <Description>RGS180_4: SMAD of differences between expected and measured line position for line 17012.81</Description>
+   <DoubleValue>0.10111303599762216</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_Median_17372.67_09</Key>
+   <Description>RGS180_4: median of differences between expected and measured line position for line 17372.67</Description>
+   <DoubleValue>0.03576860200486784</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_Smad_17372.67_09</Key>
+   <Description>RGS180_4: SMAD of differences between expected and measured line position for line 17372.67</Description>
+   <DoubleValue>0.08463952482201846</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_Median_18762.44_10</Key>
+   <Description>RGS180_4: median of differences between expected and measured line position for line 18762.44</Description>
+   <DoubleValue>-0.11641250500748193</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS180_4_Smad_18762.44_10</Key>
+   <Description>RGS180_4: SMAD of differences between expected and measured line position for line 18762.44</Description>
+   <DoubleValue>0.24702315307227682</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_Median_12535.21_00</Key>
+   <Description>RGS000_-4: median of differences between expected and measured line position for line 12535.21</Description>
+   <DoubleValue>-0.06146002406485222</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_Smad_12535.21_00</Key>
+   <Description>RGS000_-4: SMAD of differences between expected and measured line position for line 12535.21</Description>
+   <DoubleValue>0.1454302401807102</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_Median_12825.96_01</Key>
+   <Description>RGS000_-4: median of differences between expected and measured line position for line 12825.96</Description>
+   <DoubleValue>0.021312428489003554</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_Smad_12825.96_01</Key>
+   <Description>RGS000_-4: SMAD of differences between expected and measured line position for line 12825.96</Description>
+   <DoubleValue>0.23112608789731984</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_Median_15565.97_02</Key>
+   <Description>RGS000_-4: median of differences between expected and measured line position for line 15565.97</Description>
+   <DoubleValue>0.004168515582583167</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_Smad_15565.97_02</Key>
+   <Description>RGS000_-4: SMAD of differences between expected and measured line position for line 15565.97</Description>
+   <DoubleValue>0.1414675717433672</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_Median_15710.33_03</Key>
+   <Description>RGS000_-4: median of differences between expected and measured line position for line 15710.33</Description>
+   <DoubleValue>-0.01667498734359078</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_Smad_15710.33_03</Key>
+   <Description>RGS000_-4: SMAD of differences between expected and measured line position for line 15710.33</Description>
+   <DoubleValue>0.14660680985277494</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_Median_15890.17_04</Key>
+   <Description>RGS000_-4: median of differences between expected and measured line position for line 15890.17</Description>
+   <DoubleValue>-0.002587818675523233</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_Smad_15890.17_04</Key>
+   <Description>RGS000_-4: SMAD of differences between expected and measured line position for line 15890.17</Description>
+   <DoubleValue>0.12245308543300343</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_Median_16119.16_05</Key>
+   <Description>RGS000_-4: median of differences between expected and measured line position for line 16119.16</Description>
+   <DoubleValue>0.0005991004939448931</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_Smad_16119.16_05</Key>
+   <Description>RGS000_-4: SMAD of differences between expected and measured line position for line 16119.16</Description>
+   <DoubleValue>0.1393130595915256</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_Median_16417.24_06</Key>
+   <Description>RGS000_-4: median of differences between expected and measured line position for line 16417.24</Description>
+   <DoubleValue>-0.02154448213703469</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_Smad_16417.24_06</Key>
+   <Description>RGS000_-4: SMAD of differences between expected and measured line position for line 16417.24</Description>
+   <DoubleValue>0.12101867073213414</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_Median_16816.95_07</Key>
+   <Description>RGS000_-4: median of differences between expected and measured line position for line 16816.95</Description>
+   <DoubleValue>0.03258048568577214</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_Smad_16816.95_07</Key>
+   <Description>RGS000_-4: SMAD of differences between expected and measured line position for line 16816.95</Description>
+   <DoubleValue>0.12819328303521105</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_Median_17012.81_08</Key>
+   <Description>RGS000_-4: median of differences between expected and measured line position for line 17012.81</Description>
+   <DoubleValue>-0.002871022663494459</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_Smad_17012.81_08</Key>
+   <Description>RGS000_-4: SMAD of differences between expected and measured line position for line 17012.81</Description>
+   <DoubleValue>0.13414882952991766</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_Median_17372.67_09</Key>
+   <Description>RGS000_-4: median of differences between expected and measured line position for line 17372.67</Description>
+   <DoubleValue>0.031847043686431355</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_Smad_17372.67_09</Key>
+   <Description>RGS000_-4: SMAD of differences between expected and measured line position for line 17372.67</Description>
+   <DoubleValue>0.1378064431690245</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_Median_18762.44_10</Key>
+   <Description>RGS000_-4: median of differences between expected and measured line position for line 18762.44</Description>
+   <DoubleValue>0.005028478017168181</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_-4_Smad_18762.44_10</Key>
+   <Description>RGS000_-4: SMAD of differences between expected and measured line position for line 18762.44</Description>
+   <DoubleValue>0.23118958691523975</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_Median_9536.79_00</Key>
+   <Description>BGS000_0: median of differences between expected and measured line position for line 9536.79</Description>
+   <DoubleValue>-0.05653203840553303</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_Smad_9536.79_00</Key>
+   <Description>BGS000_0: SMAD of differences between expected and measured line position for line 9536.79</Description>
+   <DoubleValue>0.1539582950152455</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_Median_10055.51_01</Key>
+   <Description>BGS000_0: median of differences between expected and measured line position for line 10055.51</Description>
+   <DoubleValue>0.09790431439203429</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_Smad_10055.51_01</Key>
+   <Description>BGS000_0: SMAD of differences between expected and measured line position for line 10055.51</Description>
+   <DoubleValue>0.12461992796049555</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_Number_of_measures_10944.92_02</Key>
+   <Description>BGS000_0: Number of measured position for line 10944.92</Description>
+   <IntValue>77</IntValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_Median_10944.92_02</Key>
+   <Description>BGS000_0: median of differences between expected and measured line position for line 10944.92</Description>
+   <DoubleValue>-0.023649904681888254</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_Smad_10944.92_02</Key>
+   <Description>BGS000_0: SMAD of differences between expected and measured line position for line 10944.92</Description>
+   <DoubleValue>0.20321937403594395</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_hist_10944.92_02</Key>
+   <Description>BGS000_0: histogram of the differences between expected and measured line position for line 10944.92</Description>
+   <StringValue>[ 0 0 0 0 0 0 3 8 4 14 11 19 6 5 4 1 1 0 1 0 0 0]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_binedges_10944.92_02</Key>
+   <Description>BGS000_0: histogram bin edges of differences between expected and measured line position for line 10944.92</Description>
+   <StringValue>[-1.1 -1. -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0. 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. 1.1]</StringValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_Number_of_measures_11976.37_03</Key>
+   <Description>BGS000_0: Number of measured position for line 11976.37</Description>
+   <IntValue>79</IntValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_Median_11976.37_03</Key>
+   <Description>BGS000_0: median of differences between expected and measured line position for line 11976.37</Description>
+   <DoubleValue>0.003287912975288264</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_Smad_11976.37_03</Key>
+   <Description>BGS000_0: SMAD of differences between expected and measured line position for line 11976.37</Description>
+   <DoubleValue>0.16667979953078016</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_hist_11976.37_03</Key>
+   <Description>BGS000_0: histogram of the differences between expected and measured line position for line 11976.37</Description>
+   <StringValue>[ 2 0 0 0 0 0 3 1 7 14 12 21 13 5 1 0 0 0 0 0 0 0]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_binedges_11976.37_03</Key>
+   <Description>BGS000_0: histogram bin edges of differences between expected and measured line position for line 11976.37</Description>
+   <StringValue>[-1.1 -1. -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0. 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. 1.1]</StringValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_Number_of_measures_12535.21_04</Key>
+   <Description>BGS000_0: Number of measured position for line 12535.21</Description>
+   <IntValue>78</IntValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_Median_12535.21_04</Key>
+   <Description>BGS000_0: median of differences between expected and measured line position for line 12535.21</Description>
+   <DoubleValue>-0.0290918778528273</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_Smad_12535.21_04</Key>
+   <Description>BGS000_0: SMAD of differences between expected and measured line position for line 12535.21</Description>
+   <DoubleValue>0.1381982687156915</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_hist_12535.21_04</Key>
+   <Description>BGS000_0: histogram of the differences between expected and measured line position for line 12535.21</Description>
+   <StringValue>[ 0 0 0 0 0 0 0 1 7 9 23 25 10 3 0 0 0 0 0 0 0 0]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_binedges_12535.21_04</Key>
+   <Description>BGS000_0: histogram bin edges of differences between expected and measured line position for line 12535.21</Description>
+   <StringValue>[-1.1 -1. -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0. 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. 1.1]</StringValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_Number_of_measures_12825.96_05</Key>
+   <Description>BGS000_0: Number of measured position for line 12825.96</Description>
+   <IntValue>76</IntValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_Median_12825.96_05</Key>
+   <Description>BGS000_0: median of differences between expected and measured line position for line 12825.96</Description>
+   <DoubleValue>-0.03959919933059955</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_Smad_12825.96_05</Key>
+   <Description>BGS000_0: SMAD of differences between expected and measured line position for line 12825.96</Description>
+   <DoubleValue>0.25431548010731503</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_hist_12825.96_05</Key>
+   <Description>BGS000_0: histogram of the differences between expected and measured line position for line 12825.96</Description>
+   <StringValue>[ 0 0 0 0 0 3 1 3 12 14 10 9 12 5 4 2 1 0 0 0 0 0]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_binedges_12825.96_05</Key>
+   <Description>BGS000_0: histogram bin edges of differences between expected and measured line position for line 12825.96</Description>
+   <StringValue>[-1.1 -1. -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0. 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. 1.1]</StringValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_Number_of_measures_13172.71_06</Key>
+   <Description>BGS000_0: Number of measured position for line 13172.71</Description>
+   <IntValue>80</IntValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_Median_13172.71_06</Key>
+   <Description>BGS000_0: median of differences between expected and measured line position for line 13172.71</Description>
+   <DoubleValue>0.09777628835257865</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_Smad_13172.71_06</Key>
+   <Description>BGS000_0: SMAD of differences between expected and measured line position for line 13172.71</Description>
+   <DoubleValue>0.14878073809339523</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_hist_13172.71_06</Key>
+   <Description>BGS000_0: histogram of the differences between expected and measured line position for line 13172.71</Description>
+   <StringValue>[ 0 0 1 0 0 1 0 2 4 4 13 16 24 9 0 1 2 2 0 1 0 0]</StringValue>
+   <Unit>None</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>BGS000_0_binedges_13172.71_06</Key>
+   <Description>BGS000_0: histogram bin edges of differences between expected and measured line position for line 13172.71</Description>
+   <StringValue>[-1.1 -1. -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0. 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. 1.1]</StringValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_Median_12535.21_00</Key>
+   <Description>RGS000_0: median of differences between expected and measured line position for line 12535.21</Description>
+   <DoubleValue>-0.05662825466149932</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_Smad_12535.21_00</Key>
+   <Description>RGS000_0: SMAD of differences between expected and measured line position for line 12535.21</Description>
+   <DoubleValue>0.140471363940252</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_Median_12825.96_01</Key>
+   <Description>RGS000_0: median of differences between expected and measured line position for line 12825.96</Description>
+   <DoubleValue>0.09469417378247694</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_Smad_12825.96_01</Key>
+   <Description>RGS000_0: SMAD of differences between expected and measured line position for line 12825.96</Description>
+   <DoubleValue>0.16777666862043364</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_Median_15565.97_02</Key>
+   <Description>RGS000_0: median of differences between expected and measured line position for line 15565.97</Description>
+   <DoubleValue>-0.01934941281550996</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_Smad_15565.97_02</Key>
+   <Description>RGS000_0: SMAD of differences between expected and measured line position for line 15565.97</Description>
+   <DoubleValue>0.10225853037421373</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_Median_15710.33_03</Key>
+   <Description>RGS000_0: median of differences between expected and measured line position for line 15710.33</Description>
+   <DoubleValue>0.012152290654753806</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_Smad_15710.33_03</Key>
+   <Description>RGS000_0: SMAD of differences between expected and measured line position for line 15710.33</Description>
+   <DoubleValue>0.10072711405537382</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_Median_15890.17_04</Key>
+   <Description>RGS000_0: median of differences between expected and measured line position for line 15890.17</Description>
+   <DoubleValue>-0.01865471633817324</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_Smad_15890.17_04</Key>
+   <Description>RGS000_0: SMAD of differences between expected and measured line position for line 15890.17</Description>
+   <DoubleValue>0.13561267519627754</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_Median_16119.16_05</Key>
+   <Description>RGS000_0: median of differences between expected and measured line position for line 16119.16</Description>
+   <DoubleValue>-0.015777871007405023</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_Smad_16119.16_05</Key>
+   <Description>RGS000_0: SMAD of differences between expected and measured line position for line 16119.16</Description>
+   <DoubleValue>0.10760601149378565</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_Median_16417.24_06</Key>
+   <Description>RGS000_0: median of differences between expected and measured line position for line 16417.24</Description>
+   <DoubleValue>-0.006280492025221609</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_Smad_16417.24_06</Key>
+   <Description>RGS000_0: SMAD of differences between expected and measured line position for line 16417.24</Description>
+   <DoubleValue>0.1133307898127691</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_Median_16816.95_07</Key>
+   <Description>RGS000_0: median of differences between expected and measured line position for line 16816.95</Description>
+   <DoubleValue>-0.0033249116421176297</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_Smad_16816.95_07</Key>
+   <Description>RGS000_0: SMAD of differences between expected and measured line position for line 16816.95</Description>
+   <DoubleValue>0.0901107004981413</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_Median_17012.81_08</Key>
+   <Description>RGS000_0: median of differences between expected and measured line position for line 17012.81</Description>
+   <DoubleValue>-0.0318837999534863</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_Smad_17012.81_08</Key>
+   <Description>RGS000_0: SMAD of differences between expected and measured line position for line 17012.81</Description>
+   <DoubleValue>0.0988348113926219</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_Median_17372.67_09</Key>
+   <Description>RGS000_0: median of differences between expected and measured line position for line 17372.67</Description>
+   <DoubleValue>0.06223284584701638</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_Smad_17372.67_09</Key>
+   <Description>RGS000_0: SMAD of differences between expected and measured line position for line 17372.67</Description>
+   <DoubleValue>0.12932129125858752</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_Median_18762.44_10</Key>
+   <Description>RGS000_0: median of differences between expected and measured line position for line 18762.44</Description>
+   <DoubleValue>-0.033358704664493324</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+  <Parameter>
+   <Key>RGS000_0_Smad_18762.44_10</Key>
+   <Description>RGS000_0: SMAD of differences between expected and measured line position for line 18762.44</Description>
+   <DoubleValue>0.16547900752738118</DoubleValue>
+   <Unit>pixels</Unit>
+  </Parameter>
+ </Parameters>
+</dpd-sir-idsmodel:DpdSirIdsModel>
