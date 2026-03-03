@@ -523,7 +523,7 @@ def save_panel5_fits(
             fits.Column(name='AREA',     format='J',     array=np.array([o['area']          for o, _ in all_objects])),
             fits.Column(name='FILL',     format='E',     array=np.array([o['fill_ratio']    for o, _ in all_objects])),
             fits.Column(name='ASPECT',   format='E',     array=np.array([o['aspect_ratio']  for o, _ in all_objects])),
-            fits.Column(name='TYPE',     format='10A',   array=np.array([t                  for _, t in all_objects]))
+            fits.Column(name='TYPE',     format='12A',   array=np.array([t                  for _, t in all_objects]))
         ]),
         name = f"{detCode}.Detections",
         header = sci_header
@@ -710,7 +710,7 @@ def process_detector(hdul, det_idx, output_dir, base_name,
                 linewidth=1, edgecolor='blue', facecolor='none', alpha=0.9,
             )
             axes[4].add_patch(rect)
-        # axes[4].scatter(zx, zy, marker="s", facecolors='none', edgecolors='r', linewidths=1)
+        axes[4].scatter(zx, zy, marker="s", facecolors='none', edgecolors='r', linewidths=1)
         for ax in axes:
             ax.set_xlabel("X (px)")
             ax.set_ylabel("Y (px)")
