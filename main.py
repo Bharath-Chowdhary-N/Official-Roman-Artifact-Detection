@@ -774,6 +774,16 @@ def process_detector(hdul, det_idx, output_dir, base_name,
         plt.close()
         print(f"  Saved panel 5 standalone (300 DPI): {p5_path}")
 
+        # Clean version: no axes, no title, no boxes — for Zooniverse upload
+        fig_clean, ax_clean = plt.subplots(1, 1, figsize=(10, 10))
+        ax_clean.imshow(disp_cs_inpainted, origin='lower', cmap=cmap, vmin=0, vmax=1)
+        ax_clean.axis('off')
+        p5_clean_path = os.path.join(output_dir, f"{fname_stem}_panel5_clean.{ext}")
+        plt.savefig(p5_clean_path, dpi=300, bbox_inches='tight', pad_inches=0,
+                    pil_kwargs=pkl)
+        plt.close()
+        print(f"  Saved panel 5 clean (300 DPI): {p5_clean_path}")
+
     if save_panel5_fits_flag:
         fits_path_out = os.path.join(output_dir, f"{fname_stem}_panel5.fits")
         save_panel5_fits(
