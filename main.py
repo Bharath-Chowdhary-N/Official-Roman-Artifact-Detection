@@ -801,6 +801,33 @@ def process_detector(hdul, det_idx, output_dir, base_name,
             zo_table
         )
 
+    # Build per-detection rows for CSV output
+    detection_rows = []
+    for obj_type, obj_list in [('confident', confident_objects),
+                                ('suspicious', suspicious_objects),
+                                ('confirmed ZO', paired_objects)]:
+        for obj in obj_list:
+            detection_rows.append({
+                'detector'      : sci_name,
+                'type'          : obj_type,
+                'x_min'         : obj['bbox'][0],
+                'y_min'         : obj['bbox'][1],
+                'x_max'         : obj['bbox'][2],
+                'y_max'         : obj['bbox'][3],
+                'centroid_x'    : obj['centroid'][0],
+                'centroid_y'    : obj['centroid'][1],
+                'width'         : obj['width'],
+                'height'        : obj['height'],
+                'area'          : obj['area'],
+                'fill_ratio'    : obj['fill_ratio'],
+                'aspect_ratio'  : obj['aspect_ratio'],
+                'mean_intensity': obj['mean_intensity'],
+                'max_intensity' : obj['max_intensity'],
+                'priority'      : obj['priority'],
+                'label'         : obj['label'],
+                'fragment_count': obj.get('fragment_count', 1),
+            })
+
     return {
         'sci_name'      : sci_name,
         'grism_angle'   : grism_angle,
@@ -812,6 +839,7 @@ def process_detector(hdul, det_idx, output_dir, base_name,
         'confident'      : len(confident_objects),
         'suspicious'     : len(suspicious_objects),
         'confirmed ZOs'  : len(paired_objects),
+        'detection_rows' : detection_rows,
     }
 
 
@@ -897,6 +925,18 @@ def process_fits_with_full_pipeline(
             )
             if result:
                 all_results.append(result)
+
+    # Save all detection boxes to a single CSV for this FITS file
+    all_detection_rows = []
+    for r in all_results:
+        for row in r.get('detection_rows', []):
+            row_with_meta = {'fits_file': base_name}
+            row_with_meta.update(row)
+            all_detection_rows.append(row_with_meta)
+    if all_detection_rows:
+        csv_path = os.path.join(output_dir, f"{base_name}_detections.csv")
+        pd.DataFrame(all_detection_rows).to_csv(csv_path, index=False)
+        print(f"  Saved detections CSV: {csv_path}")
 
     summary_path = os.path.join(output_dir, f"{base_name}_summary.txt")
     with open(summary_path, 'w') as f:
