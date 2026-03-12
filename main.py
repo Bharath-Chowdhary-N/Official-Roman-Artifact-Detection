@@ -45,6 +45,7 @@ import gelsa
 
 G = gelsa.Gelsa("calib/gelsa_config.json")
 ESC_PATH = "Euclid Extracted Spectra Data"
+ESC_ALL_PATH = os.path.join(ESC_PATH, "bigdigest 5614B8BE632B859E72E37665FB9914E3.csv")
 
 ZO_MIN_DST_THRESHOLD = 0.75
 ZO_H_SCALE = 5.0
@@ -845,6 +846,7 @@ def process_detector(hdul, det_idx, output_dir, base_name,
 
 def process_fits_with_full_pipeline(
     fits_path,
+    zo_table,
     output_dir=None,
     kernel_size=(1, 41),
     inpaint_box=64,
@@ -903,22 +905,24 @@ def process_fits_with_full_pipeline(
         det_indices = [DetIndex(specific_det_index)] if specific_det_index is not None else sci_hdus
         print(f"\nFound {n_det} SCI detectors.")
         all_results = []
-        zo_table    = pd.read_csv(os.path.join(ESC_PATH, str(hdul[0].header["OBS_ID"]), "digest.csv"))
-        zo_table    = zo_table[zo_table['Magnitude'] < ZO_MIN_BRIGHTNESS_MAG]
-        zo_table["ZO x"], zo_table["ZO y"], zo_table["ZO Det"] = gelsa_frame.radec_to_pixel(
+        zo_x, zo_y, zo_det = gelsa_frame.radec_to_pixel(
             zo_table['RIGHT_ASCENSION'],
             zo_table['DECLINATION'],
             15000*np.ones(len(zo_table)),
             dispersion_order = 0
         )
-        zo_table = zo_table[zo_table["ZO Det"] >= 0]
+        on_frame_mask               = zo_det >= 0
+        on_frame_zo_table           = zo_table.iloc[on_frame_mask].copy()
+        on_frame_zo_table["ZO x"]   = zo_x[on_frame_mask]
+        on_frame_zo_table["ZO y"]   = zo_y[on_frame_mask]
+        on_frame_zo_table["ZO Det"] = zo_det[on_frame_mask]
         for det_idx in det_indices:
             result = process_detector(
                 hdul, det_idx, output_dir, base_name,
                 kernel_size, inpaint_box, hot_pixel_bits,
                 image_format, jpeg_quality,
                 detection_params, merge_params, filter_params,
-                zo_table,
+                on_frame_zo_table,
                 save_5panel=save_5panel,
                 save_panel5_standalone=save_panel5_standalone,
                 save_panel5_fits_flag=save_panel5_fits_flag,
@@ -971,56 +975,96 @@ def main():
         )
     )
 
-    parser.add_argument('fits_file',
-                        help='Path to the input FITS file')
-    parser.add_argument('--output-dir', '-o', default=None,
-                        help='Output directory (default: output/ next to the input file)')
-    parser.add_argument('--det-index', type=int, default=None,
-                        help='Zero-based detector index to process (default: all detectors)')
-
-    parser.add_argument('--kernel-rows',  type=int,   default=1,
-                        help='Continuum filter rows (default: 1)')
-    parser.add_argument('--kernel-cols',  type=int,   default=41,
-                        help='Continuum filter columns (default: 41)')
-    parser.add_argument('--inpaint-box',  type=int,   default=64,
-                        help='Box size for local background estimation during inpainting')
-    parser.add_argument('--hot-pixel-bits', type=lambda x: int(x, 0), default=0xFFFFFFFF,
-                        help='Bitmask for selecting hot pixels from DQ array (default: 0xFFFFFFFF)')
-
-    parser.add_argument('--intensity-threshold', type=float, default=0.05,
-                        help='Normalised detection threshold (default: 0.05)')
-    parser.add_argument('--detection-sigma',     type=float, default=3.0,
-                        help='Sigma above background for detection (default: 3.0)')
-    parser.add_argument('--min-area',            type=int,   default=15,
-                        help='Minimum source area in pixels (default: 15)')
-    parser.add_argument('--fill-ratio-threshold', type=float, default=0.20,
-                        help='Fill ratio below which objects are marked suspicious (default: 0.20)')
-    parser.add_argument('--overlap-threshold',          type=float, default=0.1)
-    parser.add_argument('--horizontal-overlap-threshold', type=float, default=0.3)
-    parser.add_argument('--proximity-threshold',        type=int,   default=30)
-    parser.add_argument('--aspect-ratio-tolerance',     type=float, default=2.0)
-
-    parser.add_argument('--image-format', type=str, default='jpeg',
-                        choices=['jpeg', 'jpg', 'png'],
-                        help='Output image format (default: jpeg)')
-    parser.add_argument('--jpeg-quality', type=int, default=85,
-                        help='JPEG quality 1-95 (default: 85)')
-
-    parser.add_argument('--no-5panel',           action='store_true',
-                        help='Skip saving the combined 5-panel image')
-    parser.add_argument('--no-panel5-standalone', action='store_true',
-                        help='Skip saving the high-DPI panel 5 standalone image')
-    parser.add_argument('--no-panel5-fits',       action='store_true',
-                        help='Skip saving the panel 5 FITS file')
+    parser.add_argument('fits_file', help='Path to the input FITS file')
+    parser.add_argument(
+        '--output-dir', '-o', help='Output directory (default: output/ next to the input file)',
+        default=None
+    )
+    parser.add_argument(
+        '--det-index', help='Zero-based detector index to process (default: all detectors)',
+        type=int, default=None
+    )
+    parser.add_argument(
+        '--kernel-rows', help='Continuum filter rows (default: 1)',
+        type=int, default=1
+    )
+    parser.add_argument(
+        '--kernel-cols', help='Continuum filter columns (default: 41)',
+        type=int, default=41
+    )
+    parser.add_argument(
+        '--inpaint-box', help='Box size for local background estimation during inpainting',
+        type=int, default=64
+    )
+    parser.add_argument(
+        '--hot-pixel-bits', help='Bitmask for selecting hot pixels from DQ array (default: 0xFFFFFFFF)',
+        type=lambda x: int(x, 0), default=0xFFFFFFFF
+    )
+    parser.add_argument(
+        '--intensity-threshold', help='Normalised detection threshold (default: 0.05)',
+        type=float, default=0.05
+    )
+    parser.add_argument(
+        '--detection-sigma', help='Sigma above background for detection (default: 3.0)',
+        type=float, default=3.0
+    )
+    parser.add_argument(
+        '--min-area', help='Minimum source area in pixels (default: 15)',
+        type=int, default=15
+    )
+    parser.add_argument(
+        '--fill-ratio-threshold', help='Fill ratio below which objects are marked suspicious (default: 0.20)',
+        type=float, default=0.20
+    )
+    parser.add_argument(
+        '--overlap-threshold',
+        type=float, default=0.1
+    )
+    parser.add_argument(
+        '--horizontal-overlap-threshold',
+        type=float, default=0.3
+    )
+    parser.add_argument(
+        '--proximity-threshold',
+        type=int, default=30
+    )
+    parser.add_argument(
+        '--aspect-ratio-tolerance',
+        type=float, default=2.0
+    )
+    parser.add_argument(
+        '--image-format', help='Output image format (default: jpeg)',
+        type=str, default='jpeg', choices=['jpeg', 'jpg', 'png']
+    )
+    parser.add_argument(
+        '--jpeg-quality', help='JPEG quality 1-95 (default: 85)',
+        type=int, default=85
+    )
+    parser.add_argument(
+        '--no-5panel', help='Skip saving the combined 5-panel image',
+        action='store_true'
+    )
+    parser.add_argument(
+        '--no-panel5-standalone', help='Skip saving the high-DPI panel 5 standalone image',
+        action='store_true'
+    )
+    parser.add_argument(
+        '--no-panel5-fits', help='Skip saving the panel 5 FITS file',
+        action='store_true'
+    )
 
     args = parser.parse_args()
 
     if not os.path.exists(args.fits_file):
         print(f"ERROR: file not found: {args.fits_file}")
         return
+    
+    zo_table = pd.read_csv(ESC_ALL_PATH)
+    zo_table = zo_table[zo_table['Magnitude'] < ZO_MIN_BRIGHTNESS_MAG]
 
     process_fits_with_full_pipeline(
         fits_path          = args.fits_file,
+        zo_table           = zo_table,
         output_dir         = args.output_dir,
         kernel_size        = (args.kernel_rows, args.kernel_cols),
         inpaint_box        = args.inpaint_box,
