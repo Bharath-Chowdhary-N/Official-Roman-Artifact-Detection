@@ -74,42 +74,44 @@ class DetIndex:
             raise Exception("What'd you give me?")
 DetIndex.ALL_DETS = [DetIndex(i) for i in range(16)]
 
-# def get_grism_angle(primary_header):
-#     """
-#     Read the grism rotation angle in degrees from the primary FITS header.
-#     Several common keyword variants are tried in order. Returns 0.0 if none
-#     are found.
-#     """
-#     candidates = [
-#         'GRISM_PA',
-#         'HIERARCH GRISM_PA',
-#         'HIERARCH ESA NISP GRISM PA',
-#         'HIERARCH ESA NISP GRISM ANGLE',
-#         'GRS_PA',
-#         'GRISMPA',
-#         'ROTANGLE',
-#     ]
-#     for key in candidates:
-#         try:
-#             val = float(primary_header[key])
-#             print(f"  Grism angle: {val:.2f} deg  (keyword '{key}')")
-#             return val
-#         except (KeyError, TypeError):
-#             continue
+def get_grism_angle(header):
+    return header["GWA_TILT"] + float(header["GWA_POS"][-3:])
 
-#     for card in primary_header.cards:
-#         kw = str(card.keyword).upper()
-#         if 'GRISM' in kw or ('GRS' in kw and ('ANGLE' in kw or 'PA' in kw)):
-#             try:
-#                 val = float(card.value)
-#                 print(f"  Grism angle: {val:.2f} deg  (keyword '{card.keyword}')")
-#                 return val
-#             except (ValueError, TypeError):
-#                 continue
+def center_crop(img, crop_dims):
+    """
+    Returns a center-cropped image (NumPy array).
 
-#     print("  WARNING: grism angle not found, assuming 0.0 deg")
-#     return 0.0
+    Args:
+        img (np.ndarray): The input image as a NumPy array (H, W, C or H, W).
+        crop_dims (tuple): The dimensions to crop to (crop_height, crop_width).
 
+    Returns:
+        np.ndarray: The center-cropped image.
+    """
+    img_height, img_width = img.shape[:2]
+    crop_height, crop_width = crop_dims
+    start_height = (img_height - crop_height) // 2
+    start_width = (img_width - crop_width) // 2
+    end_height = start_height + crop_height
+    end_width = start_width + crop_width
+    return img[start_height:end_height, start_width:end_width, ...]
+
+def calc_cont_single(image, grism_angle, kernel_size=(1, 41)):
+    angle = float(grism_angle)
+    rot_angle = angle - 180.0 if angle > 90.0 else angle
+    rotating = not np.isclose(rot_angle, 0.0)
+    # Note the sign here! Because we use origin="lower", the sign is flipped.
+    if rotating:
+        A = image.copy()
+        nan_mask = np.isnan(image)
+        A[nan_mask] = 0.0
+        A = rotate(A, angle=rot_angle, reshape=True)
+    A = median_filter(A if rotating else image, size=kernel_size, mode='nearest')
+    if rotating:
+        A = rotate(A, angle=-rot_angle, reshape=True)
+        A = center_crop(A, image.shape[:2])
+        A[nan_mask] = np.nan
+    return A
 
 def cont_subtract_single(image, grism_angle, kernel_size=(1, 41)):
     """
@@ -120,30 +122,7 @@ def cont_subtract_single(image, grism_angle, kernel_size=(1, 41)):
     the image is first rotated to align spectra with the pixel grid, filtered,
     then rotated back. Returns the continuum-subtracted image.
     """
-    angle = float(grism_angle)
-
-    if angle in (0.0, 180.0):
-        continuum = median_filter(image, size=kernel_size, mode='nearest')
-
-    elif abs(angle - (-4.0)) < 0.5:
-        img_clean = np.nan_to_num(image, nan=0.0)
-        img_rot   = rotate(img_clean, angle=-4.0, reshape=True)
-        cont_rot  = median_filter(img_rot, size=kernel_size, mode='nearest')
-        continuum = rotate(cont_rot, angle=4.0, reshape=True)[142:-142, 142:-142]
-        continuum[continuum == 0] = np.nan
-
-    elif abs(angle - 184.0) < 0.5 or abs(angle - (-176.0)) < 0.5:
-        img_clean = np.nan_to_num(image, nan=0.0)
-        img_rot   = rotate(img_clean, angle=4.0, reshape=True)
-        cont_rot  = median_filter(img_rot, size=kernel_size, mode='nearest')
-        continuum = rotate(cont_rot, angle=-4.0, reshape=True)[142:-142, 142:-142]
-        continuum[continuum == 0] = np.nan
-
-    else:
-        print(f"  Unknown grism angle {angle:.1f} deg, using horizontal filter")
-        continuum = median_filter(image, size=kernel_size, mode='nearest')
-
-    return image - continuum
+    return image - calc_cont_single(image, grism_angle, kernel_size)
 
 
 def build_hot_pixel_mask(hdul, dq_name, hot_pixel_bits=0xFFFFFFFF):
@@ -213,7 +192,7 @@ def inpaint_hot_pixels(image, hot_mask, box_size=64, min_good_fraction=0.3):
 
     return img
 
-
+#############################################################################
 def zscale_01(img, nan_mask=None):
     """
     Apply ZScale stretch and normalise the result to the range 0 to 1.
@@ -573,7 +552,7 @@ def process_detector(hdul, det_idx, output_dir, base_name,
 
     sci_data    = hdul[sci_name].data.astype(np.float64)
     sci_header  = hdul[sci_name].header
-    grism_angle = hdul[0].header["GWA_TILT"] # get_grism_angle(hdul[0].header)
+    grism_angle = get_grism_angle(hdul[0].header)
 
     print(f"  Continuum subtraction (grism={grism_angle:.1f} deg, kernel={kernel_size})...")
     cs_image = cont_subtract_single(sci_data, grism_angle, kernel_size)
