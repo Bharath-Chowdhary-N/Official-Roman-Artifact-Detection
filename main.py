@@ -542,9 +542,9 @@ def process_detector(hdul, det_idx, output_dir, base_name,
                      save_5panel=True, save_panel5_standalone=True,
                      save_panel5_fits_flag=True):
 
-    sci_name = f"DET{det_idx.code}"
-    dq_name  = f"{sci_name}.DQ"
-    sci_name  = f"{sci_name}.SCI"
+    sci_name    = f"DET{det_idx.code}"
+    dq_name     = f"{sci_name}.DQ"
+    sci_name    = f"{sci_name}.SCI"
 
     print(f"\n{'=' * 60}")
     print(f"Detector {det_idx.idx + 1}/{len([x for x in hdul if x.name.endswith('.SCI')])}  ->  {sci_name}")
@@ -579,7 +579,7 @@ def process_detector(hdul, det_idx, output_dir, base_name,
         sigma_est = float(np.median(np.abs(finite_px - bg_median))) * 1.4826
 
     sigma_est = max(sigma_est, 1e-9)
-    n_sigma   = detection_params.get('detection_sigma', 3.0) ####################################################################################################
+    n_sigma   = detection_params.get('detection_sigma', 3.0)
     flux_threshold = bg_median + n_sigma * sigma_est
 
     print(f"  Background median : {bg_median:.4g}")
@@ -587,11 +587,16 @@ def process_detector(hdul, det_idx, output_dir, base_name,
     print(f"  Flux threshold    : {flux_threshold:.4g}  ({n_sigma:.1f} sigma above bg)")
 
     thr_norm  = detection_params.get('intensity_threshold', 0.05)
-    scale     = (flux_threshold - bg_median) / thr_norm #########################################################################################################
+    scale     = (flux_threshold - bg_median) / thr_norm
     det_image = np.clip((raw_det - bg_median) / (scale + 1e-30), 0, 1)
 
-    _, initial_objects, intensity_mask = detect_all_objects(det_image, **detection_params)
+    all_objects_mask, initial_objects, intensity_mask = detect_all_objects(det_image, **detection_params)
+    # print("All objects: ", all_objects_mask, all_objects_mask.shape)
+    # print("Intensity mask: ", intensity_mask, intensity_mask.shape)
+    # print("THey're the same???: ", np.all(all_objects_mask == intensity_mask))
     merged_objects = merge_objects_fast(initial_objects, **merge_params)
+
+    print(merged_objects[0]["pixels"].shape)
 
     fill_threshold  = filter_params['fill_ratio_threshold']
     suspicious_lbl  = {obj['label'] for obj in merged_objects if obj['fill_ratio'] < fill_threshold}
