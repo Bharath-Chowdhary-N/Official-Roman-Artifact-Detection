@@ -41,6 +41,7 @@ from skimage import morphology, measure
 from datetime import datetime
 import json
 import pandas as pd
+from PIL import Image
 import gelsa
 
 G = gelsa.Gelsa("calib/gelsa_config.json")
@@ -261,11 +262,9 @@ def detect_all_objects(image, intensity_threshold=0.05, min_area=15,
     object_list = object_list[:max_objects]
     print(f"  Selected {len(object_list)} objects")
 
-    all_object_pixels = np.zeros_like(image, dtype=bool)
-    for obj_info in object_list:
-        all_object_pixels |= obj_info['pixels']
+    all_object_pixels = np.logical_or.reduce([x['pixels'] for x in object_list])
 
-    return all_object_pixels, object_list, intensity_mask
+    return all_object_pixels, object_list, intensity_mask, np.where(all_object_pixels, labeled, 0)
 
 
 def merge_objects_fast(object_list,
@@ -590,13 +589,12 @@ def process_detector(hdul, det_idx, output_dir, base_name,
     scale     = (flux_threshold - bg_median) / thr_norm
     det_image = np.clip((raw_det - bg_median) / (scale + 1e-30), 0, 1)
 
-    all_objects_mask, initial_objects, intensity_mask = detect_all_objects(det_image, **detection_params)
-    # print("All objects: ", all_objects_mask, all_objects_mask.shape)
-    # print("Intensity mask: ", intensity_mask, intensity_mask.shape)
-    # print("THey're the same???: ", np.all(all_objects_mask == intensity_mask))
+    _, initial_objects, _, label_mask = detect_all_objects(det_image, **detection_params)
     merged_objects = merge_objects_fast(initial_objects, **merge_params)
-
-    print(merged_objects[0]["pixels"].shape)
+    merge_label_mask = np.zeros_like(label_mask)
+    for merged_object in merged_objects:
+        merged_object['label'] += 1
+        merge_label_mask[merged_object['pixels']] = merged_object['label']
 
     fill_threshold  = filter_params['fill_ratio_threshold']
     suspicious_lbl  = {obj['label'] for obj in merged_objects if obj['fill_ratio'] < fill_threshold}
