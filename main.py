@@ -648,20 +648,20 @@ def process_detector(hdul, det_idx, output_dir, base_name,
             fontsize=10,
         )
 
-        axes[0].imshow(disp_raw,          origin='lower', cmap=cmap, vmin=0, vmax=1)
+        axes[0].imshow(disp_raw,          origin='upper', cmap=cmap, vmin=0, vmax=1)
         axes[0].set_title("1. Raw science image\n(ZScale)", fontsize=9)
 
-        axes[1].imshow(disp_cs,           origin='lower', cmap=cmap, vmin=0, vmax=1)
+        axes[1].imshow(disp_cs,           origin='upper', cmap=cmap, vmin=0, vmax=1)
         axes[1].set_title("2. Continuum-subtracted\n(2D spectra removed)", fontsize=9)
 
-        axes[2].imshow(disp_cs_hot_nan,   origin='lower', cmap=cmap, vmin=0, vmax=1)
+        axes[2].imshow(disp_cs_hot_nan,   origin='upper', cmap=cmap, vmin=0, vmax=1)
         axes[2].set_title(
             f"3. Hot pixels removed\n(shown black, {n_hot:,} px)", fontsize=9)
 
-        axes[3].imshow(disp_cs_inpainted, origin='lower', cmap=cmap, vmin=0, vmax=1)
+        axes[3].imshow(disp_cs_inpainted, origin='upper', cmap=cmap, vmin=0, vmax=1)
         axes[3].set_title("4. Hot pixels replaced\nwith background noise", fontsize=9)
 
-        axes[4].imshow(disp_cs_inpainted, origin='lower', cmap=cmap, vmin=0, vmax=1)
+        axes[4].imshow(disp_cs_inpainted, origin='upper', cmap=cmap, vmin=0, vmax=1)
         axes[4].set_title(
             f"5. Object detection\n" +
             f"green={len(confident_objects)} confident  " +
@@ -710,7 +710,7 @@ def process_detector(hdul, det_idx, output_dir, base_name,
 
     if save_panel5_standalone:
         fig5, ax5 = plt.subplots(1, 1, figsize=(10, 10))
-        ax5.imshow(disp_cs_inpainted, origin='lower', cmap=cmap, vmin=0, vmax=1)
+        ax5.imshow(disp_cs_inpainted, origin='upper', cmap=cmap, vmin=0, vmax=1)
         ax5.set_title(
             f"{sci_name}  |  grism = {grism_angle:.1f} deg\n"
             f"Detections: {len(confident_objects)} confident (green), "
@@ -754,14 +754,14 @@ def process_detector(hdul, det_idx, output_dir, base_name,
         plt.close()
         print(f"  Saved panel 5 standalone (300 DPI): {p5_path}")
 
-        # Clean version: no axes, no title, no boxes — for Zooniverse upload
-        fig_clean, ax_clean = plt.subplots(1, 1, figsize=(10, 10))
-        ax_clean.imshow(disp_cs_inpainted, origin='lower', cmap=cmap, vmin=0, vmax=1)
-        ax_clean.axis('off')
+        from PIL import Image as PILImage
+        disp_uint8 = (np.flipud(disp_cs_inpainted) * 255).clip(0, 255).astype(np.uint8)
+        pil_img = PILImage.fromarray(disp_uint8, mode='L')
         p5_clean_path = os.path.join(output_dir, f"{fname_stem}_panel5_clean.{ext}")
-        plt.savefig(p5_clean_path, dpi=300, bbox_inches='tight', pad_inches=0,
-                    pil_kwargs=pkl)
-        plt.close()
+        if ext == 'jpg':
+            pil_img.save(p5_clean_path, format='JPEG', quality=jpeg_quality, optimize=True)
+        else:
+            pil_img.save(p5_clean_path, format='PNG', optimize=True)
         print(f"  Saved panel 5 clean (300 DPI): {p5_clean_path}")
 
     if save_panel5_fits_flag:

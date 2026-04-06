@@ -5,8 +5,15 @@ Each subject contains two images that volunteers can flip between:
   Frame 0 — clean image (no boxes, no axes) saved by main.py
   Frame 1 — annotated image (bounding boxes, no axes/title) rendered here
 
-Bounding-box coordinates are stored as hidden metadata (#bounding_boxes)
-for downstream data processing.
+Bounding-box coordinates are stored as:
+  #bounding_boxes  — full detection metadata for downstream science processing
+  #prior_marks     — pre-loaded editable marks shown to volunteers on Frame 0
+                     (requires "Show prior marks" enabled on T0 in Project Builder)
+
+Tool index mapping (must match Zooniverse workflow T0 tool order):
+  0 = Confident detection     (Green rectangle)
+  1 = Suspicious detection    (Yellow rectangle)
+  2 = Confirmed zero-order    (Green rectangle)
 
 Usage:
     python upload_to_zooniverse.py <fits_file_or_dir> [options]
@@ -34,6 +41,14 @@ from astropy.visualization import ZScaleInterval
 from panoptes_client import Panoptes, Subject, SubjectSet
 
 SUBJECT_SET_ID = 134713
+
+# Must match the tool order in Zooniverse Project Builder T0:
+#   Tool 0 = Confident detection  (Green)
+#   Tool 1 = Suspicious detection (Yellow)
+#   Tool 2 = Confirmed zero-order (Green)
+TOOL_CONFIDENT  = 0
+TOOL_SUSPICIOUS = 1
+TOOL_CONFIRMED  = 2
 
 
 # ---------------------------------------------------------------------------
@@ -73,7 +88,7 @@ def find_clean_image(fits_path: str) -> str | None:
 def render_annotated_png(fits_path: str, png_path: str, dpi: int = 300) -> dict:
     """
     Render the annotated panel-5 image (boxes only, no axes or title).
-    Returns subject metadata dict.
+    Returns subject metadata dict including #bounding_boxes and #prior_marks.
     """
     with fits.open(fits_path) as hdul:
         preproc_names = [h.name for h in hdul if h.name.endswith('.PREPROCESSED')]
@@ -125,7 +140,9 @@ def render_annotated_png(fits_path: str, png_path: str, dpi: int = 300) -> dict:
     plt.savefig(png_path, dpi=dpi, bbox_inches='tight', pad_inches=0, format='png')
     plt.close(fig)
 
-    # Build metadata
+    # ------------------------------------------------------------------
+    # #bounding_boxes — full metadata for downstream science processing
+    # ------------------------------------------------------------------
     def _bbox_list(objects, label):
         return [
             {
@@ -149,6 +166,29 @@ def render_annotated_png(fits_path: str, png_path: str, dpi: int = 300) -> dict:
         _bbox_list(confirmed,  'confirmed_ZO')
     )
 
+    # ------------------------------------------------------------------
+    # #prior_marks — pre-loaded editable marks shown to volunteers on
+    # Frame 0. Tool indices must match the Project Builder T0 tool order.
+    # ------------------------------------------------------------------
+    def _prior_marks(objects, tool_index):
+        return [
+            {
+                "tool":   tool_index,
+                "frame":  0,                        # display on Frame 0 (clean image)
+                "x":      int(r['X_MIN']),          # top-left x
+                "y":      int(r['Y_MIN']),          # top-left y
+                "width":  int(r['X_MAX']) - int(r['X_MIN']),
+                "height": int(r['Y_MAX']) - int(r['Y_MIN']),
+            }
+            for r in objects
+        ]
+
+    prior_marks = (
+        _prior_marks(confident,  TOOL_CONFIDENT)  +
+        _prior_marks(suspicious, TOOL_SUSPICIOUS) +
+        _prior_marks(confirmed,  TOOL_CONFIRMED)
+    )
+
     return {
         'filename':        os.path.basename(fits_path),
         'detector':        det_label,
@@ -159,6 +199,7 @@ def render_annotated_png(fits_path: str, png_path: str, dpi: int = 300) -> dict:
         'n_confirmed_zo':  len(confirmed),
         'n_zo_positions':  len(zx),
         '#bounding_boxes': json.dumps(all_boxes),
+        '#prior_marks':    json.dumps(prior_marks),
         '#zo_positions':   json.dumps([{'x': float(x), 'y': float(y)}
                                        for x, y in zip(zx, zy)]),
     }
@@ -184,11 +225,13 @@ def upload_fits(fits_path: str, subject_set: SubjectSet,
 
     try:
         metadata = render_annotated_png(fits_path, annotated_path, dpi=dpi)
+        prior_marks = json.loads(metadata['#prior_marks'])
         print(f"  Annotated image: {annotated_path}")
         print(f"  Detections: {metadata['n_confident']} confident | "
               f"{metadata['n_suspicious']} suspicious | "
               f"{metadata['n_confirmed_zo']} confirmed ZO | "
               f"{metadata['n_zo_positions']} ZO positions")
+        print(f"  Prior marks to pre-load: {len(prior_marks)}")
 
         if dry_run:
             print("  [dry-run] skipping upload")
@@ -197,8 +240,8 @@ def upload_fits(fits_path: str, subject_set: SubjectSet,
         subject = Subject()
         subject.links.project = subject_set.links.project
 
-        # Frame 0: clean (what volunteers classify on)
-        # Frame 1: annotated (reference with machine detections)
+        # Frame 0: clean (what volunteers classify on, with pre-loaded marks)
+        # Frame 1: annotated (reference with machine detections drawn in)
         if clean_path:
             subject.add_location(clean_path)
         subject.add_location(annotated_path)
