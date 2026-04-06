@@ -45,6 +45,7 @@ import gelsa
 
 G = gelsa.Gelsa("calib/gelsa_config.json")
 ESC_PATH = "Euclid Extracted Spectra Data"
+ESC_ALL_PATH = os.path.join(ESC_PATH, "bigdigest 5614B8BE632B859E72E37665FB9914E3.csv")
 
 ZO_MIN_DST_THRESHOLD = 0.75
 ZO_H_SCALE = 5.0
@@ -73,42 +74,44 @@ class DetIndex:
             raise Exception("What'd you give me?")
 DetIndex.ALL_DETS = [DetIndex(i) for i in range(16)]
 
-# def get_grism_angle(primary_header):
-#     """
-#     Read the grism rotation angle in degrees from the primary FITS header.
-#     Several common keyword variants are tried in order. Returns 0.0 if none
-#     are found.
-#     """
-#     candidates = [
-#         'GRISM_PA',
-#         'HIERARCH GRISM_PA',
-#         'HIERARCH ESA NISP GRISM PA',
-#         'HIERARCH ESA NISP GRISM ANGLE',
-#         'GRS_PA',
-#         'GRISMPA',
-#         'ROTANGLE',
-#     ]
-#     for key in candidates:
-#         try:
-#             val = float(primary_header[key])
-#             print(f"  Grism angle: {val:.2f} deg  (keyword '{key}')")
-#             return val
-#         except (KeyError, TypeError):
-#             continue
+def get_grism_angle(header):
+    return header["GWA_TILT"] + float(header["GWA_POS"][-3:])
 
-#     for card in primary_header.cards:
-#         kw = str(card.keyword).upper()
-#         if 'GRISM' in kw or ('GRS' in kw and ('ANGLE' in kw or 'PA' in kw)):
-#             try:
-#                 val = float(card.value)
-#                 print(f"  Grism angle: {val:.2f} deg  (keyword '{card.keyword}')")
-#                 return val
-#             except (ValueError, TypeError):
-#                 continue
+def center_crop(img, crop_dims):
+    """
+    Returns a center-cropped image (NumPy array).
 
-#     print("  WARNING: grism angle not found, assuming 0.0 deg")
-#     return 0.0
+    Args:
+        img (np.ndarray): The input image as a NumPy array (H, W, C or H, W).
+        crop_dims (tuple): The dimensions to crop to (crop_height, crop_width).
 
+    Returns:
+        np.ndarray: The center-cropped image.
+    """
+    img_height, img_width = img.shape[:2]
+    crop_height, crop_width = crop_dims
+    start_height = (img_height - crop_height) // 2
+    start_width = (img_width - crop_width) // 2
+    end_height = start_height + crop_height
+    end_width = start_width + crop_width
+    return img[start_height:end_height, start_width:end_width, ...]
+
+def calc_cont_single(image, grism_angle, kernel_size=(1, 41)):
+    angle = float(grism_angle)
+    rot_angle = angle - 180.0 if angle > 90.0 else angle
+    rotating = not np.isclose(rot_angle, 0.0)
+    # Note the sign here! Because we use origin="lower", the sign is flipped.
+    if rotating:
+        A = image.copy()
+        nan_mask = np.isnan(image)
+        A[nan_mask] = 0.0
+        A = rotate(A, angle=rot_angle, reshape=True)
+    A = median_filter(A if rotating else image, size=kernel_size, mode='nearest')
+    if rotating:
+        A = rotate(A, angle=-rot_angle, reshape=True)
+        A = center_crop(A, image.shape[:2])
+        A[nan_mask] = np.nan
+    return A
 
 def cont_subtract_single(image, grism_angle, kernel_size=(1, 41)):
     """
@@ -119,30 +122,7 @@ def cont_subtract_single(image, grism_angle, kernel_size=(1, 41)):
     the image is first rotated to align spectra with the pixel grid, filtered,
     then rotated back. Returns the continuum-subtracted image.
     """
-    angle = float(grism_angle)
-
-    if angle in (0.0, 180.0):
-        continuum = median_filter(image, size=kernel_size, mode='nearest')
-
-    elif abs(angle - (-4.0)) < 0.5:
-        img_clean = np.nan_to_num(image, nan=0.0)
-        img_rot   = rotate(img_clean, angle=-4.0, reshape=True)
-        cont_rot  = median_filter(img_rot, size=kernel_size, mode='nearest')
-        continuum = rotate(cont_rot, angle=4.0, reshape=True)[142:-142, 142:-142]
-        continuum[continuum == 0] = np.nan
-
-    elif abs(angle - 184.0) < 0.5 or abs(angle - (-176.0)) < 0.5:
-        img_clean = np.nan_to_num(image, nan=0.0)
-        img_rot   = rotate(img_clean, angle=4.0, reshape=True)
-        cont_rot  = median_filter(img_rot, size=kernel_size, mode='nearest')
-        continuum = rotate(cont_rot, angle=-4.0, reshape=True)[142:-142, 142:-142]
-        continuum[continuum == 0] = np.nan
-
-    else:
-        print(f"  Unknown grism angle {angle:.1f} deg, using horizontal filter")
-        continuum = median_filter(image, size=kernel_size, mode='nearest')
-
-    return image - continuum
+    return image - calc_cont_single(image, grism_angle, kernel_size)
 
 
 def build_hot_pixel_mask(hdul, dq_name, hot_pixel_bits=0xFFFFFFFF):
@@ -212,7 +192,7 @@ def inpaint_hot_pixels(image, hot_mask, box_size=64, min_good_fraction=0.3):
 
     return img
 
-
+#############################################################################
 def zscale_01(img, nan_mask=None):
     """
     Apply ZScale stretch and normalise the result to the range 0 to 1.
@@ -572,7 +552,7 @@ def process_detector(hdul, det_idx, output_dir, base_name,
 
     sci_data    = hdul[sci_name].data.astype(np.float64)
     sci_header  = hdul[sci_name].header
-    grism_angle = hdul[0].header["GWA_TILT"] # get_grism_angle(hdul[0].header)
+    grism_angle = get_grism_angle(hdul[0].header)
 
     print(f"  Continuum subtraction (grism={grism_angle:.1f} deg, kernel={kernel_size})...")
     cs_image = cont_subtract_single(sci_data, grism_angle, kernel_size)
@@ -845,6 +825,7 @@ def process_detector(hdul, det_idx, output_dir, base_name,
 
 def process_fits_with_full_pipeline(
     fits_path,
+    zo_table,
     output_dir=None,
     kernel_size=(1, 41),
     inpaint_box=64,
@@ -903,22 +884,24 @@ def process_fits_with_full_pipeline(
         det_indices = [DetIndex(specific_det_index)] if specific_det_index is not None else sci_hdus
         print(f"\nFound {n_det} SCI detectors.")
         all_results = []
-        zo_table    = pd.read_csv(os.path.join(ESC_PATH, str(hdul[0].header["OBS_ID"]), "digest.csv"))
-        zo_table    = zo_table[zo_table['Magnitude'] < ZO_MIN_BRIGHTNESS_MAG]
-        zo_table["ZO x"], zo_table["ZO y"], zo_table["ZO Det"] = gelsa_frame.radec_to_pixel(
+        zo_x, zo_y, zo_det = gelsa_frame.radec_to_pixel(
             zo_table['RIGHT_ASCENSION'],
             zo_table['DECLINATION'],
             15000*np.ones(len(zo_table)),
             dispersion_order = 0
         )
-        zo_table = zo_table[zo_table["ZO Det"] >= 0]
+        on_frame_mask               = zo_det >= 0
+        on_frame_zo_table           = zo_table.iloc[on_frame_mask].copy()
+        on_frame_zo_table["ZO x"]   = zo_x[on_frame_mask]
+        on_frame_zo_table["ZO y"]   = zo_y[on_frame_mask]
+        on_frame_zo_table["ZO Det"] = zo_det[on_frame_mask]
         for det_idx in det_indices:
             result = process_detector(
                 hdul, det_idx, output_dir, base_name,
                 kernel_size, inpaint_box, hot_pixel_bits,
                 image_format, jpeg_quality,
                 detection_params, merge_params, filter_params,
-                zo_table,
+                on_frame_zo_table,
                 save_5panel=save_5panel,
                 save_panel5_standalone=save_panel5_standalone,
                 save_panel5_fits_flag=save_panel5_fits_flag,
@@ -971,56 +954,96 @@ def main():
         )
     )
 
-    parser.add_argument('fits_file',
-                        help='Path to the input FITS file')
-    parser.add_argument('--output-dir', '-o', default=None,
-                        help='Output directory (default: output/ next to the input file)')
-    parser.add_argument('--det-index', type=int, default=None,
-                        help='Zero-based detector index to process (default: all detectors)')
-
-    parser.add_argument('--kernel-rows',  type=int,   default=1,
-                        help='Continuum filter rows (default: 1)')
-    parser.add_argument('--kernel-cols',  type=int,   default=41,
-                        help='Continuum filter columns (default: 41)')
-    parser.add_argument('--inpaint-box',  type=int,   default=64,
-                        help='Box size for local background estimation during inpainting')
-    parser.add_argument('--hot-pixel-bits', type=lambda x: int(x, 0), default=0xFFFFFFFF,
-                        help='Bitmask for selecting hot pixels from DQ array (default: 0xFFFFFFFF)')
-
-    parser.add_argument('--intensity-threshold', type=float, default=0.05,
-                        help='Normalised detection threshold (default: 0.05)')
-    parser.add_argument('--detection-sigma',     type=float, default=3.0,
-                        help='Sigma above background for detection (default: 3.0)')
-    parser.add_argument('--min-area',            type=int,   default=15,
-                        help='Minimum source area in pixels (default: 15)')
-    parser.add_argument('--fill-ratio-threshold', type=float, default=0.20,
-                        help='Fill ratio below which objects are marked suspicious (default: 0.20)')
-    parser.add_argument('--overlap-threshold',          type=float, default=0.1)
-    parser.add_argument('--horizontal-overlap-threshold', type=float, default=0.3)
-    parser.add_argument('--proximity-threshold',        type=int,   default=30)
-    parser.add_argument('--aspect-ratio-tolerance',     type=float, default=2.0)
-
-    parser.add_argument('--image-format', type=str, default='jpeg',
-                        choices=['jpeg', 'jpg', 'png'],
-                        help='Output image format (default: jpeg)')
-    parser.add_argument('--jpeg-quality', type=int, default=85,
-                        help='JPEG quality 1-95 (default: 85)')
-
-    parser.add_argument('--no-5panel',           action='store_true',
-                        help='Skip saving the combined 5-panel image')
-    parser.add_argument('--no-panel5-standalone', action='store_true',
-                        help='Skip saving the high-DPI panel 5 standalone image')
-    parser.add_argument('--no-panel5-fits',       action='store_true',
-                        help='Skip saving the panel 5 FITS file')
+    parser.add_argument('fits_file', help='Path to the input FITS file')
+    parser.add_argument(
+        '--output-dir', '-o', help='Output directory (default: output/ next to the input file)',
+        default=None
+    )
+    parser.add_argument(
+        '--det-index', help='Zero-based detector index to process (default: all detectors)',
+        type=int, default=None
+    )
+    parser.add_argument(
+        '--kernel-rows', help='Continuum filter rows (default: 1)',
+        type=int, default=1
+    )
+    parser.add_argument(
+        '--kernel-cols', help='Continuum filter columns (default: 41)',
+        type=int, default=41
+    )
+    parser.add_argument(
+        '--inpaint-box', help='Box size for local background estimation during inpainting',
+        type=int, default=64
+    )
+    parser.add_argument(
+        '--hot-pixel-bits', help='Bitmask for selecting hot pixels from DQ array (default: 0xFFFFFFFF)',
+        type=lambda x: int(x, 0), default=0xFFFFFFFF
+    )
+    parser.add_argument(
+        '--intensity-threshold', help='Normalised detection threshold (default: 0.05)',
+        type=float, default=0.05
+    )
+    parser.add_argument(
+        '--detection-sigma', help='Sigma above background for detection (default: 3.0)',
+        type=float, default=3.0
+    )
+    parser.add_argument(
+        '--min-area', help='Minimum source area in pixels (default: 15)',
+        type=int, default=15
+    )
+    parser.add_argument(
+        '--fill-ratio-threshold', help='Fill ratio below which objects are marked suspicious (default: 0.20)',
+        type=float, default=0.20
+    )
+    parser.add_argument(
+        '--overlap-threshold',
+        type=float, default=0.1
+    )
+    parser.add_argument(
+        '--horizontal-overlap-threshold',
+        type=float, default=0.3
+    )
+    parser.add_argument(
+        '--proximity-threshold',
+        type=int, default=30
+    )
+    parser.add_argument(
+        '--aspect-ratio-tolerance',
+        type=float, default=2.0
+    )
+    parser.add_argument(
+        '--image-format', help='Output image format (default: jpeg)',
+        type=str, default='jpeg', choices=['jpeg', 'jpg', 'png']
+    )
+    parser.add_argument(
+        '--jpeg-quality', help='JPEG quality 1-95 (default: 85)',
+        type=int, default=85
+    )
+    parser.add_argument(
+        '--no-5panel', help='Skip saving the combined 5-panel image',
+        action='store_true'
+    )
+    parser.add_argument(
+        '--no-panel5-standalone', help='Skip saving the high-DPI panel 5 standalone image',
+        action='store_true'
+    )
+    parser.add_argument(
+        '--no-panel5-fits', help='Skip saving the panel 5 FITS file',
+        action='store_true'
+    )
 
     args = parser.parse_args()
 
     if not os.path.exists(args.fits_file):
         print(f"ERROR: file not found: {args.fits_file}")
         return
+    
+    zo_table = pd.read_csv(ESC_ALL_PATH)
+    zo_table = zo_table[zo_table['Magnitude'] < ZO_MIN_BRIGHTNESS_MAG]
 
     process_fits_with_full_pipeline(
         fits_path          = args.fits_file,
+        zo_table           = zo_table,
         output_dir         = args.output_dir,
         kernel_size        = (args.kernel_rows, args.kernel_cols),
         inpaint_box        = args.inpaint_box,
