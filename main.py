@@ -193,7 +193,6 @@ def inpaint_hot_pixels(image, hot_mask, box_size=64, min_good_fraction=0.3):
 
     return img
 
-#############################################################################
 def zscale_01(img, nan_mask=None):
     """
     Apply ZScale stretch and normalise the result to the range 0 to 1.
@@ -409,25 +408,6 @@ def _merge_group(group, group_id):
     }
 
 
-def filter_horizontal_objects(object_list, min_aspect_ratio=3.0, min_width=50,
-                               protected_labels=None):
-    """
-    Separate very elongated objects (likely residual spectra) from compact ones.
-    Objects whose labels appear in protected_labels are kept regardless of shape.
-    Returns (compact_objects, horizontal_objects).
-    """
-    if protected_labels is None:
-        protected_labels = set()
-    filtered, horizontal = [], []
-    for obj in object_list:
-        is_h = obj['aspect_ratio'] >= min_aspect_ratio and obj['width'] >= min_width
-        if is_h and obj['label'] not in protected_labels:
-            horizontal.append(obj)
-        else:
-            filtered.append(obj)
-    return filtered, horizontal
-
-
 def save_panel5_fits(
     cs_inpainted,
     confident_objects,
@@ -596,17 +576,19 @@ def process_detector(hdul, det_idx, output_dir, base_name,
         merged_object['label'] += 1
         merge_label_mask[merged_object['pixels']] = merged_object['label']
 
-    fill_threshold  = filter_params['fill_ratio_threshold']
-    suspicious_lbl  = {obj['label'] for obj in merged_objects if obj['fill_ratio'] < fill_threshold}
-    filtered_objects, horizontal_objects = filter_horizontal_objects(
-        merged_objects,
-        min_aspect_ratio=filter_params['min_aspect_ratio'],
-        min_width=filter_params['min_width'],
-        protected_labels=suspicious_lbl,
-    )
+    fill_threshold      = filter_params['fill_ratio_threshold']
+    min_aspect_ratio    = filter_params['min_aspect_ratio']
+    min_width           = filter_params['min_width']
 
-    confident_objects  = [o for o in filtered_objects if o['fill_ratio'] >= fill_threshold]
-    suspicious_objects = [o for o in filtered_objects if o['fill_ratio'] <  fill_threshold]
+    merged_objects_indices_set     = set(range(len(merged_objects)))
+    suspicious_objects_indices_set = {i for i in merged_objects_indices_set if merged_objects[i]['fill_ratio'] < fill_threshold}
+    confident_objects_indices_set  = merged_objects_indices_set - suspicious_objects_indices_set
+    horizontal_objects_indices_set = {i for i in confident_objects_indices_set if merged_objects[i]['aspect_ratio'] >= min_aspect_ratio and merged_objects[i]['width'] >= min_width}
+    confident_objects_indices_set  -= horizontal_objects_indices_set
+
+    horizontal_objects = [merged_objects[i] for i in horizontal_objects_indices_set]
+    confident_objects  = [merged_objects[i] for i in confident_objects_indices_set ]
+    suspicious_objects = [merged_objects[i] for i in suspicious_objects_indices_set]
     print(f"  Confident (green)\t: {len(confident_objects)}")
     print(f"  Suspicious (yellow)\t: {len(suspicious_objects)}")
 
