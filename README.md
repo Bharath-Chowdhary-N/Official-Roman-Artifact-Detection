@@ -53,9 +53,32 @@ need them (see the flags below).
 
 ## Requirements
 
+### Main pipeline (`main.py`)
+
 ```
 pip install numpy matplotlib astropy scipy scikit-image
 ```
+
+### Upload pipeline (`upload_pipeline.py`)
+
+```
+pip install numpy matplotlib pandas astropy panoptes-client torch segment-anything
+```
+
+Also requires `MaskEncoder.py` to be present in the same directory.
+
+On first run the SAM model checkpoint is downloaded automatically into `checkpoints/`:
+- `vit_b` — 375 MB
+- `vit_l` — 1.25 GB
+- `vit_h` — 2.56 GB
+
+### Caesar upload (`upload_detections_to_caesar.py`)
+
+```
+pip install pandas requests panoptes-client google-api-python-client google-auth-oauthlib
+```
+
+The Google Drive packages are only needed if using `--gdrive-credentials` for automated upload.
 
 Python 3.9 or newer is recommended.
 
@@ -173,6 +196,113 @@ detected object. The columns are X_MIN, Y_MIN, X_MAX, Y_MAX (bounding box corner
 in pixels), CENT_X and CENT_Y (flux-weighted centroid), AREA (number of source
 pixels), FILL (fill ratio), ASPECT (aspect ratio), and TYPE (either "confident"
 or "suspicious").
+
+---
+
+## Uploading to Caesar / Zooniverse
+
+Two upload scripts push pipeline outputs to the Zooniverse citizen-science platform.
+
+**Run order:** `upload_pipeline.py` must run first — it creates and populates
+`subject_set_registry.json` with Zooniverse subject set IDs that
+`upload_detections_to_caesar.py` depends on.
+
+**Runtime files needed before uploading:**
+
+| File | Created by | Purpose |
+|------|-----------|---------|
+| `*_panel5.fits` | `main.py` | Input image for SAM and Caesar |
+| `*_detections.csv` | `main.py` | Detection bounding boxes |
+| `subject_set_registry.json` | `upload_pipeline.py` (auto) | Caches Zooniverse subject set IDs |
+| `gdrive_oauth_cache.json` | Google Cloud Console (manual) | OAuth credentials for Google Drive |
+| `gdrive_auth_token.json` | First OAuth login (auto after) | Cached Google Drive access token |
+
+### upload_detections_to_caesar.py
+
+Uploads a panel-5 FITS file and its detection CSV to a Zooniverse subject set, with
+Google Drive backing for the subject images.
+
+```bash
+python upload_detections_to_caesar.py \
+  --fits Images/output/EUC_SIR_W-SCIFRM_BKGSUB_2681_11832_3_RGS180_0_2024-10-31T17:44:11.173589Z_det0_DET11_SCI_panel5.fits \
+  --detections Images/output/EUC_SIR_W-SCIFRM_BKGSUB_2681_11832_3_RGS180_0_2024-10-31T17:44:11.173589Z_det0_detections.csv \
+  --registry subject_set_registry.json \
+  --workflow-id 31550 \
+  --username YOUR_USERNAME \
+  --password 'YOUR_PASSWORD' \
+  --file-id 1nhrZSrPEQCErS0S2W6qRTCP22LH76ZGH \
+  --gdrive-token gdrive_auth_token.json \
+  --gdrive-credentials gdrive_oauth_cache.json
+```
+
+| Flag | Description |
+|------|-------------|
+| `--fits` | Panel-5 FITS file produced by `main.py` |
+| `--detections` | Detection CSV produced by `main.py` |
+| `--registry` | JSON file tracking uploaded subject sets (created on first run) |
+| `--workflow-id` | Zooniverse workflow ID to attach subjects to |
+| `--username` / `--password` | Zooniverse credentials |
+| `--file-id` | Google Drive file ID for the subject image |
+| `--gdrive-token` | Cached OAuth token for Google Drive |
+| `--gdrive-credentials` | OAuth credentials file for Google Drive |
+
+---
+
+### upload_pipeline.py
+
+Runs the Segment Anything Model (SAM) over the detections and uploads the resulting
+segmentation masks to a Zooniverse project.
+
+```bash
+python upload_pipeline.py \
+  --fits Images/output/EUC_SIR_W-SCIFRM_BKGSUB_2681_11832_3_RGS180_0_2024-10-31T17:44:11.173589Z_det0_DET11_SCI_panel5.fits \
+  --detections Images/output/EUC_SIR_W-SCIFRM_BKGSUB_2681_11832_3_RGS180_0_2024-10-31T17:44:11.173589Z_det0_detections.csv \
+  --username YOUR_USERNAME \
+  --password 'YOUR_PASSWORD' \
+  --model-type vit_h \
+  --project-id 30908
+```
+
+| Flag | Description |
+|------|-------------|
+| `--fits` | Panel-5 FITS file produced by `main.py` |
+| `--detections` | Detection CSV produced by `main.py` |
+| `--username` / `--password` | Zooniverse credentials |
+| `--model-type` | SAM model variant: `vit_h`, `vit_l`, or `vit_b` (default: `vit_h`) |
+| `--project-id` | Zooniverse project ID to upload subjects to |
+
+---
+
+### Setting up gdrive_auth_token.json
+
+`gdrive_auth_token.json` is the cached OAuth token that lets the script write to
+Google Drive without prompting for a browser login every time. Generate it once:
+
+1. Make sure you have a `gdrive_oauth_cache.json` credentials file downloaded from
+   the [Google Cloud Console](https://console.cloud.google.com/) for a project with
+   the Drive API enabled (OAuth 2.0 Desktop App credentials).
+
+2. Run the one-time authentication helper:
+
+   ```bash
+   python -c "
+   from google_auth_oauthlib.flow import InstalledAppFlow
+   import json, pickle
+
+   SCOPES = ['https://www.googleapis.com/auth/drive']
+   flow = InstalledAppFlow.from_client_secrets_file('gdrive_oauth_cache.json', SCOPES)
+   creds = flow.run_local_server(port=0)
+   with open('gdrive_auth_token.json', 'w') as f:
+       f.write(creds.to_json())
+   print('Token saved to gdrive_auth_token.json')
+   "
+   ```
+
+3. A browser window will open asking you to authorise access. After approval,
+   `gdrive_auth_token.json` is written to the current directory. The token is
+   refreshed automatically on subsequent runs as long as the file is present.
+
+> **Note:** Keep both JSON files out of version control — add them to `.gitignore`.
 
 ---
 
