@@ -27,6 +27,7 @@ Usage:
 
 import os
 import sys
+import gc
 import argparse
 import warnings
 import numpy as np
@@ -254,18 +255,13 @@ def detect_all_objects(image, intensity_threshold=0.05, min_area=15,
         bbox_area             = obj_info['width'] * obj_info['height']
         obj_info['fill_ratio'] = obj_info['area'] / bbox_area if bbox_area > 0 else 0.0
         obj_info['priority']  = region.mean_intensity * region.area
-        obj_info['pixels']    = labeled == region.label
         object_list.append(obj_info)
 
     object_list.sort(key=lambda x: x['priority'], reverse=True)
     object_list = object_list[:max_objects]
     print(f"  Selected {len(object_list)} objects")
 
-    all_object_pixels = np.zeros_like(image, dtype=bool)
-    for obj_info in object_list:
-        all_object_pixels |= obj_info['pixels']
-
-    return all_object_pixels, object_list, intensity_mask
+    return object_list
 
 
 def merge_objects_fast(object_list,
@@ -390,9 +386,6 @@ def _merge_group(group, group_id):
     max_i  = max(o['max_intensity'] for o in group)
     w, h   = maxc - minc, maxr - minr
     bbox_a = w * h
-    merged_px = np.zeros_like(group[0]['pixels'], dtype=bool)
-    for o in group:
-        merged_px |= o['pixels']
     return {
         'bbox'          : [minc, minr, maxc, maxr],
         'centroid'      : [cx, cy],
@@ -405,7 +398,6 @@ def _merge_group(group, group_id):
         'fill_ratio'    : total_area / bbox_a if bbox_a > 0 else 0.0,
         'priority'      : mean_i * total_area,
         'label'         : group_id,
-        'pixels'        : merged_px,
         'fragment_count': len(group),
     }
 
@@ -590,8 +582,10 @@ def process_detector(hdul, det_idx, output_dir, base_name,
     scale     = (flux_threshold - bg_median) / thr_norm #########################################################################################################
     det_image = np.clip((raw_det - bg_median) / (scale + 1e-30), 0, 1)
 
-    _, initial_objects, intensity_mask = detect_all_objects(det_image, **detection_params)
+    initial_objects = detect_all_objects(det_image, **detection_params)
+    n_initial_objects = len(initial_objects)
     merged_objects = merge_objects_fast(initial_objects, **merge_params)
+    del initial_objects
 
     fill_threshold  = filter_params['fill_ratio_threshold']
     suspicious_lbl  = {obj['label'] for obj in merged_objects if obj['fill_ratio'] < fill_threshold}
@@ -813,7 +807,7 @@ def process_detector(hdul, det_idx, output_dir, base_name,
         'grism_angle'   : grism_angle,
         'hot_px'        : int(n_hot),
         'hot_pct'       : round(100 * n_hot / hot_mask.size, 3),
-        'initial_objects': len(initial_objects),
+        'initial_objects': n_initial_objects,
         'merged_objects' : len(merged_objects),
         'horiz_removed'  : len(horizontal_objects),
         'confident'      : len(confident_objects),
@@ -954,9 +948,9 @@ def main():
         )
     )
 
-    parser.add_argument('fits_file', help='Path to the input FITS file')
+    parser.add_argument('fits_file', help='Path to a FITS file or a directory containing FITS files')
     parser.add_argument(
-        '--output-dir', '-o', help='Output directory (default: output/ next to the input file)',
+        '--output-dir', '-o', help='Output directory (default: output/ next to each input file)',
         default=None
     )
     parser.add_argument(
@@ -1035,14 +1029,23 @@ def main():
     args = parser.parse_args()
 
     if not os.path.exists(args.fits_file):
-        print(f"ERROR: file not found: {args.fits_file}")
+        print(f"ERROR: path not found: {args.fits_file}")
         return
-    
+
+    if os.path.isdir(args.fits_file):
+        import glob
+        fits_files = sorted(glob.glob(os.path.join(args.fits_file, '*.fits')))
+        if not fits_files:
+            print(f"ERROR: no .fits files found in {args.fits_file}")
+            return
+        print(f"Found {len(fits_files)} FITS file(s) in {args.fits_file}")
+    else:
+        fits_files = [args.fits_file]
+
     zo_table = pd.read_csv(ESC_ALL_PATH)
     zo_table = zo_table[zo_table['Magnitude'] < ZO_MIN_BRIGHTNESS_MAG]
 
-    process_fits_with_full_pipeline(
-        fits_path          = args.fits_file,
+    pipeline_kwargs = dict(
         zo_table           = zo_table,
         output_dir         = args.output_dir,
         kernel_size        = (args.kernel_rows, args.kernel_cols),
@@ -1074,10 +1077,18 @@ def main():
         save_panel5_fits_flag    = not args.no_panel5_fits,
     )
 
+    for i, fits_path in enumerate(fits_files, 1):
+        print(f"\n[{i}/{len(fits_files)}] Processing: {fits_path}")
+        try:
+            process_fits_with_full_pipeline(fits_path=fits_path, **pipeline_kwargs)
+        except Exception as e:
+            print(f"  ERROR processing {fits_path}: {e}")
+        gc.collect()
+
 
 if __name__ == '__main__':
     if len(sys.argv) == 1:
-        print("Usage: python full_pipeline_5panel.py <fits_file> [options]")
-        print("       python full_pipeline_5panel.py --help")
+        print("Usage: python main.py <fits_file_or_directory> [options]")
+        print("       python main.py --help")
     else:
         main()

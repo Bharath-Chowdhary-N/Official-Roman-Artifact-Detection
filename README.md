@@ -203,9 +203,11 @@ or "suspicious").
 
 Two upload scripts push pipeline outputs to the Zooniverse citizen-science platform.
 
-**Run order:** `upload_pipeline.py` must run first — it creates and populates
-`subject_set_registry.json` with Zooniverse subject set IDs that
-`upload_detections_to_caesar.py` depends on.
+**Run order:**
+
+1. `main.py` — detects objects and writes `*_panel5.fits` and `*_detections.csv`
+2. `upload_pipeline.py` — runs SAM on the detections and uploads subjects to Zooniverse; also creates `subject_set_registry.json`
+3. `upload_detections_to_caesar.py` — depends on `subject_set_registry.json` produced in step 2
 
 **Runtime files needed before uploading:**
 
